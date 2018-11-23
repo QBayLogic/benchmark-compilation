@@ -5,22 +5,22 @@ set -x
 cd $(mktemp -d)
 
 export PATH="$HOME/.local/bin:$HOME/.cabal/bin:/opt/ghc/bin:/usr/local/bin/:$PATH"
- 
+
 TIMEF="%C,%x,%e,%U,%S,"
 RESULT=$HOME/$(lsb_release -d -s | tr ' ' '_' | tr -d '"').csv
 FASTRUN=0
 
 echo "command,exit,real,user,sys,comment" > ${RESULT}
- 
+
 # Benchmark building clash-ghc
-git clone --recursive https://github.com/clash-lang/clash-compiler.git -q  
+git clone --recursive https://github.com/clash-lang/clash-compiler.git -q
 cd clash-compiler
 git checkout feature-dependent-tests
- 
+
 cabal new-update
- 
 for ghc_threads in 64 32 16 8 4 2 1; do
        for cabal_threads in 64 32 16 8 4 2 1; do
+
                rm -rf ~/.cabal/store
                rm -rf dist-newstyle
                echo "=========== clash-ghc, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
@@ -29,11 +29,11 @@ for ghc_threads in 64 32 16 8 4 2 1; do
        done
        [ $FASTRUN == 1 ] && break
 done
- 
+
 # Benchmark testsuite
 cabal new-run testsuite -- -p nosuchtest
- 
 for threads in 64 32 16 8 4 2 1; do
+
        echo "=========== testsuite, threads=${threads} ==========="
        /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- cabal new-run -- testsuite -p clash -j${threads} || true
        [ $FASTRUN == 1 ] && break
@@ -76,7 +76,7 @@ sed -i 's/^#BUILD/BUILD/g' mk/validate.mk
 
 # Build GHC with various number of threads
 for threads in 64 32 16 8 4 2 1; do
-        make clean 
+        make clean
         ./configure
         echo "=========== make ghc, threads=${threads} ==========="
         THREADS=${threads} /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- make -j${threads} || true
