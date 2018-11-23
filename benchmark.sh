@@ -6,6 +6,7 @@ cd $(mktemp -d)
 
 export PATH="$HOME/.local/bin:$HOME/.cabal/bin:/opt/ghc/bin:/usr/local/bin/:$PATH"
 
+THREAD_STEPS="64 32 16 8 4 2 1"
 TIMEF="%C,%x,%e,%U,%S,"
 RESULT=$HOME/$(lsb_release -d -s | tr ' ' '_' | tr -d '"').csv
 FASTRUN=0
@@ -18,9 +19,9 @@ cd clash-compiler
 git checkout feature-dependent-tests
 
 cabal new-update
-for ghc_threads in 64 32 16 8 4 2 1; do
-       for cabal_threads in 64 32 16 8 4 2 1; do
 
+for ghc_threads in ${THREAD_STEPS}; do
+       for cabal_threads in ${THREAD_STEPS}; do
                rm -rf ~/.cabal/store
                rm -rf dist-newstyle
                echo "=========== clash-ghc, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
@@ -32,8 +33,8 @@ done
 
 # Benchmark testsuite
 cabal new-run testsuite -- -p nosuchtest
-for threads in 64 32 16 8 4 2 1; do
 
+for threads in ${THREAD_STEPS}; do
        echo "=========== testsuite, threads=${threads} ==========="
        /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- cabal new-run -- testsuite -p clash -j${threads} || true
        [ $FASTRUN == 1 ] && break
@@ -46,8 +47,8 @@ cabal new-install stack
 rm -rf ~/.cabal/store
 
 # Compile Stack
-for ghc_threads in 64 32 16 8 4 2 1; do
-       for cabal_threads in 64 32 16 8 4 2 1; do
+for ghc_threads in ${THREAD_STEPS}; do
+       for cabal_threads in ${THREAD_STEPS}; do
            rm -rf ~/.cabal/store
            echo "=========== stack, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
            /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- cabal new-install stack --ghc-options="-j${ghc_threads}" -j${cabal_threads} || true
@@ -75,7 +76,7 @@ sed -i 's/^#HADDOCK/HADDOCK/g' mk/validate.mk
 sed -i 's/^#BUILD/BUILD/g' mk/validate.mk
 
 # Build GHC with various number of threads
-for threads in 64 32 16 8 4 2 1; do
+for threads in ${THREAD_STEPS}; do
         make clean
         ./configure
         echo "=========== make ghc, threads=${threads} ==========="
@@ -86,7 +87,7 @@ done
 make maintainer-clean
 ./validate --build-only
 
-for threads in 64 32 16 8 4 2 1; do
+for threads in ${THREAD_STEPS}; do
         echo "=========== validate ghc, threads=${threads} ==========="
         THREADS=${threads} /usr/bin/time --quiet -p -f "${TIMEF}THREADS=${threads}" -o ${RESULT} -a -- ./validate --no-clean --testsuite-only || true
         [ $FASTRUN == 1 ] && break
