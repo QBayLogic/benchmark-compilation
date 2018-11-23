@@ -42,6 +42,11 @@ done
 
 cd ..
 
+# We can't use --ghc-options on new-install to set the GHC threads,
+# so we set the ghc-options in ~/.cabal/config
+sed -i 's/^  -- ghc-options:/  ghc-options:/g' ~/.cabal/config
+grep -q "^  ghc-options:" ~/.cabal/config || echo "Error: ~/.cabal/config doesn't have a ghc-options that we can rewrite" || exit 1
+
 # Just for warming the download cache..
 cabal new-install stack
 rm -rf ~/.cabal/store
@@ -50,6 +55,7 @@ rm -rf ~/.cabal/store
 for ghc_threads in ${THREAD_STEPS}; do
        for cabal_threads in ${THREAD_STEPS}; do
            rm -rf ~/.cabal/store
+           sed -i "s/^  ghc-options:.*/  ghc-options: -j${ghc_threads}/g" ~/.cabal/config
            echo "=========== stack, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
            /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- cabal new-install stack --ghc-options="-j${ghc_threads}" -j${cabal_threads} || true
            [ $FASTRUN == 1 ] && break
