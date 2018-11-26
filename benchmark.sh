@@ -50,11 +50,15 @@ grep -q "^  ghc-options:" ~/.cabal/config || echo "Error: ~/.cabal/config doesn'
 # Just for warming the download cache..
 cabal new-install stack
 rm -rf ~/.cabal/store
+GHC_VERSION="$(ghc --numeric-version)"
+# something on openSUSE needs a package.db in your store
+ghc-pkg init ~/.cabal/store/ghc-$GHC_VERSION/package.db
 
 # Compile Stack
 for ghc_threads in ${THREAD_STEPS}; do
        for cabal_threads in ${THREAD_STEPS}; do
            rm -rf ~/.cabal/store
+           ghc-pkg init ~/.cabal/store/ghc-$GHC_VERSION/package.db
            sed -i "s/^  ghc-options:.*/  ghc-options: -j${ghc_threads}/g" ~/.cabal/config
            echo "=========== stack, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
            /usr/bin/time --quiet -p -f ${TIMEF} -o ${RESULT} -a -- cabal new-install stack --ghc-options="-j${ghc_threads}" -j${cabal_threads} || true
