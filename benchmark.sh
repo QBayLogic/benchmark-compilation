@@ -16,7 +16,7 @@ echo "command,exit,real,user,sys,comment" > ${RESULT}
 # Benchmark building clash-ghc
 git clone --recursive https://github.com/clash-lang/clash-compiler.git -q
 cd clash-compiler
-git checkout feature-dependent-tests
+git checkout 5f9dd26825fb912896d7d1837238117131f0c37f # this commit merged dependant tests into master
 
 cabal new-update
 
