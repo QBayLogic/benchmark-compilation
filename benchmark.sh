@@ -44,7 +44,7 @@ cd ..
 
 # We can't use --ghc-options on new-install to set the GHC threads,
 # so we set the ghc-options in ~/.cabal/config
-sed -i 's/^  -- ghc-options:/  ghc-options:/g' ~/.cabal/config
+sed -i 's/^  -- ghc-options:.*/  ghc-options:/g' ~/.cabal/config
 grep -q "^  ghc-options:" ~/.cabal/config || echo "Error: ~/.cabal/config doesn't have a ghc-options that we can rewrite" || exit 1
 
 # Just for warming the download cache..
@@ -66,6 +66,9 @@ for ghc_threads in ${THREAD_STEPS}; do
        done
        [ $FASTRUN == 1 ] && break
 done
+
+#unset ghc options in cabal config
+sed -i 's/^  ghc-options:.*/  -- ghc-options:/g' ~/.cabal/config
 
 # Setup GHC..
 git clone --jobs 16 --recursive git://git.haskell.org/ghc.git -q
