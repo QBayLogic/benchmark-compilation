@@ -32,7 +32,7 @@ for ghc_threads in ${THREAD_STEPS}; do
 done
 
 # Benchmark testsuite
-cabal new-run testsuite -- -p nosuchtest
+cabal new-run testsuite -- -p nosuchtest || true
 
 for threads in ${THREAD_STEPS}; do
        echo "=========== testsuite, threads=${threads} ==========="
@@ -48,7 +48,7 @@ sed -i 's/^  -- ghc-options:.*/  ghc-options:/g' ~/.cabal/config
 grep -q "^  ghc-options:" ~/.cabal/config || echo "Error: ~/.cabal/config doesn't have a ghc-options that we can rewrite" || exit 1
 
 # Just for warming the download cache..
-cabal new-install -f disable-git-info stack
+cabal new-install stack || true
 rm -rf ~/.cabal/store
 GHC_VERSION="$(ghc --numeric-version)"
 # something on openSUSE needs a package.db in your store
