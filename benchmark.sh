@@ -48,7 +48,7 @@ sed -i 's/^  -- ghc-options:.*/  ghc-options:/g' ~/.cabal/config
 grep -q "^  ghc-options:" ~/.cabal/config || echo "Error: ~/.cabal/config doesn't have a ghc-options that we can rewrite" || exit 1
 
 # Just for warming the download cache..
-cabal new-install stack
+cabal new-install -f disable-git-info stack
 rm -rf ~/.cabal/store
 GHC_VERSION="$(ghc --numeric-version)"
 # something on openSUSE needs a package.db in your store
