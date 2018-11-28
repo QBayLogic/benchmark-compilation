@@ -97,6 +97,7 @@
 
 ### Configuration 1
 
+  * Overclock: 4.8 GHz
   * OS: Ubuntu 18.04.1 LTS
   * Memory: 64 GB DD4-2800 14-16-16-36
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
