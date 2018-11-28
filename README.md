@@ -1,6 +1,6 @@
 # Ranking
 
-* Building Clash
+#### Building Clash
 
 1. 450,43: Machine 1; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j4 -j8`
 1. 460,95: Machine 2; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j2 -j16`
@@ -8,28 +8,28 @@
 1.
 1.
 
-* Clash testsuite
+#### Clash testsuite
 
 1. 70,54: Machine 2; Configuration 1; `cabal new-run -- testsuite -p clash -j32`
 1. 168.78: Machine 1; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
 1.
 1.
 
-* Building stack
+#### Building stack
 
 1. 444,75: Machine 2; Configuration 1; `GHC_THREADS=16 cabal new-install stack -j16`
 1. 468.2: Machine 1; Configuration 1; `GHC_THREADS=8 cabal new-install stack -j8`
 1.
 1.
 
-* Building GHC
+#### Building GHC
 
 1. 685,94: Machine 2; Configuration 1; `make -j64`
 1. 1683.62: Machine 1; Configuration 1; `make -j16`
 1.
 1.
 
-* GHC testsuite
+#### GHC testsuite
 
 1. 324.21: Machine 1; Configuration 1; `THREADS=16 ./validate --no-clean --testsuite-only`
 1.
