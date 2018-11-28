@@ -23,7 +23,7 @@
 
 #### Building GHC
 
-~~1. 685,94: Machine 2; Configuration 1; `make -j64`~~ Exit code: 2
+1. ~~685,94: Machine 2; Configuration 1; `make -j64`~~ `Exit code: 2`
 1. 1683.62: Machine 1; Configuration 1; `make -j16`
 
 #### GHC testsuite
