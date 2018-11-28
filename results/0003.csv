@@ -19,20 +19,20 @@ cabal new-run -- testsuite -p clash -j8,1,161.80,1182.61,92.14,
 cabal new-run -- testsuite -p clash -j4,1,178.26,644.74,63.42,
 cabal new-run -- testsuite -p clash -j2,1,296.37,543.97,55.28,
 cabal new-run -- testsuite -p clash -j1,1,562.34,538.82,53.54,
-cabal new-install stack -j8,1,1115.87,7209.05,983.41,
-cabal new-install stack -j4,1,1060.84,6576.73,1107.99,
-cabal new-install stack -j2,1,729.90,3119.03,976.20,
-cabal new-install stack -j1,1,857.31,1748.99,929.93,
-cabal new-install stack -j8,1,536.77,2993.09,422.12,
-cabal new-install stack -j4,1,449.47,2057.01,447.80,
-cabal new-install stack -j2,1,519.58,1425.01,386.90,
-cabal new-install stack -j1,1,805.72,1236.55,315.02,
-cabal new-install stack -j8,1,372.12,1731.94,189.26,
-cabal new-install stack -j4,1,384.18,1445.31,166.38,
-cabal new-install stack -j2,1,515.54,1157.10,135.66,
-cabal new-install stack -j1,1,850.12,1082.10,120.49,
-cabal new-install stack -j8,1,413.91,1387.30,66.14,
-cabal new-install stack -j4,1,420.06,1122.17,55.36,
-cabal new-install stack -j2,1,603.93,1010.14,48.43,
-cabal new-install stack -j1,1,1013.69,967.68,41.61,
+cabal new-install stack -j8,1,1115.87,7209.05,983.41,GHC_THREADS=8
+cabal new-install stack -j4,1,1060.84,6576.73,1107.99,GHC_THREADS=8
+cabal new-install stack -j2,1,729.90,3119.03,976.20,GHC_THREADS=8
+cabal new-install stack -j1,1,857.31,1748.99,929.93,GHC_THREADS=8
+cabal new-install stack -j8,1,536.77,2993.09,422.12,GHC_THREADS=4
+cabal new-install stack -j4,1,449.47,2057.01,447.80,GHC_THREADS=4
+cabal new-install stack -j2,1,519.58,1425.01,386.90,GHC_THREADS=4
+cabal new-install stack -j1,1,805.72,1236.55,315.02,GHC_THREADS=4
+cabal new-install stack -j8,1,372.12,1731.94,189.26,GHC_THREADS=2
+cabal new-install stack -j4,1,384.18,1445.31,166.38,GHC_THREADS=2
+cabal new-install stack -j2,1,515.54,1157.10,135.66,GHC_THREADS=2
+cabal new-install stack -j1,1,850.12,1082.10,120.49,GHC_THREADS=2
+cabal new-install stack -j8,1,413.91,1387.30,66.14,GHC_THREADS=1
+cabal new-install stack -j4,1,420.06,1122.17,55.36,GHC_THREADS=1
+cabal new-install stack -j2,1,603.93,1010.14,48.43,GHC_THREADS=1
+cabal new-install stack -j1,1,1013.69,967.68,41.61,GHC_THREADS=1
 make -j8,0,1310.44,6285.10,354.25,
