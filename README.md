@@ -91,10 +91,14 @@
 ## Machine 3
 
   * CPU: Core i7-7700K
+  * Motherboard: Asus PRIME Z270-P
+  * Memory: CMK64GX4M4B2800C14
+  * SSD: Samsung 960 EVO 1TB
 
 ### Configuration 1
 
   * OS: Ubuntu 18.04.1 LTS
+  * Memory: 64 GB DD4-2800 14-16-16-36
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
@@ -104,10 +108,14 @@
 ## Machine 4
 
   * CPU: Core i7-8700K
+  * Motherboard: Asus PRIME Z370-P II
+  * Memory: 4x Corsair CM4X16GC3000C15K4
+  * SSD: Samsung 970 EVO 1TB
 
 ### Configuration 1
 
   * OS: Ubuntu 18.04.1 LTS
+  * Memory: 64 GB DDR4-3000 15-17-17-35
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
