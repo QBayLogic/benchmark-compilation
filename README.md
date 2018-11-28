@@ -121,3 +121,17 @@
   * Governer: performance
 
   [Results]()
+
+## Machine 5
+
+  * CPU: 2x Xeon Gold 6140M
+  * Motherboard: Intel S2600STB
+  * Memory: 16x Kingston 9965589-001.E00G
+
+### Configuration 1
+
+  * Overclock: none
+  * Memory: 256 GB DDR4-2666 ECC
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
+  * Governer: performance
