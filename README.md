@@ -10,7 +10,8 @@
   * Overclock settings: none
   * Memory: 64 GB DDR4-2400 15-15-15-39
   * OS: Ubuntu 18.04.1 LTS
-  * Governer: on-demand
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+  * Governer: performance
 
   [Results](results/0001.csv)
 
@@ -27,6 +28,7 @@
   * Overclock settings: none
   * Memory: 128 GB DDR4-2400 17-17-17-32 ECC
   * OS: OpenSUSE Tumbleweed
+  * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
 
   [Results]()
@@ -39,6 +41,7 @@
 ### Configuration 1
   
   * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
   [Results]()
@@ -51,6 +54,7 @@
 ### Configuration 1
 
   * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
   [Results]()
