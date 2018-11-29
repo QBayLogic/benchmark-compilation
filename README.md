@@ -1,6 +1,19 @@
+# Tests
+
+| Name | Command | Comment |
+| --- | --- | --- |
+| Building Clash | `cabal new-build clash-ghc` | Empty Cabal store, cached download |
+| Clash testsuite | `clash new-run -- testsuite -p clash` | Only runs Clash compilation |
+| Building stack | `cabal new-build stack` | Empty Cabal store, cached download, fails at the very end[¹] |
+| Building GHC | `make` | `perf` build, no docs |
+| GHC testsuite | `./validate --no-clean --testsuite-only` | Preceded by a `./validate --build-only` |
+
+#### ¹ Note One
+[¹]:#-note-one
+
 # Ranking
 
-#### Building Clash (empty Cabal store)
+#### Building Clash
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
@@ -20,7 +33,7 @@
 | 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
 | 5. | 168.78 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-run -- testsuite -p clash -j8`  |
 
-#### Building stack (empty Cabal store)
+#### Building stack
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
