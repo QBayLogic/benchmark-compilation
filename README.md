@@ -2,10 +2,10 @@
 
 | Name | Command | Comment |
 | --- | --- | --- |
-| Building Clash | `cabal new-build clash-ghc` | Empty Cabal store, cached download |
+| Building Clash | `cabal new-build clash-ghc` | Empty Cabal store, cached download, haddock=yes |
 | Clash testsuite | `clash new-run -- testsuite -p clash` | Only runs Clash compilation, fails one test[¹] |
-| Building stack | `cabal new-build stack` | Empty Cabal store, cached download, builds `stack-1.9.1`, fails at the very end[²] |
-| Building GHC | `make` | `perf` build, no docs |
+| Building stack | `cabal new-build stack` | Empty Cabal store, cached download, haddock=no, builds `stack-1.9.1`, fails at the very end[²] |
+| Building GHC | `make` | `perf` build, sphinx_docs=no, haddock=yes |
 | GHC testsuite | `./validate --no-clean --testsuite-only` | Preceded by a `./validate --build-only` |
 
 #### ¹ Note One
