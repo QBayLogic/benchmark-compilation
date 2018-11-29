@@ -8,7 +8,12 @@ export PATH="$HOME/.local/bin:$HOME/.cabal/bin:/opt/ghc/bin:/usr/local/bin/:$PAT
 
 THREAD_STEPS="64 32 16 8 4 2 1"
 TIMEF="%C,%x,%e,%U,%S,"
-RESULT=$HOME/$(lsb_release -d -s | tr ' ' '_' | tr -d '"').csv
+RESULT=$(mktemp --tmpdir="$HOME" benchmark-results.XXXX.csv)
+RESULT_INFO="$RESULT.info"
+lsb_release -d >> "$RESULT_INFO"
+uname -vr >> "$RESULT_INFO"
+cpupower frequency-info >> "$RESULT_INFO"
+
 FASTRUN=0
 
 echo "command,exit,real,user,sys,comment" > ${RESULT}
