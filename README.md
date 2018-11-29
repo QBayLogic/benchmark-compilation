@@ -32,7 +32,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
-| 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j8`  |
+| 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j72`  |
 | 2. | 70,54  | [Machine 2; Configuration 1](#configuration-1-1) | `cabal new-run -- testsuite -p clash -j32` |
 | 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
 | 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
@@ -55,7 +55,7 @@ Clash-cosim is not installed, so the cosim tests fails
 | 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
 | 3.| 1683.62 | [Machine 1; Configuration 1](#configuration-1) | `make -j16` |
 
-~~0. 685,94: [Machine 2; Configuration 1](#configuration-1-1); `make -j64`~~ `Exit code: 2`
+~~685,94: [Machine 2; Configuration 1](#configuration-1-1); `make -j64`~~ `Exit code: 2`
 
 #### GHC testsuite
 
@@ -184,7 +184,7 @@ Clash-cosim is not installed, so the cosim tests fails
   Fastest runs:
 
   * Building Clash: 418.91 `cabal new-build clash-ghc --ghc-options=-j4 -j36`
-  * Clash testsuite: 44.47 `cabal new-run -- testsuite -p clash -j8`
+  * Clash testsuite: 44.47 `cabal new-run -- testsuite -p clash -j72`
   * Building stack:
   * Building GHC:
   * GHC testsuite:
