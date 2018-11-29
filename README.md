@@ -2,11 +2,13 @@
 
 #### Building Clash (empty Cabal store)
 
-1. 325.55: Machine 4; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j3 -j6`
-1. 339.22: Machine 3; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j2 -j4`
-1. 418.91: Machine 4; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j4 -j36`
-1. 450,43: Machine 1; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j4 -j8`
-1. 460,95: Machine 2; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j2 -j16`
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1. | 325.55 | Machine 4; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j3 -j6` |
+| 2. | 339.22 | Machine 3; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j2 -j4` |
+| 3. | 418.91 | Machine 5; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j4 -j36` |
+| 4. | 450,43 | Machine 1; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j4 -j8` |
+| 5. | 460,95 | Machine 2; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j2 -j16` |
 
 #### Clash testsuite
 
