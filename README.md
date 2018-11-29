@@ -162,6 +162,13 @@ Clash-cosim is not installed, so the cosim tests fails
 
   [Results](results/0003.csv)
 
+### Configuration 2
+
+  * Overclock: 4.8 GHz
+  * OS: Ubuntu 18.04.1 LTS
+  * Memory: 64 GB DD4-2133 15-15-15-36
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+  * Governer: performance
 
 ## Machine 4
 
