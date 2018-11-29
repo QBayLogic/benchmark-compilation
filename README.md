@@ -3,13 +3,18 @@
 | Name | Command | Comment |
 | --- | --- | --- |
 | Building Clash | `cabal new-build clash-ghc` | Empty Cabal store, cached download |
-| Clash testsuite | `clash new-run -- testsuite -p clash` | Only runs Clash compilation |
-| Building stack | `cabal new-build stack` | Empty Cabal store, cached download, fails at the very end[¹] |
+| Clash testsuite | `clash new-run -- testsuite -p clash` | Only runs Clash compilation, fails one test[¹] |
+| Building stack | `cabal new-build stack` | Empty Cabal store, cached download, builds `stack-1.9.1`, fails at the very end[²] |
 | Building GHC | `make` | `perf` build, no docs |
 | GHC testsuite | `./validate --no-clean --testsuite-only` | Preceded by a `./validate --build-only` |
 
 #### ¹ Note One
 [¹]:#-note-one
+Building `Main.hs` fails the same way it does on the [hackage builder](http://hackage.haskell.org/package/stack-1.9.1/reports/3)
+
+#### ² Note Two
+[²]:#-note-two
+Clash-cosim is not installed, so the cosim tests fails
 
 # Ranking
 
