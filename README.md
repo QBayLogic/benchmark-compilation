@@ -93,6 +93,17 @@ Clash-cosim is not installed, so the cosim tests fails
 
   [Results](results/0001.csv)
 
+### Configuration 2
+
+  * Overclock settings: none
+  * Memory: 64 GB DDR4-2400 15-15-15-39
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+  * Governer: ondemand
+
+  [Results](results/0006.csv)
+
+
 ## Machine 2
 
   * CPU: Threadripper 2990wx
