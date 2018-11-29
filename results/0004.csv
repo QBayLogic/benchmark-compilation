@@ -105,3 +105,16 @@ cabal new-install stack -j3,1,486.47,1085.66,53.12,GHC_THREADS=1
 cabal new-install stack -j2,1,623.55,1045.78,49.72,GHC_THREADS=1
 cabal new-install stack -j1,1,1027.26,979.53,43.74,GHC_THREADS=1
 make -j12,0,1207.42,6649.05,371.88,
+make -j8,0,1205.29,5615.03,329.74,
+make -j6,0,1223.74,4810.15,295.62,
+make -j4,0,1393.50,4232.60,261.62,
+make -j3,0,1638.40,4049.45,249.66,
+make -j2,0,2197.77,3879.76,237.81,
+make -j1,0,3888.82,3647.16,222.04,
+./validate --no-clean --testsuite-only,0,265.16,2359.69,343.56,THREADS=12
+./validate --no-clean --testsuite-only,0,294.08,1822.02,283.73,THREADS=8
+./validate --no-clean --testsuite-only,0,338.02,1578.31,257.44,THREADS=6
+./validate --no-clean --testsuite-only,0,450.07,1428.90,243.19,THREADS=4
+./validate --no-clean --testsuite-only,0,559.90,1319.98,228.57,THREADS=3
+./validate --no-clean --testsuite-only,0,796.11,1250.86,218.17,THREADS=2
+./validate --no-clean --testsuite-only,0,1488.24,1171.84,208.21,THREADS=1

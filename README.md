@@ -24,12 +24,15 @@
 #### Building GHC
 
 1. ~~685,94: Machine 2; Configuration 1; `make -j64`~~ `Exit code: 2`
+1. 1205.29: Machine 4; Configuration 1; `make -j8`
+1. 1310.44: Machine 3; Configuration 1; `make -j8`
 1. 1683.62: Machine 1; Configuration 1; `make -j16`
 
 #### GHC testsuite
 
+1. 265.16: Machine 4; Configuration 1; `THREADS=12 ./validate --no-clean --testsuite-only`
 1. 324.21: Machine 1; Configuration 1; `THREADS=16 ./validate --no-clean --testsuite-only`
-1.
+1. 338.17: Machine 3; Configuration 1; `THREADS=8 ./validate --no-clean --testsuite-only`
 
 # Configurations
 
@@ -103,8 +106,8 @@
   * Building Clash: 339.22 `cabal new-build clash-ghc --ghc-options=-j2 -j4`
   * Clash testsuite: 161.8 `cabal new-run -- testsuite -p clash -j8`
   * Building stack: 372.12 `GHC_THREADS=2 cabal new-install stack -j8`
-  * Building GHC:
-  * GHC testsuite:
+  * Building GHC: 1310.44 `make -j8`
+  * GHC testsuite: 338.17 `THREADS=8 ./validate --no-clean --testsuite-only`
 
   [Results](results/0003.csv)
 
@@ -128,8 +131,8 @@
   * Building Clash: 325.55 `cabal new-build clash-ghc --ghc-options=-j3 -j6`
   * Clash testsuite: 128.63 `cabal new-run -- testsuite -p clash -j8`
   * Building stack: 335.27 `GHC_THREADS=3 cabal new-install stack -j6`
-  * Building GHC:
-  * GHC testsuite:
+  * Building GHC: 1205.29 `make -j8`
+  * GHC testsuite: 265.16 `THREADS=12 ./validate --no-clean --testsuite-only`
 
   [Results](results/0004.csv)
 
