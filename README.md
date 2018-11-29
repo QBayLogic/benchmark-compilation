@@ -4,11 +4,13 @@
 
 1. 325.55: Machine 4; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j3 -j6`
 1. 339.22: Machine 3; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j2 -j4`
+1. 418.91: Machine 4; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j4 -j36`
 1. 450,43: Machine 1; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j4 -j8`
 1. 460,95: Machine 2; Configuration 1; `cabal new-build clash-ghc --ghc-options=-j2 -j16`
 
 #### Clash testsuite
 
+1. 44.47: Machine 5; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
 1. 70,54: Machine 2; Configuration 1; `cabal new-run -- testsuite -p clash -j32`
 1. 128.63: Machine 4; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
 1. 161.8: Machine 3; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
@@ -149,3 +151,13 @@
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * Governer: performance
+
+  Fastest runs:
+
+  * Building Clash: 418.91 `cabal new-build clash-ghc --ghc-options=-j4 -j36`
+  * Clash testsuite: 44.47 `cabal new-run -- testsuite -p clash -j8`
+  * Building stack:
+  * Building GHC:
+  * GHC testsuite:
+
+  [Results](results/0005.csv)
