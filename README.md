@@ -4,39 +4,48 @@
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
-| 1. | 325.55 | [Machine 4; Configuration 1](#configuration1_3) | `cabal new-build clash-ghc --ghc-options=-j3 -j6` |
-| 2. | 339.22 | Machine 3; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j2 -j4` |
-| 3. | 418.91 | Machine 5; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j4 -j36` |
-| 4. | 450,43 | Machine 1; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j4 -j8` |
-| 5. | 460,95 | Machine 2; Configuration 1 | `cabal new-build clash-ghc --ghc-options=-j2 -j16` |
+| 1.  | 325.55 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-build clash-ghc --ghc-options=-j3 -j6`  |
+| 2.  | 339.22 | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-build clash-ghc --ghc-options=-j2 -j4`  |
+| 3.  | 418.91 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options=-j4 -j36` |
+| 4.  | 450,43 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-build clash-ghc --ghc-options=-j4 -j8`  |
+| 5.  | 460,95 | [Machine 2; Configuration 1](#configuration-1-1) | `cabal new-build clash-ghc --ghc-options=-j2 -j16` |
 
 #### Clash testsuite
 
-1. 44.47: Machine 5; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
-1. 70,54: Machine 2; Configuration 1; `cabal new-run -- testsuite -p clash -j32`
-1. 128.63: Machine 4; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
-1. 161.8: Machine 3; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
-1. 168.78: Machine 1; Configuration 1; `cabal new-run -- testsuite -p clash -j8`
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j8`  |
+| 2. | 70,54  | [Machine 2; Configuration 1](#configuration-1-1) | `cabal new-run -- testsuite -p clash -j32` |
+| 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
+| 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
+| 5. | 168.78 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-run -- testsuite -p clash -j8`  |
 
 #### Building stack (empty Cabal store)
 
-1. 325.55: Machine 4; Configuration 1; `GHC_THREADS=3 cabal new-install stack -j6`
-1. 372.12: Machine 3; Configuration 1; `GHC_THREADS=2 cabal new-install stack -j8`
-1. 444,75: Machine 2; Configuration 1; `GHC_THREADS=4 cabal new-install stack -j16`
-1. 468.2: Machine 1; Configuration 1; `GHC_THREADS=2 cabal new-install stack -j8`
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1. | 325.55 | [Machine 4; Configuration 1](#configuration-1-3) | `GHC_THREADS=3 cabal new-install stack -j6`  |
+| 2. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_THREADS=2 cabal new-install stack -j8`  |
+| 3. | 444,75 | [Machine 2; Configuration 1](#configuration-1-1) | `GHC_THREADS=4 cabal new-install stack -j16` |
+| 4. | 468.2  | [Machine 1; Configuration 1](#configuration-1)   | `GHC_THREADS=2 cabal new-install stack -j8`  |
 
 #### Building GHC
 
-1. ~~685,94: Machine 2; Configuration 1; `make -j64`~~ `Exit code: 2`
-1. 1205.29: Machine 4; Configuration 1; `make -j8`
-1. 1310.44: Machine 3; Configuration 1; `make -j8`
-1. 1683.62: Machine 1; Configuration 1; `make -j16`
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1.| 1205.29 | [Machine 4; Configuration 1](#configuration-1-3) | `make -j8`  |
+| 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
+| 3.| 1683.62 | [Machine 1; Configuration 1](#configuration-1) | `make -j16` |
+
+~~0. 685,94: [Machine 2; Configuration 1](#configuration-1-1); `make -j64`~~ `Exit code: 2`
 
 #### GHC testsuite
 
-1. 265.16: Machine 4; Configuration 1; `THREADS=12 ./validate --no-clean --testsuite-only`
-1. 324.21: Machine 1; Configuration 1; `THREADS=16 ./validate --no-clean --testsuite-only`
-1. 338.17: Machine 3; Configuration 1; `THREADS=8 ./validate --no-clean --testsuite-only`
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
+| 2. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
+| 3. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
 
 # Configurations
 
