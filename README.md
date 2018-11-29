@@ -61,9 +61,10 @@ Clash-cosim is not installed, so the cosim tests fails
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
-| 1. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
-| 2. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
-| 3. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
+| 1. | 208.32 | [Machine 2; Configuration 1](#configuration-1-1) | `THREADS=32 ./validate --no-clean --testsuite-only` |
+| 2. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
+| 3. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
+| 4. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
 
 # Configurations
 
@@ -113,7 +114,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * Clash testsuite: 70,54 `cabal new-run -- testsuite -p clash -j32`
   * Building stack: 444,75 `GHC_THREADS=4 cabal new-install stack -j16`
   * Building GHC: 685,94 `make -j64`
-  * GHC testsuite:
+  * GHC testsuite: 208.32 `THREADS=32 ./validate --no-clean --testsuite-only`
 
   [Results](results/0002.csv)
 

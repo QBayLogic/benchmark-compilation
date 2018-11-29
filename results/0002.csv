@@ -111,3 +111,10 @@ make -j8,2,737.73,2062.97,223.52,
 make -j4,2,789.55,1877.50,188.80,
 make -j2,2,1109.63,1730.69,171.82,
 make -j1,2,5772.31,5357.22,384.73,
+./validate --no-clean --testsuite-only,0,223.49,8838.60,2135.21,THREADS=64
+./validate --no-clean --testsuite-only,0,208.32,4699.43,1077.14,THREADS=32
+./validate --no-clean --testsuite-only,0,248.88,2884.96,645.25,THREADS=16
+./validate --no-clean --testsuite-only,0,390.80,2342.37,524.96,THREADS=8
+./validate --no-clean --testsuite-only,0,676.53,2058.83,450.88,THREADS=4
+./validate --no-clean --testsuite-only,0,1260.68,1968.85,401.78,THREADS=2
+./validate --no-clean --testsuite-only,0,2363.04,1864.93,369.28,THREADS=1
