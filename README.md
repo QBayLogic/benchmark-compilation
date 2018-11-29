@@ -104,6 +104,13 @@ Clash-cosim is not installed, so the cosim tests fails
 
   [Results](results/0006.csv)
 
+  Fastest runs:
+
+  * Building Clash: 459.84 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
+  * Clash testsuite: 169.95 `cabal new-run -- testsuite -p clash -j8`
+  * Building stack: 472.77 `cabal new-install stack -j8`
+  * Building GHC: 1721.35 `make -j16`
+  * GHC testsuite: 328.07 `THREADS=16 ./validate --no-clean --testsuite-only`
 
 ## Machine 2
 
