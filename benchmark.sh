@@ -82,6 +82,10 @@ git submodule update --init
 cp mk/build.mk.sample mk/build.mk
 sed -i 's/^#BuildFlavour = perf$/BuildFlavour = perf/g' mk/build.mk
 sed -i 's/^#libraries/libraries/g' mk/build.mk
+cat >> mk/build.mk << END_BUILD_MK
+BUILD_SPHINX_HTML = NO
+BUILD_SPHINX_PDF  = NO
+END_BUILD_MK
 
 # Remove need for Sphinx & co
 cp mk/validate.mk.sample mk/validate.mk
