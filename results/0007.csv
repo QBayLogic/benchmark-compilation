@@ -35,3 +35,11 @@ cabal new-install stack-1.9.1 -j8,1,459.38,1580.68,74.17,GHC_THREADS=1
 cabal new-install stack-1.9.1 -j4,1,465.80,1274.20,60.31,GHC_THREADS=1
 cabal new-install stack-1.9.1 -j2,1,650.61,1090.74,50.09,GHC_THREADS=1
 cabal new-install stack-1.9.1 -j1,1,1057.62,1009.90,44.29,GHC_THREADS=1
+make -j8,0,1441.14,7137.52,381.27,
+make -j4,0,1521.97,4691.59,289.17,
+make -j2,0,2261.95,3995.86,239.92,
+make -j1,0,4012.86,3767.61,226.35,
+./validate --no-clean --testsuite-only,0,376.00,2304.70,326.78,THREADS=8
+./validate --no-clean --testsuite-only,0,483.46,1537.71,248.09,THREADS=4
+./validate --no-clean --testsuite-only,0,800.21,1262.95,213.68,THREADS=2
+./validate --no-clean --testsuite-only,0,1525.63,1218.74,215.65,THREADS=1

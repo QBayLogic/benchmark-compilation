@@ -177,8 +177,8 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building Clash: 370.94 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
   * Clash testsuite: 211.74 `cabal new-run -- testsuite -p clash -j4`
   * Building stack: 430.83 `GHC_THREADS=2 cabal new-install stack-1.9.1 -j8`
-  * Building GHC:
-  * GHC testsuite:
+  * Building GHC: 1441.14 `make -j8`
+  * GHC testsuite: 376.00 `THREADS=8 ./validate --no-clean --testsuite-only`
 
 ## Machine 4
 
