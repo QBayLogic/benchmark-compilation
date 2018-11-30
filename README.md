@@ -54,6 +54,7 @@ Clash-cosim is not installed, so the cosim tests fails
 | --- | --- | --- | --- |
 | 1.| 1205.29 | [Machine 4; Configuration 1](#configuration-1-3) | `make -j8`  |
 | 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
+| 3.| 1328.30 | [Machine 5; Configuration 1](#configuration-1-4) | `make -j72` |
 | 3.| 1683.62 | [Machine 1; Configuration 1](#configuration-1)   | `make -j16` |
 
 ~~685,94: [Machine 2; Configuration 1](#configuration-1-1); `make -j64`~~ `Exit code: 2`
@@ -62,6 +63,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
+| 1. | 106.44 | [Machine 5; Configuration 1](#configuration-1-4) | `THREADS=72 ./validate --no-clean --testsuite-only` |
 | 1. | 208.32 | [Machine 2; Configuration 1](#configuration-1-1) | `THREADS=32 ./validate --no-clean --testsuite-only` |
 | 2. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
 | 3. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
@@ -84,6 +86,8 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
+  [Results](results/0001.csv)
+
   Fastest runs:
 
   * Building Clash: 450,43 `cabal new-build clash-ghc --ghc-options=-j4 -j8`
@@ -91,8 +95,6 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 468.2 `GHC_THREADS=2 cabal new-install stack -j8`
   * Building GHC: 1683.62 `make -j16`
   * GHC testsuite: 324.21 `THREADS=16 ./validate --no-clean --testsuite-only`
-
-  [Results](results/0001.csv)
 
 ### Configuration 2
 
@@ -127,6 +129,8 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
 
+  [Results](results/0002.csv)
+
   Fastest runs:
 
   * Building Clash: 460,95 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
@@ -134,8 +138,6 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 444,75 `GHC_THREADS=4 cabal new-install stack -j16`
   * Building GHC: 685,94 `make -j64`
   * GHC testsuite: 208.32 `THREADS=32 ./validate --no-clean --testsuite-only`
-
-  [Results](results/0002.csv)
 
 ## Machine 3
 
@@ -152,6 +154,8 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
+  [Results](results/0003.csv)
+
   Fastest runs:
 
   * Building Clash: 339.22 `cabal new-build clash-ghc --ghc-options=-j2 -j4`
@@ -160,8 +164,6 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building GHC: 1310.44 `make -j8`
   * GHC testsuite: 338.17 `THREADS=8 ./validate --no-clean --testsuite-only`
 
-  [Results](results/0003.csv)
-
 ### Configuration 2
 
   * Overclock: 4.8 GHz
@@ -169,6 +171,14 @@ Clash-cosim is not installed, so the cosim tests fails
   * Memory: 64 GB DD4-2133 15-15-15-36
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
+
+  [Results](results/0007.csv)
+
+  * Building Clash: 370.94 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
+  * Clash testsuite: 211.74 `cabal new-run -- testsuite -p clash -j4`
+  * Building stack: 430.83 `GHC_THREADS=2 cabal new-install stack-1.9.1 -j8`
+  * Building GHC:
+  * GHC testsuite:
 
 ## Machine 4
 
@@ -184,6 +194,8 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
+  [Results](results/0004.csv)
+
   Fastest runs:
 
   * Building Clash: 325.55 `cabal new-build clash-ghc --ghc-options=-j3 -j6`
@@ -191,8 +203,6 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 335.27 `GHC_THREADS=3 cabal new-install stack -j6`
   * Building GHC: 1205.29 `make -j8`
   * GHC testsuite: 265.16 `THREADS=12 ./validate --no-clean --testsuite-only`
-
-  [Results](results/0004.csv)
 
 ## Machine 5
 
@@ -208,12 +218,12 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * Governer: performance
 
+  [Results](results/0005.csv)
+
   Fastest runs:
 
   * Building Clash: 418.91 `cabal new-build clash-ghc --ghc-options=-j4 -j36`
   * Clash testsuite: 44.47 `cabal new-run -- testsuite -p clash -j72`
   * Building stack: 376.49 `GHC_THREADS=4 cabal new-install stack -j18`
-  * Building GHC:
-  * GHC testsuite:
-
-  [Results](results/0005.csv)
+  * Building GHC: 1328.30 `make -j72`
+  * GHC testsuite: 106.44 `THREADS=72 ./validate --no-clean --testsuite-only`
