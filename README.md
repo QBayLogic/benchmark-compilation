@@ -114,6 +114,17 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building GHC: 1721.35 `make -j16`
   * GHC testsuite: 328.07 `THREADS=16 ./validate --no-clean --testsuite-only`
 
+  ### Configuration 3
+
+    * Overclock settings: none
+    * Memory: 64 GB DDR4-2400 15-15-15-39
+    * OS: Ubuntu 18.04.1 LTS
+    * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+    * Governer: performance
+    * SMT: disabled
+
+    [Results](results/0008.csv)
+
 ## Machine 2
 
   * CPU: Threadripper 2990wx

@@ -1,0 +1,66 @@
+command,exit,real,user,sys,comment
+cabal new-build clash-ghc --ghc-options=-j16 -j16,0,762.88,3443.94,830.78,
+cabal new-build clash-ghc --ghc-options=-j16 -j8,0,764.01,3446.99,870.55,
+cabal new-build clash-ghc --ghc-options=-j16 -j4,0,706.11,3063.89,869.39,
+cabal new-build clash-ghc --ghc-options=-j16 -j2,0,608.00,1818.09,729.80,
+cabal new-build clash-ghc --ghc-options=-j16 -j1,0,770.05,1244.04,694.46,
+cabal new-build clash-ghc --ghc-options=-j8 -j16,0,745.67,3367.86,803.68,
+cabal new-build clash-ghc --ghc-options=-j8 -j8,0,748.29,3344.58,853.10,
+cabal new-build clash-ghc --ghc-options=-j8 -j4,0,698.36,2989.91,849.72,
+cabal new-build clash-ghc --ghc-options=-j8 -j2,0,598.99,1767.26,710.20,
+cabal new-build clash-ghc --ghc-options=-j8 -j1,0,763.03,1215.23,675.74,
+cabal new-build clash-ghc --ghc-options=-j4 -j16,0,510.48,1694.88,348.54,
+cabal new-build clash-ghc --ghc-options=-j4 -j8,0,503.65,1642.20,358.03,
+cabal new-build clash-ghc --ghc-options=-j4 -j4,0,459.66,1307.68,345.91,
+cabal new-build clash-ghc --ghc-options=-j4 -j2,0,517.72,1102.46,307.35,
+cabal new-build clash-ghc --ghc-options=-j4 -j1,0,752.19,1037.00,283.73,
+cabal new-build clash-ghc --ghc-options=-j2 -j16,0,462.27,1233.61,141.15,
+cabal new-build clash-ghc --ghc-options=-j2 -j8,0,456.03,1182.40,151.78,
+cabal new-build clash-ghc --ghc-options=-j2 -j4,0,452.77,1092.52,137.00,
+cabal new-build clash-ghc --ghc-options=-j2 -j2,0,533.88,999.13,117.45,
+cabal new-build clash-ghc --ghc-options=-j2 -j1,0,782.01,942.61,108.03,
+cabal new-build clash-ghc --ghc-options=-j1 -j16,0,489.54,1061.93,48.93,
+cabal new-build clash-ghc --ghc-options=-j1 -j8,0,488.89,1046.22,55.44,
+cabal new-build clash-ghc --ghc-options=-j1 -j4,0,499.38,970.99,40.65,
+cabal new-build clash-ghc --ghc-options=-j1 -j2,0,607.44,892.54,37.32,
+cabal new-build clash-ghc --ghc-options=-j1 -j1,0,905.68,864.15,31.87,
+cabal new-run -- testsuite -p clash -j16,1,161.45,1181.88,97.90,
+cabal new-run -- testsuite -p clash -j8,1,158.02,1142.12,97.99,
+cabal new-run -- testsuite -p clash -j4,1,219.78,799.61,71.10,
+cabal new-run -- testsuite -p clash -j2,1,375.88,684.69,62.43,
+cabal new-run -- testsuite -p clash -j1,1,724.54,667.28,61.22,
+cabal new-install stack-1.9.1 -j16,1,1211.26,7198.85,1542.67,GHC_THREADS=16
+cabal new-install stack-1.9.1 -j8,1,1252.72,7389.05,1643.88,GHC_THREADS=16
+cabal new-install stack-1.9.1 -j4,1,1109.98,6172.07,1634.99,GHC_THREADS=16
+cabal new-install stack-1.9.1 -j2,1,850.31,3120.94,1295.73,GHC_THREADS=16
+cabal new-install stack-1.9.1 -j1,1,1133.32,2023.77,1269.77,GHC_THREADS=16
+cabal new-install stack-1.9.1 -j16,1,1185.95,7061.88,1498.63,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j8,1,1219.24,7143.99,1604.85,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j4,1,1086.50,6019.15,1609.60,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j2,1,839.61,3073.99,1282.30,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j1,1,1123.11,1992.02,1255.58,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j16,1,639.55,3274.29,649.12,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j8,1,631.40,3214.43,678.66,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j4,1,556.01,2350.58,666.07,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j2,1,677.10,1777.21,576.66,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j1,1,1100.92,1630.44,520.31,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j16,1,504.06,2118.96,266.44,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j8,1,475.62,2066.12,292.21,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j4,1,502.02,1817.23,261.10,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j2,1,704.60,1567.56,211.11,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j1,1,1153.99,1457.48,189.42,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j16,1,570.68,1722.02,84.74,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j8,1,553.99,1725.10,84.66,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j4,1,581.22,1564.66,68.41,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j2,1,820.58,1372.23,58.64,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j1,1,1369.27,1308.29,51.54,GHC_THREADS=1
+make -j16,0,1710.90,7599.42,415.56,
+make -j8,0,1679.46,7591.30,417.19,
+make -j4,0,2038.44,6317.01,327.30,
+make -j2,0,2987.96,5311.28,274.72,
+make -j1,0,5300.24,5016.90,250.63,
+./validate --no-clean --testsuite-only,0,359.05,2340.40,355.31,THREADS=16
+./validate --no-clean --testsuite-only,0,362.27,2216.50,334.22,THREADS=8
+./validate --no-clean --testsuite-only,0,547.67,1765.80,260.77,THREADS=4
+./validate --no-clean --testsuite-only,0,963.50,1564.03,233.39,THREADS=2
+./validate --no-clean --testsuite-only,0,1828.91,1480.18,226.54,THREADS=1
