@@ -86,7 +86,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
-  [Results](results/0001.csv)
+  [Results](results/01-01.csv)
 
   Fastest runs:
 
@@ -104,7 +104,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: ondemand
 
-  [Results](results/0006.csv)
+  [Results](results/01-02.csv)
 
   Fastest runs:
 
@@ -123,7 +123,7 @@ Clash-cosim is not installed, so the cosim tests fails
     * Governer: performance
     * SMT: disabled
 
-    [Results](results/0008.csv)
+    [Results](results/01-03.csv)
 
 ## Machine 2
 
@@ -140,7 +140,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
 
-  [Results](results/0002.csv)
+  [Results](results/02-01.csv)
 
   Fastest runs:
 
@@ -165,7 +165,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
-  [Results](results/0003.csv)
+  [Results](results/03-01.csv)
 
   Fastest runs:
 
@@ -183,7 +183,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
-  [Results](results/0007.csv)
+  [Results](results/03-02.csv)
 
   * Building Clash: 370.94 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
   * Clash testsuite: 211.74 `cabal new-run -- testsuite -p clash -j4`
@@ -205,7 +205,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
-  [Results](results/0004.csv)
+  [Results](results/04-01.csv)
 
   Fastest runs:
 
@@ -229,7 +229,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * Governer: performance
 
-  [Results](results/0005.csv)
+  [Results](results/05-01.csv)
 
   Fastest runs:
 
