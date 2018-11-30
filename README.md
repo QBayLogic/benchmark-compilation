@@ -73,7 +73,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 ## Machine 1
 
-  * CPU: Ryzen 2700X
+  * CPU: Ryzen 2700X (physical cores: 8)
   * Motherboard: ASRock X470 Master SLI
   * Memory: G.Skill Fortis F4-2400C15Q-64GFT
   * SSD: Samsung 970 Evo 1TB
@@ -127,7 +127,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 ## Machine 2
 
-  * CPU: Threadripper 2990wx
+  * CPU: Threadripper 2990wx (physical cores: 32)
   * Motherboard: ASRock X399 Taichi
   * Memory: 8x Samsung M391A2K43BB1-CRC
   * SSD: Samsung 970 Pro 1TB
@@ -152,7 +152,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 ## Machine 3
 
-  * CPU: Core i7-7700K
+  * CPU: Core i7-7700K (physical cores: 4)
   * Motherboard: Asus PRIME Z270-P
   * Memory: Corsair CMK64GX4M4B2800C14
   * SSD: Samsung 960 EVO 1TB
@@ -193,7 +193,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 ## Machine 4
 
-  * CPU: Core i7-8700K
+  * CPU: Core i7-8700K (physical cores: 6)
   * Motherboard: Asus PRIME Z370-P II
   * Memory: 4x Corsair CM4X16GC3000C15K4
   * SSD: Samsung 970 EVO 1TB
@@ -217,7 +217,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
 ## Machine 5
 
-  * CPU: 2x Xeon Gold 6140M
+  * CPU: 2x Xeon Gold 6140M (physical cores: 2x 18)
   * Motherboard: Intel S2600STB
   * Memory: 16x Kingston KSM26RS4/16HAI
 
