@@ -55,9 +55,8 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1.| 1205.29 | [Machine 4; Configuration 1](#configuration-1-3) | `make -j8`  |
 | 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
 | 3.| 1328.30 | [Machine 5; Configuration 1](#configuration-1-4) | `make -j72` |
+| 4.| 1516.89 | [Machine 2; Configuration 1](#configuration-1-1) | `make -j64` |
 | 3.| 1683.62 | [Machine 1; Configuration 1](#configuration-1)   | `make -j16` |
-
-~~685,94: [Machine 2; Configuration 1](#configuration-1-1); `make -j64`~~ `Exit code: 2`
 
 #### GHC testsuite
 
@@ -147,7 +146,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building Clash: 460,95 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
   * Clash testsuite: 70,54 `cabal new-run -- testsuite -p clash -j32`
   * Building stack: 444,75 `GHC_THREADS=4 cabal new-install stack -j16`
-  * Building GHC: 685,94 `make -j64`
+  * Building GHC: 1516.89 `make -j64`
   * GHC testsuite: 208.32 `THREADS=32 ./validate --no-clean --testsuite-only`
 
 ### Configuration 2
