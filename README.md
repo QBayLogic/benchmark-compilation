@@ -26,17 +26,17 @@ Clash-cosim is not installed, so the cosim tests fails
 | 2.  | 339.22 | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-build clash-ghc --ghc-options=-j2 -j4`  |
 | 3.  | 418.91 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options=-j4 -j36` |
 | 4.  | 450,43 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-build clash-ghc --ghc-options=-j4 -j8`  |
-| 5.  | 460,95 | [Machine 2; Configuration 1](#configuration-1-1) | `cabal new-build clash-ghc --ghc-options=-j2 -j16` |
+| 5.  | 453.63 | [Machine 2; Configuration 3](#configuration-3-1) | `cabal new-build clash-ghc --ghc-options=-j2 -j64` |
 
 #### Clash testsuite
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
 | 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j72` |
-| 2. | 70,54  | [Machine 2; Configuration 1](#configuration-1-1) | `cabal new-run -- testsuite -p clash -j32` |
+| 2. | 63.87  | [Machine 2; Configuration 3](#configuration-3-1) | `cabal new-run -- testsuite -p clash -j32` |
 | 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
+| 5. | 158.02 | [Machine 1; Configuration 3](#configuration-3)   | `cabal new-run -- testsuite -p clash -j8`  |
 | 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
-| 5. | 168.78 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-run -- testsuite -p clash -j8`  |
 
 #### Building stack
 
@@ -45,7 +45,7 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1. | 325.55 | [Machine 4; Configuration 1](#configuration-1-3) | `GHC_THREADS=3 cabal new-install stack -j6`  |
 | 2. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_THREADS=2 cabal new-install stack -j8`  |
 | 3. | 376.49 | [Machine 5; Configuration 1](#configuration-1-4) | `GHC_THREADS=4 cabal new-install stack -j18` |
-| 4. | 444,75 | [Machine 2; Configuration 1](#configuration-1-1) | `GHC_THREADS=4 cabal new-install stack -j16` |
+| 4. | 432.9  | [Machine 2; Configuration 3](#configuration-3-1) | `GHC_THREADS=4 cabal new-install stack -j8`  |
 | 5. | 468.2  | [Machine 1; Configuration 1](#configuration-1)   | `GHC_THREADS=2 cabal new-install stack -j8`  |
 
 #### Building GHC
@@ -55,18 +55,18 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1.| 1205.29 | [Machine 4; Configuration 1](#configuration-1-3) | `make -j8`  |
 | 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
 | 3.| 1328.30 | [Machine 5; Configuration 1](#configuration-1-4) | `make -j72` |
-| 4.| 1516.89 | [Machine 2; Configuration 1](#configuration-1-1) | `make -j64` |
-| 3.| 1683.62 | [Machine 1; Configuration 1](#configuration-1)   | `make -j16` |
+| 4.| 1483.15 | [Machine 2; Configuration 3](#configuration-3-1) | `make -j32` |
+| 5.| 1679.46 | [Machine 1; Configuration 3](#configuration-3)   | `make -j8`  |
 
 #### GHC testsuite
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
 | 1. | 106.44 | [Machine 5; Configuration 1](#configuration-1-4) | `THREADS=72 ./validate --no-clean --testsuite-only` |
-| 1. | 208.32 | [Machine 2; Configuration 1](#configuration-1-1) | `THREADS=32 ./validate --no-clean --testsuite-only` |
-| 2. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
-| 3. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
-| 4. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
+| 2. | 186    | [Machine 2; Configuration 3](#configuration-3-1) | `THREADS=32 ./validate --no-clean --testsuite-only` |
+| 3. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
+| 4. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
+| 5. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
 
 # Configurations
 
