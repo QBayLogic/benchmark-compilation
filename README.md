@@ -116,14 +116,14 @@ Clash-cosim is not installed, so the cosim tests fails
 
   ### Configuration 3
 
-    * Overclock settings: none
-    * Memory: 64 GB DDR4-2400 15-15-15-39
-    * OS: Ubuntu 18.04.1 LTS
-    * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
-    * Governer: performance
-    * SMT: disabled
+  * Overclock settings: none
+  * Memory: 64 GB DDR4-2400 15-15-15-39
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+  * Governer: performance
+  * SMT: disabled
 
-    [Results](results/01-03.csv)
+  [Results](results/01-03.csv)
 
 ## Machine 2
 
@@ -149,6 +149,27 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 444,75 `GHC_THREADS=4 cabal new-install stack -j16`
   * Building GHC: 685,94 `make -j64`
   * GHC testsuite: 208.32 `THREADS=32 ./validate --no-clean --testsuite-only`
+
+### Configuration 2
+
+  * Overclock settings: none
+  * Memory: 128 GB DDR4-2400 17-17-17-32 ECC
+  * OS: OpenSUSE Tumbleweed
+  * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
+  * Governer: performance
+  * SMT: disabled
+
+  [Results](results/02-02.csv)
+
+### Configuration 3
+
+  * Overclock settings: none
+  * Memory: 128 GB DDR4-2666 18-19-19-43 ECC
+  * OS: OpenSUSE Tumbleweed
+  * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
+  * Governer: performance
+
+  [Results](results/02-03.csv)
 
 ## Machine 3
 
