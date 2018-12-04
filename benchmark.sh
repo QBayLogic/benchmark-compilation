@@ -25,6 +25,9 @@ git checkout 5f9dd26825fb912896d7d1837238117131f0c37f # this commit merged depen
 
 cabal new-update
 
+# Just for warming the download cache..
+cabal new-build clash-ghc || true
+
 for ghc_threads in ${THREAD_STEPS}; do
        for cabal_threads in ${THREAD_STEPS}; do
                rm -rf ~/.cabal/store
