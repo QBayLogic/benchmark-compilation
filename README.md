@@ -124,6 +124,12 @@ Clash-cosim is not installed, so the cosim tests fails
 
   [Results](results/01-03.csv)
 
+  * Building Clash: 452.77 `cabal new-build clash-ghc --ghc-options=-j2 -j4`
+  * Clash testsuite: 158.02 `cabal new-run -- testsuite -p clash -j8`
+  * Building stack: 475.62 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building GHC: 1679.46 `make -j8`
+  * GHC testsuite: 359.05 `THREADS=8 ./validate --no-clean --testsuite-only`
+
 ## Machine 2
 
   * CPU: Threadripper 2990wx (physical cores: 32)
@@ -160,6 +166,12 @@ Clash-cosim is not installed, so the cosim tests fails
 
   [Results](results/02-02.csv)
 
+  * Building Clash: 475.32 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
+  * Clash testsuite: 70.59 `cabal new-run -- testsuite -p clash -j32`
+  * Building stack: 446.68 `GHC_THREADS=4 cabal new-install stack -j8`
+  * Building GHC: 1561.22 `make -j32`
+  * GHC testsuite: 196.53 `THREADS=32 ./validate --no-clean --testsuite-only`
+
 ### Configuration 3
 
   * Overclock settings: none
@@ -169,6 +181,12 @@ Clash-cosim is not installed, so the cosim tests fails
   * Governer: performance
 
   [Results](results/02-03.csv)
+
+  * Building Clash: 453.63 `cabal new-build clash-ghc --ghc-options=-j2 -j64`
+  * Clash testsuite: 63.87 `cabal new-run -- testsuite -p clash -j32`
+  * Building stack: 432.9 `GHC_THREADS=4 cabal new-install stack -j8`
+  * Building GHC: 1483.15 `make -j32`
+  * GHC testsuite: 186 `THREADS=32 ./validate --no-clean --testsuite-only`
 
 ## Machine 3
 
