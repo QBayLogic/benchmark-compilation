@@ -22,31 +22,21 @@ Clash-cosim is not installed, so the cosim tests fails
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
-| 1.  | 325.55 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-build clash-ghc --ghc-options=-j3 -j6`  |
+| 1.  | 289.65 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j12 -j8` |
 | 2.  | 339.22 | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-build clash-ghc --ghc-options=-j2 -j4`  |
-| 3.  | 418.91 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options=-j4 -j36` |
+| 3.  | 369.72 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j72` |
 | 4.  | 450,43 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-build clash-ghc --ghc-options=-j4 -j8`  |
 | 5.  | 453.63 | [Machine 2; Configuration 3](#configuration-3-1) | `cabal new-build clash-ghc --ghc-options=-j2 -j64` |
-
-#### Clash testsuite
-
-| Rank | Time (s) | Machine + Configuration | command |
-| --- | --- | --- | --- |
-| 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j72` |
-| 2. | 63.87  | [Machine 2; Configuration 3](#configuration-3-1) | `cabal new-run -- testsuite -p clash -j32` |
-| 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
-| 5. | 158.02 | [Machine 1; Configuration 3](#configuration-3)   | `cabal new-run -- testsuite -p clash -j8`  |
-| 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
 
 #### Building stack
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
-| 1. | 325.55 | [Machine 4; Configuration 1](#configuration-1-3) | `GHC_THREADS=3 cabal new-install stack -j6`  |
-| 2. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_THREADS=2 cabal new-install stack -j8`  |
-| 3. | 376.49 | [Machine 5; Configuration 1](#configuration-1-4) | `GHC_THREADS=4 cabal new-install stack -j18` |
-| 4. | 432.9  | [Machine 2; Configuration 3](#configuration-3-1) | `GHC_THREADS=4 cabal new-install stack -j8`  |
-| 5. | 468.2  | [Machine 1; Configuration 1](#configuration-1)   | `GHC_THREADS=2 cabal new-install stack -j8`  |
+| 1. | 286.33 | [Machine 4; Configuration 1](#configuration-1-3) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4" cabal new-install stack-1.9.1 -j8`  |
+| 3. | 310.77 | [Machine 5; Configuration 1](#configuration-1-4) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j18` |
+| 2. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_OPTIONS=j2 cabal new-install stack -j8` |
+| 4. | 432.9  | [Machine 2; Configuration 3](#configuration-3-1) | `GHC_OPTIONS=j4 cabal new-install stack -j8` |
+| 5. | 468.2  | [Machine 1; Configuration 1](#configuration-1)   | `GHC_OPTIONS=j2 cabal new-install stack -j8` |
 
 #### Building GHC
 
@@ -57,6 +47,16 @@ Clash-cosim is not installed, so the cosim tests fails
 | 3.| 1328.30 | [Machine 5; Configuration 1](#configuration-1-4) | `make -j72` |
 | 4.| 1483.15 | [Machine 2; Configuration 3](#configuration-3-1) | `make -j32` |
 | 5.| 1679.46 | [Machine 1; Configuration 3](#configuration-3)   | `make -j8`  |
+
+#### Clash testsuite
+
+| Rank | Time (s) | Machine + Configuration | command |
+| --- | --- | --- | --- |
+| 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j72` |
+| 2. | 63.87  | [Machine 2; Configuration 3](#configuration-3-1) | `cabal new-run -- testsuite -p clash -j32` |
+| 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
+| 5. | 158.02 | [Machine 1; Configuration 3](#configuration-3)   | `cabal new-run -- testsuite -p clash -j8`  |
+| 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
 
 #### GHC testsuite
 
@@ -260,7 +260,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
-  [Results](results/04-01.csv)
+  [Results Benchmark 1](results/04-01.csv)
 
   Fastest runs:
 
@@ -269,6 +269,13 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 335.27 `GHC_THREADS=3 cabal new-install stack -j6`
   * Building GHC: 1205.29 `make -j8`
   * GHC testsuite: 265.16 `THREADS=12 ./validate --no-clean --testsuite-only`
+
+  [Results Benchmark 2](resuls/04-02.csv)
+
+  Fastest runs:
+
+  * Building Clash: 289.65 `cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j12 -j8`
+  * Building stack: 286.33 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4" cabal new-install stack-1.9.1 -j8`
 
 ## Machine 5
 
@@ -284,7 +291,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * Governer: performance
 
-  [Results](results/05-01.csv)
+  [Results Benchmark 1](results/05-01.csv)
 
   Fastest runs:
 
@@ -293,3 +300,10 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building stack: 376.49 `GHC_THREADS=4 cabal new-install stack -j18`
   * Building GHC: 1328.30 `make -j72`
   * GHC testsuite: 106.44 `THREADS=72 ./validate --no-clean --testsuite-only`
+
+  [Results Benchmark 2](results/05-02.csv)
+
+  Fastest runs:
+
+  * Building Clash: 369.72 `cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j72`
+  * Building stack: 310.77 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j18`
