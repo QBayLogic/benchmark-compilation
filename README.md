@@ -334,3 +334,43 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 369.72 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72`
   * Building stack: 310.77 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j18`
+  
+## Machine 6
+
+  * CPU: Core i7-7700k (physical cores: 4)
+  * Motherboard: Asus Prime Z270-A
+  * SSD: Samsung 960 Pro 512GB + Samsung 960 EVO 250GB
+
+### Configuration 1
+
+  * Overclock settings: 4.8GHz
+  * Memory: CMK32GX4M2B3000C15
+  * Memory settings: 32 GB DDR4-3000 16-17-17-35
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
+  * Governer: performance
+  
+  [Results Benchmark 2[(results/06-01.csv)
+  
+  * Building Clash: 306.53 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4`
+  * Clash testsuite: 165.56 `cabal new-run -- testsuite -p clash -j8`
+  * Building stack: 335.20 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4" cabal new-install stack-1.9.1 -j8`
+  * Building GHC: 1305.27 `make -j8`
+  * GHC testsuite: 343.06 `THREADS=8 ./validate --no-clean --testsuite-only`
+  
+### Configuration 2
+
+  * Overclock settings: 4.8GHz
+  * Memory: G.Skill Fortis F4-2400C15Q-64GFT
+  * Memory settings: 32 GB DDR4-2400 15-15-15-39
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
+  * Governer: performance
+  
+  [Results Benchmark 2[(results/06-01.csv)
+  
+  * Building Clash: 306.88 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4`
+  * Clash testsuite: 170.74 `cabal new-run -- testsuite -p clash -j8`
+  * Building stack: 338.47 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4" cabal new-install stack-1.9.1 -j8`
+  * Building GHC: 1331.31 `make -j8`
+  * GHC testsuite: 349.64 `THREADS=8 ./validate --no-clean --testsuite-only`
