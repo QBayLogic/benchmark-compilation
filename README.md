@@ -25,18 +25,18 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1.  | 289.65 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` |
 | 2.  | 339.22 | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-build clash-ghc --ghc-options=-j2 -j4` |
 | 3.  | 369.72 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72` |
-| 4.  | 375.59 | [Machine 2; Configuration 4](#configuration-4)   | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
-| 5.  | 450,43 | [Machine 1; Configuration 1](#configuration-1)   | `cabal new-build clash-ghc --ghc-options=-j4 -j8` |
+| 4.  | 450,43 | [Machine 1; Configuration 4](#configuration-4)   | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
+| 5.  | 375.59 | [Machine 2; Configuration 4](#configuration-4-1) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
 
 #### Building stack
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
 | 1. | 286.33 | [Machine 4; Configuration 1](#configuration-1-3) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4" cabal new-install stack-1.9.1 -j8`  |
-| 3. | 310.77 | [Machine 5; Configuration 1](#configuration-1-4) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j18` |
-| 2. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_OPTIONS=j2 cabal new-install stack -j8` |
-| 4. | 394.57 | [Machine 2; Configuration 3](#configuration-4)   | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j64" cabal new-install stack-1.9.1 -j32` |
-| 5. | 468.2  | [Machine 1; Configuration 1](#configuration-1)   | `GHC_OPTIONS=j2 cabal new-install stack -j8` |
+| 2. | 310.77 | [Machine 5; Configuration 1](#configuration-1-4) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j18` |
+| 3. | 361.37 | [Machine 1; Configuration 4](#configuration-4)   | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j8` |
+| 4. | 372.12 | [Machine 3; Configuration 1](#configuration-1-2) | `GHC_OPTIONS=j2 cabal new-install stack -j8` |
+| 5. | 394.57 | [Machine 2; Configuration 3](#configuration-4-1) | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j64" cabal new-install stack-1.9.1 -j32` |
 
 #### Building GHC
 
@@ -45,17 +45,17 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1.| 1205.29 | [Machine 4; Configuration 1](#configuration-1-3) | `make -j8`  |
 | 2.| 1310.44 | [Machine 3; Configuration 1](#configuration-1-2) | `make -j8`  |
 | 3.| 1328.30 | [Machine 5; Configuration 1](#configuration-1-4) | `make -j72` |
-| 4.| 1382.93 | [Machine 2; Configuration 4](#configuration-4)   | `make -j64` |
-| 5.| 1679.46 | [Machine 1; Configuration 3](#configuration-3)   | `make -j8`  |
+| 4.| 1382.93 | [Machine 2; Configuration 4](#configuration-4-1) | `make -j64` |
+| 5.| 1572.71 | [Machine 1; Configuration 4](#configuration-4)   | `make -j16` |
 
 #### Clash testsuite
 
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
 | 1. | 44.47  | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-run -- testsuite -p clash -j72` |
-| 2. | 62.66  | [Machine 2; Configuration 4](#configuration-4)   | `cabal new-run -- testsuite -p clash -j32` |
+| 2. | 62.66  | [Machine 2; Configuration 4](#configuration-4-1) | `cabal new-run -- testsuite -p clash -j32` |
 | 3. | 128.63 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-run -- testsuite -p clash -j8`  |
-| 5. | 158.02 | [Machine 1; Configuration 3](#configuration-3)   | `cabal new-run -- testsuite -p clash -j8`  |
+| 5. | 155.13 | [Machine 1; Configuration 4](#configuration-4)   | `cabal new-run -- testsuite -p clash -j16` |
 | 4. | 161.8  | [Machine 3; Configuration 1](#configuration-1-2) | `cabal new-run -- testsuite -p clash -j8`  |
 
 #### GHC testsuite
@@ -63,9 +63,9 @@ Clash-cosim is not installed, so the cosim tests fails
 | Rank | Time (s) | Machine + Configuration | command |
 | --- | --- | --- | --- |
 | 1. | 106.44 | [Machine 5; Configuration 1](#configuration-1-4) | `THREADS=72 ./validate --no-clean --testsuite-only` |
-| 2. | 159.48 | [Machine 2; Configuration 5](#configuration-4)   | `THREADS=64 ./validate --no-clean --testsuite-only` |
+| 2. | 159.48 | [Machine 2; Configuration 4](#configuration-4-1) | `THREADS=64 ./validate --no-clean --testsuite-only` |
 | 3. | 265.16 | [Machine 4; Configuration 1](#configuration-1-3) | `THREADS=12 ./validate --no-clean --testsuite-only` |
-| 4. | 324.21 | [Machine 1; Configuration 1](#configuration-1)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
+| 4. | 293.69 | [Machine 1; Configuration 4](#configuration-4)   | `THREADS=16 ./validate --no-clean --testsuite-only` |
 | 5. | 338.17 | [Machine 3; Configuration 1](#configuration-1-2) | `THREADS=8 ./validate --no-clean --testsuite-only`  |
 
 # Configurations
