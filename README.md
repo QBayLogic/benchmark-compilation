@@ -130,6 +130,29 @@ Clash-cosim is not installed, so the cosim tests fails
   * Building GHC: 1679.46 `make -j8`
   * GHC testsuite: 359.05 `THREADS=8 ./validate --no-clean --testsuite-only`
 
+  ### Configuration 4
+
+  * Overclock settings: none
+  * Memory: CMK32GX4M2B3000C15
+  * Memory settings: 32 GB DDR4-3000 16-17-17-35
+  * OS: Ubuntu 18.04.1 LTS
+  * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
+  * Governer: performance
+  * SMT: disabled
+  
+  [Results Benchmark 1](results/01-04.csv)
+  
+  * Building Clash: 439.33 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
+  * Clash testsuite: 155.13 `cabal new-run -- testsuite -p clash -j16`
+  * Building stack: 445.30 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building GHC: 1572.71 `make -j16`
+  * GHC testsuite: 293.69 `THREADS=16 ./validate --no-clean --testsuite-only`
+  
+  [Results Benchmark 2](results/01-05.csv)
+   
+  * Building Clash: 372.79 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16`
+  * Building stack: 361.37 `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8" cabal new-install stack-1.9.1 -j8`
+
 ## Machine 2
 
   * CPU: Threadripper 2990wx (physical cores: 32)
