@@ -25,7 +25,7 @@ Clash-cosim is not installed, so the cosim tests fails
 | 1.  | 289.65 | [Machine 4; Configuration 1](#configuration-1-3) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` |
 | 2.  | 306.53 | [Machine 6; Configuration 1](#configuration-1-5) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` |
 | 3.  | 369.72 | [Machine 5; Configuration 1](#configuration-1-4) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72` |
-| 4.  | 450,43 | [Machine 1; Configuration 4](#configuration-4)   | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
+| 4.  | 372.79 | [Machine 1; Configuration 4](#configuration-4)   | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
 | 5.  | 375.59 | [Machine 2; Configuration 4](#configuration-4-1) | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
 
 #### Building stack
