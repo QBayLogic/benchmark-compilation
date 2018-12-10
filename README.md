@@ -80,7 +80,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 1
 
   * Overclock settings: none
-  * Memory: 64 GB DDR4-2400 15-15-15-39
+  * Memory settings: 64 GB DDR4-2400 15-15-15-39
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
@@ -98,7 +98,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 2
 
   * Overclock settings: none
-  * Memory: 64 GB DDR4-2400 15-15-15-39
+  * Memory settings: 64 GB DDR4-2400 15-15-15-39
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: ondemand
@@ -116,7 +116,7 @@ Clash-cosim is not installed, so the cosim tests fails
   ### Configuration 3
 
   * Overclock settings: none
-  * Memory: 64 GB DDR4-2400 15-15-15-39
+  * Memory settings: 64 GB DDR4-2400 15-15-15-39
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
@@ -163,7 +163,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 1
 
   * Overclock settings: none
-  * Memory: 128 GB DDR4-2400 17-17-17-32 ECC
+  * Memory settings: 128 GB DDR4-2400 17-17-17-32 ECC
   * OS: OpenSUSE Tumbleweed
   * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
@@ -181,7 +181,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 2
 
   * Overclock settings: none
-  * Memory: 128 GB DDR4-2400 17-17-17-32 ECC
+  * Memory settings: 128 GB DDR4-2400 17-17-17-32 ECC
   * OS: OpenSUSE Tumbleweed
   * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
@@ -198,7 +198,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 3
 
   * Overclock settings: none
-  * Memory: 128 GB DDR4-2666 18-19-19-43 ECC
+  * Memory settings: 128 GB DDR4-2666 18-19-19-43 ECC
   * OS: OpenSUSE Tumbleweed
   * `uname -vr`: 4.19.2-1-default #1 SMP PREEMPT Tue Nov 13 20:56:49 UTC 2018
   * Governer: performance
@@ -214,7 +214,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 4
 
   * Overclock settings: none
-  * Memory: 128 GB DDR4-2666 18-19-19-43 ECC
+  * Memory settings: 128 GB DDR4-2666 18-19-19-43 ECC
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * Governer: performance
@@ -243,7 +243,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Overclock: 4.8 GHz
   * OS: Ubuntu 18.04.1 LTS
-  * Memory: 64 GB DD4-2800 14-16-16-36
+  * Memory settings: 64 GB DD4-2800 14-16-16-36
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
@@ -261,7 +261,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Overclock: 4.8 GHz
   * OS: Ubuntu 18.04.1 LTS
-  * Memory: 64 GB DD4-2133 15-15-15-36
+  * Memory settings: 64 GB DD4-2133 15-15-15-36
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
@@ -283,7 +283,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 1
 
   * OS: Ubuntu 18.04.1 LTS
-  * Memory: 64 GB DDR4-3000 15-17-17-35
+  * Memory settings: 64 GB DDR4-3000 15-17-17-35
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * Governer: performance
 
@@ -313,7 +313,7 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 1
 
   * Overclock: none
-  * Memory: 256 GB DDR4-2666 19-19-19-32 ECC
+  * Memory settings: 256 GB DDR4-2666 19-19-19-32 ECC
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * Governer: performance
