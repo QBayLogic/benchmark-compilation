@@ -367,7 +367,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * Governer: performance
   
-  [Results Benchmark 2](results/06-01.csv)
+  [Results Benchmark 2](results/06-02.csv)
   
   * Building Clash: 306.88 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4`
   * Clash testsuite: 170.74 `cabal new-run -- testsuite -p clash -j8`
