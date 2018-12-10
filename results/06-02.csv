@@ -1,0 +1,45 @@
+command,exit,real,user,sys,comment
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j8,0,318.05,1081.74,76.60,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j4,0,315.67,986.76,64.95,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j2,0,355.18,843.02,50.63,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j8 -j1,0,496.53,750.13,38.48,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j4 -j8,0,310.37,972.34,52.46,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j4 -j4,0,306.88,876.79,43.92,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j4 -j2,0,353.66,761.76,38.35,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j4 -j1,0,502.97,693.29,31.84,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j2 -j8,0,325.01,912.41,44.57,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j2 -j4,0,326.30,814.80,37.94,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j2 -j2,0,372.37,713.12,32.51,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j2 -j1,0,544.68,672.48,30.77,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j1 -j8,0,364.68,833.15,40.58,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j1 -j4,0,367.03,713.22,32.98,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j1 -j2,0,455.52,663.72,29.82,
+cabal new-build clash-ghc --ghc-options=+RTS -qn8 -A32M -RTS -j1 -j1,0,673.04,638.65,26.88,
+cabal new-run -- testsuite -p clash -j8,1,170.74,1256.67,89.57,
+cabal new-run -- testsuite -p clash -j4,1,185.04,675.90,60.23,
+cabal new-run -- testsuite -p clash -j2,1,300.58,560.32,52.66,
+cabal new-run -- testsuite -p clash -j1,1,566.05,550.18,50.57,
+cabal new-install stack-1.9.1 -j8,1,362.81,1989.18,152.82,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j4,1,372.57,1742.27,130.05,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j2,1,456.69,1387.38,91.79,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j1,1,701.34,1207.58,69.20,GHC_THREADS=8
+cabal new-install stack-1.9.1 -j8,1,338.47,1761.15,105.78,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j4,1,346.67,1508.79,84.04,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j2,1,448.69,1210.14,63.93,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j1,1,710.24,1070.30,54.20,GHC_THREADS=4
+cabal new-install stack-1.9.1 -j8,1,342.46,1628.65,82.54,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j4,1,359.82,1381.84,64.90,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j2,1,481.64,1101.84,54.65,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j1,1,784.75,1026.97,46.17,GHC_THREADS=2
+cabal new-install stack-1.9.1 -j8,1,418.81,1393.82,68.80,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j4,1,417.94,1127.21,57.23,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j2,1,602.57,1005.19,48.53,GHC_THREADS=1
+cabal new-install stack-1.9.1 -j1,1,1004.63,955.67,43.78,GHC_THREADS=1
+make -j8,0,1331.31,6507.30,352.06,
+make -j4,0,1444.72,4443.60,270.88,
+make -j2,0,2192.25,3880.56,226.84,
+make -j1,0,3883.82,3654.51,210.67,
+./validate --no-clean --testsuite-only,0,349.64,2136.12,307.38,THREADS=8
+./validate --no-clean --testsuite-only,0,472.15,1500.45,244.73,THREADS=4
+./validate --no-clean --testsuite-only,0,787.61,1242.32,210.14,THREADS=2
+./validate --no-clean --testsuite-only,0,1469.93,1158.34,201.59,THREADS=1
