@@ -133,7 +133,7 @@ Clash-cosim is not installed, so the cosim tests fails
   ### Configuration 4
 
   * Overclock settings: none
-  * Memory: CMK32GX4M2B3000C15
+  * Memory: Corsair CMK32GX4M2B3000C15
   * Memory settings: 32 GB DDR4-3000 16-17-17-35
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
@@ -344,13 +344,13 @@ Clash-cosim is not installed, so the cosim tests fails
 ### Configuration 1
 
   * Overclock settings: 4.8GHz
-  * Memory: CMK32GX4M2B3000C15
+  * Memory: Corsair CMK32GX4M2B3000C15
   * Memory settings: 32 GB DDR4-3000 16-17-17-35
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * Governer: performance
   
-  [Results Benchmark 2[(results/06-01.csv)
+  [Results Benchmark 2](results/06-01.csv)
   
   * Building Clash: 306.53 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4`
   * Clash testsuite: 165.56 `cabal new-run -- testsuite -p clash -j8`
@@ -367,7 +367,7 @@ Clash-cosim is not installed, so the cosim tests fails
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * Governer: performance
   
-  [Results Benchmark 2[(results/06-01.csv)
+  [Results Benchmark 2](results/06-01.csv)
   
   * Building Clash: 306.88 `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4`
   * Clash testsuite: 170.74 `cabal new-run -- testsuite -p clash -j8`
