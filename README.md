@@ -91,7 +91,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 450,43 `cabal new-build clash-ghc --ghc-options=-j4 -j8`
   * Clash testsuite: 168.78 `cabal new-run -- testsuite -p clash -j8`
-  * Building stack: 468.2 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building stack: 468.2 `GHC_OPTIONS=-j2 cabal new-install stack -j8`
   * Building GHC: 1683.62 `make -j16`
   * GHC testsuite: 324.21 `THREADS=16 ./validate --no-clean --testsuite-only`
 
@@ -126,7 +126,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 452.77 `cabal new-build clash-ghc --ghc-options=-j2 -j4`
   * Clash testsuite: 158.02 `cabal new-run -- testsuite -p clash -j8`
-  * Building stack: 475.62 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building stack: 475.62 `GHC_OPTIONS=-j2 cabal new-install stack -j8`
   * Building GHC: 1679.46 `make -j8`
   * GHC testsuite: 359.05 `THREADS=8 ./validate --no-clean --testsuite-only`
 
@@ -144,7 +144,7 @@ Clash-cosim is not installed, so the cosim tests fails
   
   * Building Clash: 439.33 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
   * Clash testsuite: 155.13 `cabal new-run -- testsuite -p clash -j16`
-  * Building stack: 445.30 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building stack: 445.30 `GHC_OPTIONS=-j2 cabal new-install stack -j8`
   * Building GHC: 1572.71 `make -j16`
   * GHC testsuite: 293.69 `THREADS=16 ./validate --no-clean --testsuite-only`
   
@@ -174,7 +174,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 460,95 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
   * Clash testsuite: 70,54 `cabal new-run -- testsuite -p clash -j32`
-  * Building stack: 444,75 `GHC_THREADS=4 cabal new-install stack -j16`
+  * Building stack: 444,75 `GHC_OPTIONS=-j4 cabal new-install stack -j16`
   * Building GHC: 1516.89 `make -j64`
   * GHC testsuite: 208.32 `THREADS=32 ./validate --no-clean --testsuite-only`
 
@@ -191,7 +191,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 475.32 `cabal new-build clash-ghc --ghc-options=-j2 -j16`
   * Clash testsuite: 70.59 `cabal new-run -- testsuite -p clash -j32`
-  * Building stack: 446.68 `GHC_THREADS=4 cabal new-install stack -j8`
+  * Building stack: 446.68 `GHC_OPTIONS=-j4 cabal new-install stack -j8`
   * Building GHC: 1561.22 `make -j32`
   * GHC testsuite: 196.53 `THREADS=32 ./validate --no-clean --testsuite-only`
 
@@ -207,7 +207,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 453.63 `cabal new-build clash-ghc --ghc-options=-j2 -j64`
   * Clash testsuite: 63.87 `cabal new-run -- testsuite -p clash -j32`
-  * Building stack: 432.9 `GHC_THREADS=4 cabal new-install stack -j8`
+  * Building stack: 432.9 `GHC_OPTIONS=-j4 cabal new-install stack -j8`
   * Building GHC: 1483.15 `make -j32`
   * GHC testsuite: 186 `THREADS=32 ./validate --no-clean --testsuite-only`
 
@@ -223,7 +223,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 432.02 `cabal new-build clash-ghc --ghc-options=-j4 -j16`
   * Clash testsuite: 62.66 `cabal new-run -- testsuite -p clash -j32`
-  * Building stack: 394.57 `GHC_THREADS=4 cabal new-install stack -j8`
+  * Building stack: 394.57 `GHC_OPTIONS=-j4 cabal new-install stack -j8`
   * Building GHC: 1382.93  `make -j64`
   * GHC testsuite: 159.48  `THREADS=64 ./validate --no-clean`
 
@@ -253,7 +253,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 339.22 `cabal new-build clash-ghc --ghc-options=-j2 -j4`
   * Clash testsuite: 161.8 `cabal new-run -- testsuite -p clash -j8`
-  * Building stack: 372.12 `GHC_THREADS=2 cabal new-install stack -j8`
+  * Building stack: 372.12 `GHC_OPTIONS=-j2 cabal new-install stack -j8`
   * Building GHC: 1310.44 `make -j8`
   * GHC testsuite: 338.17 `THREADS=8 ./validate --no-clean --testsuite-only`
 
@@ -269,7 +269,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 370.94 `cabal new-build clash-ghc --ghc-options=-j4 -j4`
   * Clash testsuite: 211.74 `cabal new-run -- testsuite -p clash -j4`
-  * Building stack: 430.83 `GHC_THREADS=2 cabal new-install stack-1.9.1 -j8`
+  * Building stack: 430.83 `GHC_OPTIONS=-j2 cabal new-install stack-1.9.1 -j8`
   * Building GHC: 1441.14 `make -j8`
   * GHC testsuite: 376.00 `THREADS=8 ./validate --no-clean --testsuite-only`
 
@@ -293,7 +293,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 325.55 `cabal new-build clash-ghc --ghc-options=-j3 -j6`
   * Clash testsuite: 128.63 `cabal new-run -- testsuite -p clash -j8`
-  * Building stack: 335.27 `GHC_THREADS=3 cabal new-install stack -j6`
+  * Building stack: 335.27 `GHC_OPTIONS=-j3 cabal new-install stack -j6`
   * Building GHC: 1205.29 `make -j8`
   * GHC testsuite: 265.16 `THREADS=12 ./validate --no-clean --testsuite-only`
 
@@ -324,7 +324,7 @@ Clash-cosim is not installed, so the cosim tests fails
 
   * Building Clash: 418.91 `cabal new-build clash-ghc --ghc-options=-j4 -j36`
   * Clash testsuite: 44.47 `cabal new-run -- testsuite -p clash -j72`
-  * Building stack: 376.49 `GHC_THREADS=4 cabal new-install stack -j18`
+  * Building stack: 376.49 `GHC_OPTIONS=-j4 cabal new-install stack -j18`
   * Building GHC: 1328.30 `make -j72`
   * GHC testsuite: 106.44 `THREADS=72 ./validate --no-clean --testsuite-only`
 
