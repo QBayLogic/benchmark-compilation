@@ -39,6 +39,12 @@ for ghc_threads in ${THREAD_STEPS}; do
        [ $FASTRUN == 1 ] && break
 done
 
+# Disable testing cosim
+cat >> cabal.project.local << END_CABAL_PROJECT_LOCAL
+package clash-testsuite
+  flags: -cosim
+END_CABAL_PROJECT_LOCAL
+
 # Benchmark testsuite
 cabal new-run testsuite -- -p nosuchtest || true
 
