@@ -75,7 +75,7 @@ for ghc_threads in ${THREAD_STEPS}; do
            ghc-pkg init ~/.cabal/store/ghc-$GHC_VERSION/package.db
            sed -i "s/^  ghc-options:.*/  ghc-options: +RTS -qn8 -A32M -RTS -j${ghc_threads}/g" ~/.cabal/config
            echo "=========== stack, ghc=${ghc_threads}, cabal=${cabal_threads} ==========="
-           /usr/bin/time --quiet -p -f "${TIMEF}GHC_THREADS=${ghc_threads}" -o ${RESULT} -a -- cabal new-install stack-1.9.1.1 -j${cabal_threads} || true
+           /usr/bin/time --quiet -p -f "${TIMEF}GHC_THREADS=${ghc_threads}" -o ${RESULT} -a -- cabal new-install stack-1.9.3 -j${cabal_threads} || true
            [ $FASTRUN == 1 ] && break
        done
        [ $FASTRUN == 1 ] && break
