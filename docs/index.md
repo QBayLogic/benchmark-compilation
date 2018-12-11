@@ -1,7 +1,3 @@
----
-title: Haskell compilation benchmark
----
-
 # Tests
 
 | Name | Command | Comment |
