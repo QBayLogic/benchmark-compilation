@@ -55,7 +55,7 @@ cabal new-run -- testsuite -p clash -j8,0,122.72,923.85,95.28,
 cabal new-run -- testsuite -p clash -j4,0,222.22,919.83,96.73,
 cabal new-run -- testsuite -p clash -j2,0,434.20,1180.08,133.72,
 cabal new-run -- testsuite -p clash -j1,0,866.13,1511.46,152.97,
-cabal new-install stack-1.9.3 -j64,1,121.57,1448.95,315.50,GHC_THREADS=64
+cabal new-install stack-1.9.3 -j64,0,333.99,2104.47,378.69,GHC_THREADS=64
 cabal new-install stack-1.9.3 -j32,0,332.46,2049.26,343.87,GHC_THREADS=64
 cabal new-install stack-1.9.3 -j16,0,332.83,1874.18,281.78,GHC_THREADS=64
 cabal new-install stack-1.9.3 -j8,0,335.17,1754.79,238.02,GHC_THREADS=64
@@ -104,4 +104,3 @@ cabal new-install stack-1.9.3 -j8,0,513.98,1493.71,90.59,GHC_THREADS=1
 cabal new-install stack-1.9.3 -j4,0,548.84,1420.11,85.69,GHC_THREADS=1
 cabal new-install stack-1.9.3 -j2,0,839.79,1378.49,83.57,GHC_THREADS=1
 cabal new-install stack-1.9.3 -j1,0,1443.92,1361.41,78.36,GHC_THREADS=1
-
