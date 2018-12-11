@@ -1,6 +1,5 @@
 ---
 title: Haskell compilation benchmark
-layout: post
 ---
 
 # Tests
