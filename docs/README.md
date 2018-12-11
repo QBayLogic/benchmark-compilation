@@ -1,3 +1,8 @@
+---
+title: Haskell compilation benchmark
+layout: post
+---
+
 # Tests
 
 | Name | Command | Comment |
