@@ -10,25 +10,48 @@ Our benchmarks, however, show that we should've bought an i7-8700k instead.
 
 Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosthing this blog](https://github.com/QBayLogic/benchmark-compilation)
 
-# The benchmarks
+# Haskell workstation benchmarks
 
-### Building the Clash compiler
+In your day-to-day development cycle you probably execute the following compile tasks:
 
-This builds the clash compiler, and all of its dependencies, including haddock; with a populated download cache, and an empty Cabal store.
+1. Compile your project and all its dependencies (infrequent)
+2. Compile your project and run the (fast) test suite (frequent)
+3. Compile the module you're currently working on (very often)
+
+Tasks 1. and 2. are likely to benifit from CPUs that have more cores, which can then exploit the available parallelism; while task 3 will likely benefit from higher single-core performance.
+Given then dependencies between modules and packages, the available parallelism might be limited, and so a CPU with fewer cores but higher single-threaded performance might outperform a CPU that has more cores but lower single-thread performance on task 1. and 2.
+To benchmark all three compile task, we have created the following tests.
+
+### 1. Building the Clash compiler
+
+This builds the clash compiler, and all of its dependencies, including haddock.
 The Clash compiler has many dependencies, large and small, so it gives us a large range of Haskell project where we can exercise different levels of parallelism.
 
-### Building the Stack executable
+We make a checkout of a [fixed commit](https://github.com/clash-lang/clash-compiler/commits/5f9dd26825fb912896d7d1837238117131f0c37f), build it once to populate the download cache, then delete the Cabal store, and subsequently run:
+
+```
+cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j{GHC_THREADS}" -j{CABAL_THREADS}
+```
+
+Where
+
+* `-j{GHC_THREADS}`: we compile with multiple GHC threads, i.e. exploit the available compile-parallelism within a single package.
+* `-j{CABA_THREADS}`: we compile with multiple Cabal threads, i.e. exploit the available compile-parallelism between packages.
+* `+RTS -qn8 -A32M -RTS`: These settings where given to us by Ben Gamari, GHC maintainer, after we discovered very poor performance at higher thread counts. The [`-qn8` settings](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/runtime_control.html#rts-flag--qn%20%E2%9F%A8x%E2%9F%A9) limits the number of garbage-collection threads to 8, which apparently performs higher poorly at high thread counts. To given an indication, for one of the benchmarked machines, running the test with `64` GHC threads, and `64` Cabal threads, the runtime went from [1742s](https://github.com/QBayLogic/benchmark-compilation/blob/master/results/02-04.csv) to [377.14s](https://github.com/QBayLogic/benchmark-compilation/blob/master/results/02-05.csv)  The [`-A32M` setting](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/runtime_control.html#rts-flag--A%20%E2%9F%A8size%E2%9F%A9) sets the allocation area to 32MB, reducing the number of collections and promotions. Benchmarking the effect of these setting different values for these options would be a blog post on its own. Given that the chosen values gave peformance improvements across the board kept them fixed for all variations of `GHC_THREADS` and `CABAL_THREADS`. 
+
+
+### 2. Building the Stack executable
 
 This builds the stack-1.9.3 executable, without haddock.
 It has even more dependencies than the Clash compiler, and probably holds more weight in terms of projects-haskellers-care-about. 
 
-### Building GHC
+### 3. Building GHC
 
 This builds an almost "perf" build of GHC, i.e. the one that's included in binary distributions. The almost part is that we do not build the documentation.
 
-### GHC Testsuite
+### 4. GHC Testsuite
 
-### Clash Testsuite
+### 5. Clash Testsuite
 
 # Systems
 
@@ -96,7 +119,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * CPU power governer: performance
   
-# Results
+# Shootout 
 
 #### Building Clash
 
@@ -151,6 +174,8 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 177.77 | Intel Core i7-7700K@4.8GHz | -74.3% | -11.2% | `cabal new-run -- testsuite -p clash -j8` |
 
 # Effect of faster RAM
+
+When picking parts for a new workstation, we always wondered whether faster RAM would have a significant impact
 
 ### Intel Core i7-7700K@4.8GHz
 
@@ -233,7 +258,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | AMD | CPU: AMD Ryzen 2700X | [€548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
-| Intel Core i7-8700K | CPU: Intel Core i7 8700K | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | +26.6% |
+| Intel | CPU: Intel Core i7 8700K | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | +26.6% |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15  | |
 
