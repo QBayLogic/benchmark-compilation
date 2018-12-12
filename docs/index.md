@@ -227,19 +227,21 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 ## Costs (on 12-Dec-2018)
 
 ### Upgrade
+
 | Vendor | Configuration | Price | +% of N-1 |
 | --- | --- | --- | --- |
-| AMD | CPU: AMD Ryzen 2700X | [€ 548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
+| AMD | CPU: AMD Ryzen 2700X | [€548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
-| Intel Core i7-8700K | CPU: Intel Core i7 8700K | [€ 694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | +26.6% |
+| Intel Core i7-8700K | CPU: Intel Core i7 8700K | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | +26.6% |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15  | |
 
 ### Full system
+
 | Vendor | Configuration | Price | +% of N-1 |
 | --- | --- | --- | --- |
-| Intel | CPU: AMD Ryzen 2700X | [€ 1.066,74](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7aToyMjk1OTk1O2k6MTt9) | 0% |
+| Intel | CPU: AMD Ryzen 2700X | [€1.066,74](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7aToyMjk1OTk1O2k6MTt9) | 0% |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
 | | Videocard: Gigabyte GeForce GT 1030 Silent Low Profile 2G | |
@@ -247,7 +249,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | | Case: Cooler Master Silencio 452 | |
 | | PSU: Seasonic Focus 450 Gold | |
 | | Assembly | |
-| Intel | CPU: Intel Core i7 8700K | [€ 1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==) | +9.5% |
+| Intel | CPU: Intel Core i7 8700K | [€1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==) | +9.5% |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
 | | CPU cooler: Cooler Master Hyper 212 Evo | |
