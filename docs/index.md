@@ -113,10 +113,11 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Machine | -% of #1 | -% of N-1 | Command |
 | --- | --- | --- | --- | --- |
-| 289.42 | Intel Core i7-8700K | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
-| 315.74 | 2x Intel Xeon Gold 6140M | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
-| 329.23 | AMD Threadripper 2990wx | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j32"  cabal new-install stack-1.9.3 -j8` |
-| 360.02 | AMD Ryzen 2700X | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
+| 289.42 | Intel Core i7-8700K | 0% | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 315.74 | 2x Intel Xeon Gold 6140M | -8.3% | -8.3% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
+| 329.23 | AMD Threadripper 2990wx | -12.1% | -4.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j32"  cabal new-install stack-1.9.3 -j8` |
+| 342.92 | Intel Core i7-7700K@4.8 | -15.6% | -4% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 360.02 | AMD Ryzen 2700X | -19.6% | -4.7% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
