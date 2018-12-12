@@ -105,6 +105,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 289.65 | Intel Core i7-8700K | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
 | 306.53 | Intel Core i7-7700K@4.8 | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 | 372.79 | AMD Ryzen 2700X | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
+| 369.72 | 2x Intel Xeon Gold 6140M | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72` |
 | 375.59 | AMD Threadripper 2990wx | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
 
 
@@ -114,6 +115,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | --- | --- | --- | --- |
 | 289.42 | Intel Core i7-8700K | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 289.42 | Intel Core i7-7700K@4.8 | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 315.74 | 2x Intel Xeon Gold 6140M | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
 | 329.23 | AMD Threadripper 2990wx | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j32"  cabal new-install stack-1.9.3 -j8` |
 | 360.02 | AMD Ryzen 2700X | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
@@ -124,6 +126,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | --- | --- | --- | --- |
 | 1205.29 | Intel Core i7-8700K | 100% | `make -j8` |
 | 1305.27 | Intel Core i7-7700K@4.8 | 100% | `make -j8` |
+| 1328.3 | 2x Intel Xeon Gold 6140M | 100% | `make -j72` |
 | 1382.93 | AMD Threadripper 2990wx | 100% | `make -j64` |
 | 1572.71 | AMD Ryzen 2700X | 100% | `make -j16` |
 
@@ -131,6 +134,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Machine | Compared to #1 | Command |
 | --- | --- | --- | --- |
+| 106.44 | 2x Intel Xeon Gold 6140M | 100% | `THREADS=72 ./validate --no-clean --testsuite-only` |
 | 159.48 | AMD Threadripper 2990wx | 100% | `THREADS=64 ./validate --no-clean --testsuite-only` |
 | 265.16 | Intel Core i7-8700K | 100% | `THREADS=12 ./validate --no-clean --testsuite-only` |
 | 293.69 | AMD Ryzen 2700X | 100% | `THREADS=16 ./validate --no-clean --testsuite-only` |
@@ -141,6 +145,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Machine | Compared to #1 | Command |
 | --- | --- | --- | --- |
+| 45.63 | 2x Intel Xeon Gold 6140M | 100% | `cabal new-run -- testsuite -p clash -j72` |
 | 64.84 | AMD Threadripper 2900wx | 100% | `cabal new-run -- testsuite -p clash -j32` |
 | 134.27 | Intel Core i7-8700K | 100% | `cabal new-run -- testsuite -p clash -j8` |
 | 157.87 | AMD Ryzen 2700X | 100% | `cabal new-run -- testsuite -p clash -j16` |
