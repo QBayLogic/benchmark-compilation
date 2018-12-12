@@ -10,25 +10,25 @@ Our benchmarks, however, show that we should've bought an i7-8700k instead.
 
 Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosthing this blog](https://github.com/QBayLogic/benchmark-compilation)
 
-# The tests
+# The benchmarks
 
-## Building the Clash compiler
+### Building the Clash compiler
 
 This builds the clash compiler, and all of its dependencies, including haddock; with a populated download cache, and an empty Cabal store.
 The Clash compiler has many dependencies, large and small, so it gives us a large range of Haskell project where we can exercise different levels of parallelism.
 
-## Building the Stack executable
+### Building the Stack executable
 
 This builds the stack-1.9.3 executable, without haddock.
 It has even more dependencies than the Clash compiler, and probably holds more weight in terms of projects-haskellers-care-about. 
 
-## Building GHC
+### Building GHC
 
 This builds an almost "perf" build of GHC, i.e. the one that's included in binary distributions. The almost part is that we do not build the documentation.
 
-## GHC Testsuite
+### GHC Testsuite
 
-## Clash Testsuite
+### Clash Testsuite
 
 # Systems
 
@@ -94,4 +94,6 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
   * Memory settings: 256 GB DDR4-2666 19-19-19-32 ECC
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
-  * CPU power governer: performance  
+  * CPU power governer: performance
+  
+# Results
