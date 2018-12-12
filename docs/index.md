@@ -207,7 +207,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| +2% | 0% | `make -j16` |
+| 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| +2% | `make -j16` |
 
 #### GHC Testsuite
 
