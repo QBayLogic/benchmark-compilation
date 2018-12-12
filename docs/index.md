@@ -20,6 +20,9 @@ In your day-to-day development cycle you probably execute the following compile 
 
 Tasks 1. and 2. are likely to benifit from CPUs that have more cores, which can then exploit the available parallelism; while task 3 will likely benefit from higher single-core performance.
 Given then dependencies between modules and packages, the available parallelism might be limited, and so a CPU with fewer cores but higher single-threaded performance might outperform a CPU that has more cores but lower single-thread performance on task 1. and 2.
+
+__All of these benchmarks are executed with *GHC 8.4.4* and *cabal-install 2.4.1.0*__
+
 To benchmark all three compile task, we have created the following tests.
 
 ### 1. Building the Clash compiler
@@ -27,31 +30,65 @@ To benchmark all three compile task, we have created the following tests.
 This builds the clash compiler, and all of its dependencies, including haddock.
 The Clash compiler has many dependencies, large and small, so it gives us a large range of Haskell project where we can exercise different levels of parallelism.
 
-We make a checkout of a [fixed commit](https://github.com/clash-lang/clash-compiler/commits/5f9dd26825fb912896d7d1837238117131f0c37f), build it once to populate the download cache, then delete the Cabal store, and subsequently run:
+We make a checkout of a [fixed commit](https://github.com/clash-lang/clash-compiler/commits/5f9dd26825fb912896d7d1837238117131f0c37f), build it once to populate the download cache, then delete the Cabal store and `dist-newstyle` directory, and subsequently run:
 
 ```
 cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j{GHC_THREADS}" -j{CABAL_THREADS}
 ```
 
-Where
+we repeat this process for different values of `GHC_THREADS` and `CABAL_THREADS`, deleting the Cabal store and `dist-newstyle` directories between runs. Some additional info on the flags:
 
 * `-j{GHC_THREADS}`: we compile with multiple GHC threads, i.e. exploit the available compile-parallelism within a single package.
-* `-j{CABA_THREADS}`: we compile with multiple Cabal threads, i.e. exploit the available compile-parallelism between packages.
+* `-j{CABAL_THREADS}`: we compile with multiple Cabal threads, i.e. exploit the available compile-parallelism between packages.
 * `+RTS -qn8 -A32M -RTS`: These settings where given to us by Ben Gamari, GHC maintainer, after we discovered very poor performance at higher thread counts. The [`-qn8` settings](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/runtime_control.html#rts-flag--qn%20%E2%9F%A8x%E2%9F%A9) limits the number of garbage-collection threads to 8, which apparently performs higher poorly at high thread counts. To given an indication, for one of the benchmarked machines, running the test with `64` GHC threads, and `64` Cabal threads, the runtime went from [1742s](https://github.com/QBayLogic/benchmark-compilation/blob/master/results/02-04.csv) to [377.14s](https://github.com/QBayLogic/benchmark-compilation/blob/master/results/02-05.csv)  The [`-A32M` setting](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/runtime_control.html#rts-flag--A%20%E2%9F%A8size%E2%9F%A9) sets the allocation area to 32MB, reducing the number of collections and promotions. Benchmarking the effect of these setting different values for these options would be a blog post on its own. Given that the chosen values gave peformance improvements across the board kept them fixed for all variations of `GHC_THREADS` and `CABAL_THREADS`. 
 
+We'll be comparing the following results between the different machines:
+
+1. `GHC_THREADS=1 CABAL_THREADS=1` to compare single-threaded performance which is important for task 3.
+2. `GHC_THREADS=N CABAL_THREADS=1` to compare multi-core performance which is important for task 2.
+3. `GHC_THREADS=X CABAL_THREADS=Y` to compare multi-core performance which is important for task 1.
 
 ### 2. Building the Stack executable
 
 This builds the stack-1.9.3 executable, without haddock.
-It has even more dependencies than the Clash compiler, and probably holds more weight in terms of projects-haskellers-care-about. 
+It has even more dependencies than the Clash compiler, and probably holds more weight in terms of projects-haskellers-care-about.
+We build it once to populate the download cache, then delete the Cabal store and subsequently:
+
+1. Edit the global `~/.cabal/config` to set: `ghc-options: +RTS -qn8 -A32M -RTS -j{GHC_THREADS}`
+2. Run `cabal new-install stack-1.9.3 -j{CABAL_THREADS}`
+
+We repeat this process for different values of `GHC_THREADS` and `CABAL_THREADS`, deleting the Cabal store between runs. The flags have the same meaning as in the "Building Clash" test, and we'll be comparing the results for the same variation of `GHC_THREADS` and `CABAL_THREADS` as we do for the "Building Clash" test.
 
 ### 3. Building GHC
 
-This builds an almost "perf" build of GHC, i.e. the one that's included in binary distributions. The almost part is that we do not build the documentation.
+This builds an almost "perf" build of GHC, i.e. the one that's included in binary distributions, for a [specific commit](https://github.com/ghc/ghc/commit/47bbc709cb221e32310c6e28eb2f33acf78488c7). The almost part is that we do not build the documentation.
+The command that we run for the test is:
+
+```
+make -j{THREADS}
+```
+
+where we run `make clean` and `./configure` before every run. We'll compare results for `THREADS=1` for single-core performance (task 3), and `THREADS=N` for multi-core performance (task 1. and 2.).
 
 ### 4. GHC Testsuite
 
+This runs the fast testsuite of GHC. We start with the the above-mentioned checkout of the GHC compiler. Run a `make maintainer-clean`  to clear ALL the build artifect, then run `./validate --build-only` to build a version of GHC that will execute the test suite, and then run:
+
+```
+THREADS={NUMTHREADS} ./validate --no-clean --testsuite-only
+```
+
+Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'll just be looking at `THREADS=N`, i.e. only compare multi-core performance.
+
 ### 5. Clash Testsuite
+
+The Clash integration tests converts Haskell to HDL, and then runs the HDL simulator to see whether the generated HDL is correct. Because setting up these simulators can be a pain, for this benchmark we only run the convert-to-hdl part. The command that we run will be:
+
+```
+cabal new-run -0- clash-testsuite -p clash -j{NUMTHREADS}
+```
+
+Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'll just be looking at `-jN`, i.e. only compare multi-core performance.
 
 # Systems
 
