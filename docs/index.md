@@ -97,3 +97,29 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
   * CPU power governer: performance
   
 # Results
+
+#### Building Clash
+
+| Time (s) | Machine | Compared to #1 | Command |
+| --- | --- | --- | --- |
+| 372.79 | AMD Ryzen 2700X | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
+
+
+#### Building Stack
+
+| Rank | Time (s) | Machine | Compared to #1 | Command |
+| --- | --- | --- | --- |
+| 360.02 | AMD Ryzen 2700X |  | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
+
+
+#### Building GHC
+
+| Rank | Time (s) | Machine | Compared to #1 |
+| --- | --- | --- | --- |
+| 1572.71 | AMD Ryzen 2700X |  | `make -j16` |
+
+#### GHC Testsuite
+
+| Rank | Time (s) | Machine | Compared to #1 |
+| --- | --- | --- | --- |
+| 293.69 | AMD Ryzen 2700X |  | `THREADS=16 ./validate --no-clean --testsuite-only` |
