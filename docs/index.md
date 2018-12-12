@@ -334,6 +334,8 @@ So let's say you're in a similar situation as us, you need to get a new Haskell 
 
 First we check the costs of the Intel option and the AMD option.
 Note that for the components where our options differ I've tried to pick the cheapest option from a respectable vendor.
+Also, the prices listed are basically only valid at the time of collection: December 12th 2018.
+And, being from the Netherlands, we are inelligible for cashback/discounts potentially available to e.g. those that live in the US.
 
 ### Upgrade only
 
