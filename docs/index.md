@@ -224,18 +224,22 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 # AMD vs Intel
 
-## Costs
+## Costs (on 12-Dec-2018)
 
 ### Upgrade
-| Vendor | Cost | +% of N-1 |
-| --- | --- | --- |
-| AMD |  [€ 548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
-| Intel | [€ 694,80](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | +26.6% |
+| CPU | Configuration | Cost | +% of N-1 |
+| --- | --- | --- | --- |
+| AMD Ryzen 2700X |  CPU: AMD Ryzen 2700X | [€ 548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
+| | Motherboard: Asrock B450M Pro4 | |
+| | Memory: Corsair CMK16GX4M2B3000C15 | |
+| Intel Core i7-8700K | CPU: Intel Core i7 8700K | [€ 694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | +26.6% |
+| | Motherboard: MSI 370-A PRO | |
+| | Memory: Corsair CMK16GX4M2B3000C15  | |
 
 ### Full system
 | Vendor | Cost | +% of N-1 |
 | --- | --- | --- |
-| AMD | [€ 1.003,19](https://azerty.nl/basket/?code=YTo3OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7fQ==) | 0% |
+| AMD | [€ 1.002,19](https://azerty.nl/basket/?code=YTo3OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7fQ==) | 0% |
 | Intel | [€ 1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==) | +16.4% |
 
 ## Performance
