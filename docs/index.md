@@ -5,7 +5,7 @@ Since we were busy with projects, and the workstation was mostly an upgrade to a
 Not just any random benchmark though, we wanted to see how well they performed at the job we use them for: compiling Haskell projects.
 Another reason is that we picked the parts for our workstation based on benchmarks found on sites like [Phoronix](https://phoronix.com) and [https://openbenchmarking.org/](https://openbenchmarking.org/), specifically benchmarks which seem related to the task at hand, such as [these compilation benchmarks](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4); but "of course" those compilation benchmarks did not include Haskell/GHC.
 
-In [the compilation benchmarks @ Phoronix](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4), AMD's Ryzen 2700X seemed pretty much on par with Intel's Core i7-8700k; so we decided to build our workstation around the 2700X hoping that its 8 cores would give it a leg up over the i7-8700k's 6 cores in our highly parallel test suites.
+In [the compilation benchmarks @ Phoronix](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4), AMD's Ryzen 7 2700X seemed pretty much on par with Intel's Core i7-8700k; so we decided to build our workstation around the 2700X hoping that its 8 cores would give it a leg up over the i7-8700k's 6 cores in our highly parallel test suites.
 Our benchmarks, however, show that we should've bought an i7-8700k instead.
 
 Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosthing this blog](https://github.com/QBayLogic/benchmark-compilation)
@@ -92,41 +92,70 @@ Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'
 
 # Systems
 
+We had several systems at our disposal for this benchmark.
+We'll classify them under "workstation" and "server" given their intended use.
+
 ### Workstations
 
-#### AMD Ryzen 2700X
+#### AMD Ryzen 7 2700X
+
+This is the workstation that we acquired as an upgrade, it has the following specs:
 
   * CPU: Ryzen 2700X (physical cores: 8)
   * Motherboard: ASRock X470 Master SLI
   * Memory: Corsair CMK32GX4M2B3000C15
   * SSD: Samsung 970 Evo 1TB
   
-  * Memory settings: 32 GB DDR4-3000 16-17-17-35
+Note that we actually ordered the above machine with some G.Skill Fortis F4-2400C15Q-64GFT memory, but for this performance shootout we'll be comparing it using the faster Corsair CMK32GX4M2B3000C15 memory.
+We'll discuss the effect of faster memory in a different section.
+
+We configured this machine as follows:
+  
+  * Memory settings: 32 GB (2x16GB) DDR4-3000 16-17-17-35
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * CPU power governer: performance
+  
+ Where the "CPU power governer" is the value that set using:
+ 
+ ```
+ cpupower frequency-set -g {GOVERNER}
+ ```
+ 
+ and ensures that the linux kernel picks operating frequencies such that the CPU can perform at its very best (at the cost of power efficiency).
 
 #### Intel Core i7-8700K
+
+This is a workstation that we were gratiously allowed to use by one of our clients for the purpose of this benchmark.
+It's roughly equal to the machine we would've picked as the counter part to the above Ryzen 7 2700X machine.
+It has the following specifications:
 
   * CPU: Core i7-8700K (physical cores: 6)
   * Motherboard: Asus PRIME Z370-P II
   * Memory: 4x Corsair CM4X16GC3000C15K4
   * SSD: Samsung 970 EVO 1TB
   
-  * Memory settings: 64 GB DDR4-3000 15-17-17-35
+And is configured as follows:
+  
+  * Memory settings: 64 GB (4x16GB) DDR4-3000 15-17-17-35
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-39-generic #42-Ubuntu SMP Tue Oct 23 15:48:01 UTC 2018
   * CPU power governer: performance
 
 #### Intel Core i7-7700K
 
+This is one of our own machines again.
+We used the RAM from this machine in the Ryzen 7 2700X machine for the purposes of this benchmark.
+
   * CPU: Core i7-7700k (physical cores: 4)
   * Motherboard: Asus Prime Z270-A
   * Memory: Corsair CMK32GX4M2B3000C15
   * SSD: Samsung 960 Pro 512GB + Samsung 960 EVO 250GB
   
+It's configured as follows, using a vendor overclock setting all cores to run at 4.8GHz.
+  
   * Overclock: all cores 4.8GHz
-  * Memory settings: 32 GB DDR4-3000 16-17-17-35
+  * Memory settings: 32 GB (2x16GB) DDR4-3000 16-17-17-35
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * CPU power governer: performance  
@@ -135,28 +164,38 @@ Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'
 
 #### AMD Threadripper 2990wx
 
+Our new build server:
+
   * CPU: Threadripper 2990wx (physical cores: 32)
   * Motherboard: ASRock X399 Taichi
   * Memory: 8x Samsung M391A2K43BB1-CRC
   * SSD: Samsung 970 Pro 1TB
   
-  * Memory settings: 128 GB DDR4-2666 18-19-19-43 ECC
+Which for the purposes of this benchmark was configured as follows:
+  
+  * Memory settings: 128 GB (8x16GB) DDR4-2666 18-19-19-43 ECC
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018
   * CPU power governer: performance
   
 #### Intel Xeon Gold 6140M
 
+This is a beefy server that we were gratiously allowed to use by one of our clients for the purpose of this benchmark.
+
   * CPU: 2x Xeon Gold 6140M (physical cores: 2x 18)
   * Motherboard: Intel S2600STB
   * Memory: 16x Kingston KSM26RS4/16HAI
   
-  * Memory settings: 256 GB DDR4-2666 19-19-19-32 ECC
+Which for the purposes of this benchmark was configured as follows:
+
+  * Memory settings: 256 GB (16x16GB) DDR4-2666 19-19-19-32 ECC
   * OS: Ubuntu 18.04.1 LTS
   * `uname -vr`: 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018
   * CPU power governer: performance
   
-# Shootout 
+# Shootout
+
+We start by comparing absolute, multi-core, performance:
 
 #### Building Clash
 
@@ -167,7 +206,6 @@ Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'
 | 369.72 | 2x Intel Xeon Gold 6140M | -21.7% | -17.1% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72` |
 | 372.79 | AMD Ryzen 2700X | -22.3% | -0.9% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
 | 375.59 | AMD Threadripper 2990wx | -22.9% | -0.7% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
-
 
 #### Building Stack
 
@@ -199,7 +237,6 @@ Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'
 | 293.69 | AMD Ryzen 2700X | -63.8% | -9.7% | `THREADS=16 ./validate --no-clean --testsuite-only` |
 | 343.06 | Intel Core i7-7700K@4.8GHz | -69% | -14.4% | `THREADS=8 ./validate --no-clean --testsuite-only` |
 
-
 #### Clash Testsuite
 
 | Time (s) | Machine | -% of #1 | -% of N-1 | Command |
@@ -212,9 +249,12 @@ Although the script iterates over multiple `NUMTHREADS`, for this blog post, we'
 
 # Effect of faster RAM
 
-When picking parts for a new workstation, we always wondered whether faster RAM would have a significant impact
+When picking parts for a new workstation, we always wondered whether faster RAM would have a significant impact.
+So we swapped the DDR4-2400 RAM from our Ryzen 7 2700X workstation with the DDR4-3000 RAM from our Intel Core i7-7700k workstation, and observed the following differences.
 
 ### Intel Core i7-7700K@4.8GHz
+
+Across the board, the Intel Core i7-7700K hardly seems to benifit from the faster RAM.
 
 #### Building Clash
 
@@ -251,7 +291,9 @@ When picking parts for a new workstation, we always wondered whether faster RAM 
 | 177.77 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
 | 184.04 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-run -- testsuite -p clash -j8` |
 
-### AMD Ryzen 2700X
+### AMD Ryzen 7 2700X
+
+It's quite a different story for our AMD Ryzen 7 2700X machine:
 
 #### Building Clash
 
@@ -288,7 +330,7 @@ When picking parts for a new workstation, we always wondered whether faster RAM 
 
 ## Costs (on 12-Dec-2018)
 
-### Upgrade
+### Upgrade only
 
 | Vendor | Configuration | Price | +% of N-1 |
 | --- | --- | --- | --- |
