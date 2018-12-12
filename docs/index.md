@@ -100,7 +100,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 #### Building Clash
 
-| Time (s) | Machine | Compared to #1 | Command |
+| Time (s) | Machine | % of #1 | Command |
 | --- | --- | --- | --- |
 | 289.65 | Intel Core i7-8700K | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
 | 306.53 | Intel Core i7-7700K@4.8 | 100% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
@@ -111,10 +111,9 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 #### Building Stack
 
-| Time (s) | Machine | Compared to #1 | Command |
+| Time (s) | Machine | % of #1| Command |
 | --- | --- | --- | --- |
 | 289.42 | Intel Core i7-8700K | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
-| 289.42 | Intel Core i7-7700K@4.8 | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 315.74 | 2x Intel Xeon Gold 6140M | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
 | 329.23 | AMD Threadripper 2990wx | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j32"  cabal new-install stack-1.9.3 -j8` |
 | 360.02 | AMD Ryzen 2700X | 100% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
@@ -122,7 +121,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 #### Building GHC
 
-| Time (s) | Machine | Compared to #1 | Command |
+| Time (s) | Machine | % of #1| Command |
 | --- | --- | --- | --- |
 | 1205.29 | Intel Core i7-8700K | 100% | `make -j8` |
 | 1305.27 | Intel Core i7-7700K@4.8 | 100% | `make -j8` |
@@ -132,7 +131,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 #### GHC Testsuite
 
-| Time (s) | Machine | Compared to #1 | Command |
+| Time (s) | Machine | % of #1 | Command |
 | --- | --- | --- | --- |
 | 106.44 | 2x Intel Xeon Gold 6140M | 100% | `THREADS=72 ./validate --no-clean --testsuite-only` |
 | 159.48 | AMD Threadripper 2990wx | 100% | `THREADS=64 ./validate --no-clean --testsuite-only` |
