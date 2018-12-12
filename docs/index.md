@@ -221,3 +221,40 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
 | 157.87 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `cabal new-run -- testsuite -p clash -j8` |
+
+# AMD vs Intel
+
+#### Building Clash
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 289.65 | Intel Core i7-8700K | +28.7% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
+| 372.79 | AMD Ryzen 2700X | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
+
+#### Building Stack
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 289.42 | Intel Core i7-8700K | +24.4% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 360.02 | AMD Ryzen 2700X | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
+
+#### Building GHC
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 1205.29 | Intel Core i7-8700K | +30.5% | `make -j8` |
+| 1572.71 | AMD Ryzen 2700X | 0% | `make -j16` |
+
+#### GHC Testsuite
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 265.16 | Intel Core i7-8700K | +10.8% |`THREADS=12 ./validate --no-clean --testsuite-only` |
+| 293.69 | AMD Ryzen 2700X | 0% | `THREADS=16 ./validate --no-clean --testsuite-only` |
+
+#### Clash Testsuite
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 134.27 | Intel Core i7-8700K | +17.6% | `cabal new-run -- testsuite -p clash -j8` |
+| 157.87 | AMD Ryzen 2700X | 0% | `cabal new-run -- testsuite -p clash -j16` |
