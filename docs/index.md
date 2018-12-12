@@ -258,3 +258,11 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | --- | --- | --- | --- |
 | 134.27 | Intel Core i7-8700K | +17.6% | `cabal new-run -- testsuite -p clash -j8` |
 | 157.87 | AMD Ryzen 2700X | 0% | `cabal new-run -- testsuite -p clash -j16` |
+
+##
+
+* AMD Ryzen 2700X upgrade: [€ 548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=)
+* Intel Core i7-8700K upgrade: [€ 694,80](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=)
+
+* AMD Ryzen 2700X system: 
+* Intel Core i7-8700K system: [€ 1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==)
