@@ -156,35 +156,68 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 #### Building Clash
 
-| Time (s) | Machine | +% of N+1 | Command |
+| Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
 | 306.53 | 2x 16GB DDR4-3000 16-17-17-35 | +0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 | 306.88 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 
 #### Building Stack
 
-| Time (s) | Machine | +% of N+1 | Command |
+| Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
 | 342.92 | 2x 16GB DDR4-3000 16-17-17-35 | +1.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 346.59 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
-| Time (s) | Machine | +% of N+1 | Command |
+| Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 1305.27 | 2x 16GB DDR4-3000 16-17-17-35| +2% | 0% | `make -j8` |
-| 1331.31 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | -7.7% | `make -j8` |
+| 1305.27 | 2x 16GB DDR4-3000 16-17-17-35| +2% | `make -j8` |
+| 1331.31 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `make -j8` |
 
 #### GHC Testsuite
 
-| Time (s) | Machine | +% of N+1 | Command |
+| Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
 | 343.06 | 2x 16GB DDR4-3000 16-17-17-35 | +2% |`THREADS=8 ./validate --no-clean --testsuite-only` |
 | 349.64 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `THREADS=8 ./validate --no-clean --testsuite-only` |
 
 #### Clash Testsuite
 
-| Time (s) | Machine | +% of N+1 | Command |
+| Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
 | 177.77 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
 | 184.04 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-run -- testsuite -p clash -j8` |
+
+### AMD Ryzen 2700X
+
+#### Building Clash
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 372.79 | 2x 16GB DDR4-3000 16-17-17-35 | +0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
+
+#### Building Stack
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 360.02 | 2x 16GB DDR4-3000 16-17-17-35 | +1.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
+
+#### Building GHC
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| +2% | 0% | `make -j16` |
+
+#### GHC Testsuite
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 293.69 | 2x 16GB DDR4-3000 16-17-17-35 | +10.8% |`THREADS=16 ./validate --no-clean --testsuite-only` |
+| 324.21 | 4x 16GB DDR4-2400 15-15-15-39 | 0% | `THREADS=16 ./validate --no-clean --testsuite-only` |
+
+#### Clash Testsuite
+
+| Time (s) | Memory | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 157.87 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
