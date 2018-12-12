@@ -103,7 +103,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | Time (s) | Machine | -% of #1 | -% of N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 289.65 | Intel Core i7-8700K | 0% | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
-| 306.53 | Intel Core i7-7700K@4.8 | -6%% | -6% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
+| 306.53 | Intel Core i7-7700K@4.8GHz | -6%% | -6% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 | 369.72 | 2x Intel Xeon Gold 6140M | -21.7% | -17.1% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j8" -j72` |
 | 372.79 | AMD Ryzen 2700X | -22.3% | -0.9% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` |
 | 375.59 | AMD Threadripper 2990wx | -22.9% | -0.7% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j32" -j32` |
@@ -116,7 +116,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 289.42 | Intel Core i7-8700K | 0% | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 315.74 | 2x Intel Xeon Gold 6140M | -8.3% | -8.3% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
 | 329.23 | AMD Threadripper 2990wx | -12.1% | -4.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j32"  cabal new-install stack-1.9.3 -j8` |
-| 342.92 | Intel Core i7-7700K@4.8 | -15.6% | -4% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 342.92 | Intel Core i7-7700K@4.8GHz | -15.6% | -4% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 360.02 | AMD Ryzen 2700X | -19.6% | -4.7% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
@@ -124,7 +124,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | Time (s) | Machine | -% of #1 | -% of N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 1205.29 | Intel Core i7-8700K | 0% | 0% | `make -j8` |
-| 1305.27 | Intel Core i7-7700K@4.8 | -7.7% | -7.7% | `make -j8` |
+| 1305.27 | Intel Core i7-7700K@4.8GHz | -7.7% | -7.7% | `make -j8` |
 | 1328.3 | 2x Intel Xeon Gold 6140M | -9.3% | -1.7% | `make -j72` |
 | 1382.93 | AMD Threadripper 2990wx | -12.8% | -4% | `make -j64` |
 | 1572.71 | AMD Ryzen 2700X | -23.3% | -12.1% | `make -j16` |
@@ -137,7 +137,7 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 159.48 | AMD Threadripper 2990wx | -33.3% | -33.3% | `THREADS=64 ./validate --no-clean --testsuite-only` |
 | 265.16 | Intel Core i7-8700K | -59.9% | -39.9 | `THREADS=12 ./validate --no-clean --testsuite-only` |
 | 293.69 | AMD Ryzen 2700X | -63.8% | -9.7% | `THREADS=16 ./validate --no-clean --testsuite-only` |
-| 343.06 | Intel Core i7-7700K@4.8 | -69% | -14.4% | `THREADS=8 ./validate --no-clean --testsuite-only` |
+| 343.06 | Intel Core i7-7700K@4.8GHz | -69% | -14.4% | `THREADS=8 ./validate --no-clean --testsuite-only` |
 
 
 #### Clash Testsuite
@@ -148,4 +148,4 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 64.84 | AMD Threadripper 2900wx | -29.6% | -29.6% | `cabal new-run -- testsuite -p clash -j32` |
 | 134.27 | Intel Core i7-8700K | -66.0% | -51.7% | `cabal new-run -- testsuite -p clash -j8` |
 | 157.87 | AMD Ryzen 2700X | -71.1% | -14.9% | `cabal new-run -- testsuite -p clash -j16` |
-| 177.77 | Intel Core i7-7700K@4.8| -74.3% | -11.2% | `cabal new-run -- testsuite -p clash -j8` |
+| 177.77 | Intel Core i7-7700K@4.8GHz | -74.3% | -11.2% | `cabal new-run -- testsuite -p clash -j8` |
