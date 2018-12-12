@@ -195,19 +195,19 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 372.79 | 2x 16GB DDR4-3000 16-17-17-35 | +0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
+| 372.79 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
 
 #### Building Stack
 
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 360.02 | 2x 16GB DDR4-3000 16-17-17-35 | +1.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
+| 360.02 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| +2% | `make -j16` |
+| 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| 0% | `make -j16` |
 
 #### GHC Testsuite
 
@@ -220,4 +220,4 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 
 | Time (s) | Memory | +% of N+1 | Command |
 | --- | --- | --- | --- |
-| 157.87 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
+| 157.87 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `cabal new-run -- testsuite -p clash -j8` |
