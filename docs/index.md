@@ -149,3 +149,42 @@ This builds an almost "perf" build of GHC, i.e. the one that's included in binar
 | 134.27 | Intel Core i7-8700K | -66.0% | -51.7% | `cabal new-run -- testsuite -p clash -j8` |
 | 157.87 | AMD Ryzen 2700X | -71.1% | -14.9% | `cabal new-run -- testsuite -p clash -j16` |
 | 177.77 | Intel Core i7-7700K@4.8GHz | -74.3% | -11.2% | `cabal new-run -- testsuite -p clash -j8` |
+
+# Effect of faster RAM
+
+### Intel Core i7-7700K@4.8GHz
+
+#### Building Clash
+
+| Time (s) | Machine | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 306.53 | 2x 16GB DDR4-3000 16-17-17-35 | +0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
+| 306.88 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
+
+#### Building Stack
+
+| Time (s) | Machine | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 342.92 | 2x 16GB DDR4-3000 16-17-17-35 | +1.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+| 346.59 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
+
+#### Building GHC
+
+| Time (s) | Machine | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 1305.27 | 2x 16GB DDR4-3000 16-17-17-35| +2% | 0% | `make -j8` |
+| 1331.31 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | -7.7% | `make -j8` |
+
+#### GHC Testsuite
+
+| Time (s) | Machine | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 343.06 | 2x 16GB DDR4-3000 16-17-17-35 | +2% |`THREADS=8 ./validate --no-clean --testsuite-only` |
+| 349.64 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `THREADS=8 ./validate --no-clean --testsuite-only` |
+
+#### Clash Testsuite
+
+| Time (s) | Machine | +% of N+1 | Command |
+| --- | --- | --- | --- |
+| 177.77 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
+| 184.04 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-run -- testsuite -p clash -j8` |
