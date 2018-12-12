@@ -126,7 +126,7 @@ We configured this machine as follows:
 
 #### Intel Core i7-8700K
 
-This is a workstation that we were gratiously allowed to use by one of our clients for the purpose of this benchmark.
+One of our clients gratiously allowed us to use one of their workstations to run this benchmark.
 It's roughly equal to the machine we would've picked as the counter part to the above Ryzen 7 2700X machine.
 It has the following specifications:
 
@@ -180,7 +180,7 @@ Which for the purposes of this benchmark was configured as follows:
   
 #### Intel Xeon Gold 6140M
 
-This is a beefy server that we were gratiously allowed to use by one of our clients for the purpose of this benchmark.
+One of our clients gratiously allowed us to use one of their beefy servers to run this benchmark.
 
   * CPU: 2x Xeon Gold 6140M (physical cores: 2x 18)
   * Motherboard: Intel S2600STB
@@ -199,7 +199,7 @@ We start by comparing absolute, multi-core, performance:
 
 #### Building Clash
 
-| Time (s) | Machine | -% of #1 | -% of N-1 | Command |
+| Time (s) | Machine | Performance vs #1 | Performance vs N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 289.65 | Intel Core i7-8700K | 0% | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
 | 306.53 | Intel Core i7-7700K@4.8GHz | -6%% | -6% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
@@ -209,7 +209,7 @@ We start by comparing absolute, multi-core, performance:
 
 #### Building Stack
 
-| Time (s) | Machine | -% of #1 | -% of N-1 | Command |
+| Time (s) | Machine | Performance vs #1 | Performance vs N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 289.42 | Intel Core i7-8700K | 0% | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 315.74 | 2x Intel Xeon Gold 6140M | -8.3% | -8.3% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j8"  cabal new-install stack-1.9.3 -j18` |
@@ -219,7 +219,7 @@ We start by comparing absolute, multi-core, performance:
 
 #### Building GHC
 
-| Time (s) | Machine | -% of #1 | -% of N-1 | Command |
+| Time (s) | Machine | Performance vs #1 | Performance vs N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 1205.29 | Intel Core i7-8700K | 0% | 0% | `make -j8` |
 | 1305.27 | Intel Core i7-7700K@4.8GHz | -7.7% | -7.7% | `make -j8` |
@@ -229,7 +229,7 @@ We start by comparing absolute, multi-core, performance:
 
 #### GHC Testsuite
 
-| Time (s) | Machine | -% of #1 | -% of N-1 | Command |
+| Time (s) | Machine | Performance vs #1 | Performance vs N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 106.44 | 2x Intel Xeon Gold 6140M | 0% | 0% | `THREADS=72 ./validate --no-clean --testsuite-only` |
 | 159.48 | AMD Threadripper 2990wx | -33.3% | -33.3% | `THREADS=64 ./validate --no-clean --testsuite-only` |
@@ -239,7 +239,7 @@ We start by comparing absolute, multi-core, performance:
 
 #### Clash Testsuite
 
-| Time (s) | Machine | -% of #1 | -% of N-1 | Command |
+| Time (s) | Machine | Performance vs #1 | Performance vs N-1 | Command |
 | --- | --- | --- | --- | --- |
 | 45.63 | 2x Intel Xeon Gold 6140M | 0% | 0% | `cabal new-run -- testsuite -p clash -j72` |
 | 64.84 | AMD Threadripper 2900wx | -29.6% | -29.6% | `cabal new-run -- testsuite -p clash -j32` |
@@ -258,35 +258,35 @@ Across the board, the Intel Core i7-7700K hardly seems to benifit from the faste
 
 #### Building Clash
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 306.53 | 2x 16GB DDR4-3000 16-17-17-35 | +0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 | 306.88 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j4" -j4` | 
 
 #### Building Stack
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 342.92 | 2x 16GB DDR4-3000 16-17-17-35 | +1.1% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 346.59 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 1305.27 | 2x 16GB DDR4-3000 16-17-17-35| +2% | `make -j8` |
 | 1331.31 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `make -j8` |
 
 #### GHC Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 343.06 | 2x 16GB DDR4-3000 16-17-17-35 | +2% |`THREADS=8 ./validate --no-clean --testsuite-only` |
 | 349.64 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `THREADS=8 ./validate --no-clean --testsuite-only` |
 
 #### Clash Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 177.77 | 2x 16GB DDR4-3000 16-17-17-35 | +3.5% | `cabal new-run -- testsuite -p clash -j8` |
 | 184.04 | 2x 16GB DDR4-2400 15-15-15-39 | 0% | `cabal new-run -- testsuite -p clash -j8` |
@@ -297,42 +297,50 @@ It's quite a different story for our AMD Ryzen 7 2700X machine:
 
 #### Building Clash
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 372.79 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
 
 #### Building Stack
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 360.02 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 1572.71 | 2x 16GB DDR4-3000 16-17-17-35| 0% | `make -j16` |
 
 #### GHC Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 293.69 | 2x 16GB DDR4-3000 16-17-17-35 | +10.8% |`THREADS=16 ./validate --no-clean --testsuite-only` |
 | 324.21 | 4x 16GB DDR4-2400 15-15-15-39 | 0% | `THREADS=16 ./validate --no-clean --testsuite-only` |
 
 #### Clash Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 157.87 | 2x 16GB DDR4-3000 16-17-17-35 | 0% | `cabal new-run -- testsuite -p clash -j8` |
 
-# AMD vs Intel
+# Haskell workstation buyer's guide
+
+So let's say you're in a similar situation as us, you need to get a new Haskell workstation, what do you get?
 
 ## Costs (on 12-Dec-2018)
 
+First we check the costs of the Intel option and the AMD option.
+Note that for the components where our options differ I've tried to pick the cheapest option from a respectable vendor.
+
 ### Upgrade only
 
-| Vendor | Configuration | Price | +% of N-1 |
+Let's say you have an existing case and video card, and you previous CPU used DDR3 memory, what are the costs of your upgrade path?.
+We picked DDR4-3000 for both options because we saw that the Ryzen 7 2700X definitely benifits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmark i7-8700K machine had.
+
+| Vendor | Configuration | Price | Price vs N-1 |
 | --- | --- | --- | --- |
 | AMD | CPU: AMD Ryzen 2700X | [€548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | 0% |
 | | Motherboard: Asrock B450M Pro4 | |
@@ -341,9 +349,13 @@ It's quite a different story for our AMD Ryzen 7 2700X machine:
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15  | |
 
-### Full system
+Although AMD allows memory overclock (DDR4-3000) at its midrage B450 motherboard chipsets, Intel only support memory overclock at its higher-end Z370/Z390 motherboard chipsets. Combined with the higher price of the i7-8700K itself, the higher price of the motherboard makes the Intel options 26.6% more expensive. 
 
-| Vendor | Configuration | Price | +% of N-1 |
+### Complete system
+
+A requirement that we set for the full system is that it should be able to handle a 4K@60Hz monitor, whether through HDMI or Display port; and that it is silent.
+
+| Vendor | Configuration | Price | Price vs N-1 |
 | --- | --- | --- | --- |
 | Intel | CPU: AMD Ryzen 2700X | [€1.066,74](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7aToyMjk1OTk1O2k6MTt9) | 0% |
 | | Motherboard: Asrock B450M Pro4 | |
@@ -362,39 +374,46 @@ It's quite a different story for our AMD Ryzen 7 2700X machine:
 | | PSU: Seasonic Focus 450 Gold | |
 | | Assembly | |
 
+The relative cost difference for the full system change somewhat to the upgrade-only path due to:
+
+* The total costs being heigher for both, thus lowering the relative differences.
+* The fact that the Intel Core i7-8700K has an onboard GPU which can drive the 4K@60Hz screen, where the AMD Ryzen 7 2700X needs a discrete GPU.
+
+Here we see that the Intel Core i7-8700K is only 9.5% more expensive than the AMD Ryzen 7 2700X system.
+
 ## Performance
 
 #### Building Clash
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 289.65 | Intel Core i7-8700K | +28.7% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j12" -j8` | 
 | 372.79 | AMD Ryzen 2700X | 0% | `cabal new-build clash-ghc --ghc-options="+RTS -qn8 -A32M -RTS -j16" -j16` | 
 
 #### Building Stack
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 289.42 | Intel Core i7-8700K | +24.4% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j4"  cabal new-install stack-1.9.3 -j8` |
 | 360.02 | AMD Ryzen 2700X | 0% | `GHC_OPTIONS="+RTS -qn8 -A32M -RTS -j16"  cabal new-install stack-1.9.3 -j8` |
 
 #### Building GHC
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 1205.29 | Intel Core i7-8700K | +30.5% | `make -j8` |
 | 1572.71 | AMD Ryzen 2700X | 0% | `make -j16` |
 
 #### GHC Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 265.16 | Intel Core i7-8700K | +10.8% |`THREADS=12 ./validate --no-clean --testsuite-only` |
 | 293.69 | AMD Ryzen 2700X | 0% | `THREADS=16 ./validate --no-clean --testsuite-only` |
 
 #### Clash Testsuite
 
-| Time (s) | Memory | +% of N+1 | Command |
+| Time (s) | Memory | Performance vs N+1 | Command |
 | --- | --- | --- | --- |
 | 134.27 | Intel Core i7-8700K | +17.6% | `cabal new-run -- testsuite -p clash -j8` |
 | 157.87 | AMD Ryzen 2700X | 0% | `cabal new-run -- testsuite -p clash -j16` |
