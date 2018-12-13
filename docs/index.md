@@ -516,7 +516,7 @@ The relative cost difference for the full system change somewhat to the upgrade-
 Here we see that the Intel Core i7-8700K system is only 9% more expensive compared to the AMD Ryzen 7 2700X system.
 
 ## Value for money
-We are using compiler per year per euro as our criteria, as the numbers for compiler per day per euro are too small.
+We are using compiles per year per euro as our criteria for judging value for money, i.e. the number of compiles per year you get for every euro spent.
 
 ### Building Clash
 For building Clash, the two options are on par for the upgrade path, while for the full system path, the Intel Core i7-8700K is clearly better.
