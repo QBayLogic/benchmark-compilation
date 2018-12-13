@@ -143,7 +143,7 @@ We configured this machine as follows:
 
 #### Intel Core i7-8700K
 
-One of our clients graciously allowed us to use one of their desktops to run this benchmark.
+One of our clients, [Myrtle.ai](https://www.myrtle.ai), graciously allowed us to use one of their desktops to run this benchmark.
 It's roughly equal to the machine we would've picked as the counter part to the above Ryzen 7 2700X machine.
 It has the following specifications:
 
@@ -201,7 +201,7 @@ Which for the purposes of this benchmark was configured as follows:
 
 #### Intel Xeon Gold 6140M
 
-One of our clients graciously allowed us to use one of their beefy servers to run this benchmark.
+One of our clients, [Myrtle.ai](https://www.myrtle.ai), graciously allowed us to use one of their beefy servers to run this benchmark.
 
   * CPU: 2x Xeon Gold 6140M (physical cores: 2x 18)
   * Motherboard: Intel S2600STB
