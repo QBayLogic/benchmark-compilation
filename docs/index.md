@@ -468,6 +468,8 @@ Let's say you have an existing case and video card, and your previous machine us
 We picked DDR4-3000 for both the AMD and Intel option because we saw that the Ryzen 7 2700X definitely benefits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmarked i7-8700K machine had.
 Also, the difference in price compared to e.g. DDR4-2400 is worth it in terms of the performance improvement.
 
+*In the original calculations I forgot to add a CPU cooler to the costs of the Intel upgrade path, that has now been fixed*
+
 | Option | Configuration | Price | Price vs other |
 | --- | --- | --- | --- |
 | AMD | CPU: AMD Ryzen 2700X |  | |
@@ -477,9 +479,10 @@ Also, the difference in price compared to e.g. DDR4-2400 is worth it in terms of
 | Intel | CPU: Intel Core i7 8700K | | |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15  | |
-| | **Total** | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | 27% more expensive |
+| | CPU cooler: Cooler Master Hyper 212 Evo | |
+| | **Total** | [€728,35](https://azerty.nl/basket/?code=YTo0OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzEwMzk7aToxO30=) | 33% more expensive |
 
-Although AMD allows memory overclock (DDR4-3000) at its midrage B450 motherboard chipsets, Intel only support memory overclock at its higher-end Z370/Z390 motherboard chipsets. Combined with the higher price of the i7-8700K itself, the higher price of the motherboard makes the Intel option 27% more expensive than the AMD option.
+Although AMD allows memory overclock (DDR4-3000) at its midrage B450 motherboard chipsets, Intel only support memory overclock at its higher-end Z370/Z390 motherboard chipsets. Combined with the higher price of the i7-8700K itself, the higher price of the motherboard makes the Intel option 33% more expensive than the AMD option.
 
 ### Complete system
 
@@ -522,15 +525,17 @@ Here we see that the Intel Core i7-8700K system is only 9% more expensive compar
 ## Value for money
 We are using compiles per year per Euro as our criteria for judging value for money, i.e. the number of compiles per year you get for every Euro spent.
 
+*In the original calculations I forgot to add a CPU cooler to the costs of the Intel upgrade path, that has now been fixed*
+
 ### Building Clash
-For building Clash, the two options are on par for the upgrade path, while for the full system path, the Intel Core i7-8700K is clearly better.
+For building Clash, the AMD Ryzen 7 2700X is slightly better when taking the upgrade path, while for the full system path, the Intel Core i7-8700K is clearly better.
 
 #### Upgrade
 
 | Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K | 289.65 | 157 | 1.02x better | `GHC_THREADS=12` `CABAL_THREADS=8`  |
-| AMD Ryzen 2700X     | 372.79 | 154 | -            | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| AMD Ryzen 2700X     | 372.79 | 154 | 1.03x better | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| Intel Core i7-8700K | 289.65 | 149 |              | `GHC_THREADS=12` `CABAL_THREADS=8`  |
 
 #### Full system
 
@@ -546,8 +551,8 @@ And we see similar results for building Stack.
 
 | Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 360.02 | 160 | 1.02x better | `GHC_THREADS=16` `CABAL_THREADS=8` |
-| Intel Core i7-8700K | 289.42 | 157 | -            | `GHC_THREADS=4` `CABAL_THREADS=8`  |
+| AMD Ryzen 2700X     | 360.02 | 160 | 1.07x better | `GHC_THREADS=16` `CABAL_THREADS=8` |
+| Intel Core i7-8700K | 289.42 | 150 | -            | `GHC_THREADS=4` `CABAL_THREADS=8`  |
 
 #### Full system
 
@@ -563,8 +568,8 @@ And also for building GHC.
 
 | Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K | 1205.29 | 38 | 1.03x better | `THREADS=8` |
-| AMD Ryzen 2700X     | 1572.71 | 37 | - | `THREADS=16` |
+| AMD Ryzen 2700X     | 1572.71 | 37 | 1.02x better | `THREADS=16` |
+| Intel Core i7-8700K | 1205.29 | 36 | - | `THREADS=8` |
 
 #### Full system
 
@@ -574,14 +579,14 @@ And also for building GHC.
 | AMD Ryzen 2700X     | 1572.71 | 19 | - | `THREADS=16` |
 
 ### GHC Testsuite
-For the GHC test suite, for the upgrade path, the AMD Ryzen 7 2700X offers the better value for money, while they're on par for the full system path.
+For the GHC test suite, for the upgrade path, the AMD Ryzen 7 2700X clearly offers better value for money, while they're on par for the full system path.
 
 #### Upgrade
 
 | Machine | Time(s) | Runs / Year / € | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 293.69 | 196 | 1.14x better | `THREADS=16 ` |
-| Intel Core i7-8700K | 265.16 | 171 | - | `THREADS=12` |
+| AMD Ryzen 2700X     | 293.69 | 196 | 1.20x better | `THREADS=16 ` |
+| Intel Core i7-8700K | 265.16 | 163 | - | `THREADS=12` |
 
 #### Full system
 
@@ -598,8 +603,8 @@ The AMD Ryzen 7 2700X gives better value for money at the upgrade path, while th
 
 | Machine | Time(s) | Runs / Year / € | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 157.87 | 364 | 1.08x better | `THREADS=16` |
-| Intel Core i7-8700K | 134.27 | 338 | - | `THREADS=8` |
+| AMD Ryzen 2700X     | 157.87 | 364 | 1.13x better | `THREADS=16` |
+| Intel Core i7-8700K | 134.27 | 322 | - | `THREADS=8` |
 
 #### Full system
 
