@@ -18,8 +18,8 @@ In your day-to-day development cycle you probably execute the following compile 
 2. Compile your project and run the (fast) test suite (frequent)
 3. Compile the module you're currently working on (very often)
 
-Tasks 1. and 2. are likely to benifit from CPUs that have more cores, which can then exploit the available parallelism; while task 3 will likely benefit from higher single-core performance.
-Given then dependencies between modules and packages, the available parallelism might be limited, and so a CPU with fewer cores but higher single-threaded performance might outperform a CPU that has more cores but lower single-thread performance on task 1. and 2.
+Tasks 1. and 2. are likely to benefit from CPUs that have more cores, which can then exploit the available parallelism; while task 3 will likely benefit from higher single-core performance.
+Given the dependencies between modules and packages, the available parallelism might be limited, and so a CPU with fewer cores but higher single-threaded performance might outperform a CPU that has more cores but lower single-thread performance on task 1. and 2.
 
 __All of these benchmarks are executed with *GHC 8.4.4* and *cabal-install 2.4.1.0*__
 
@@ -254,7 +254,7 @@ So we swapped the DDR4-2400 RAM from our Ryzen 7 2700X workstation with the DDR4
 
 ### Intel Core i7-7700K@4.8GHz
 
-Across the board, the Intel Core i7-7700K hardly seems to benifit from the faster RAM.
+Across the board, the Intel Core i7-7700K hardly seems to benefit from the faster RAM.
 
 #### Building Clash
 
@@ -340,7 +340,7 @@ And, being from the Netherlands, we are inelligible for cashback/discounts poten
 ### Upgrade only
 
 Let's say you have an existing case and video card, and you previous CPU used DDR3 memory, what are the costs of your upgrade path?.
-We picked DDR4-3000 for both options because we saw that the Ryzen 7 2700X definitely benifits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmark i7-8700K machine had.
+We picked DDR4-3000 for both options because we saw that the Ryzen 7 2700X definitely benefits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmark i7-8700K machine had.
 
 | Vendor | Configuration | Price | Price vs N-1 |
 | --- | --- | --- | --- |
