@@ -223,18 +223,18 @@ We start by comparing absolute, multi-core, performance:
 | Intel Core i7-8700K        | 289.65 | 298 | -            | -            | `GHC_THREADS=12` `CABAL_THREADS=8`  |
 | Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.65x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
 | 2x Intel Xeon Gold 6140M   | 369.72 | 234 | 1.28x slower | 1.21x slower | `GHC_THREADS=8`  `CABAL_THREADS=72` |
-| AMD Ryzen 2700X            | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| AMD Ryzen 7 2700X          | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
 | AMD Threadripper 2990wx    | 375.59 | 230 | 1.30x slower | 1.01x slower | `GHC_THREADS=32` `CABAL_THREADS=32` |
 
 #### Building Stack
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 289.42 | 298 | -            | -           | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
+| Intel Core i7-8700K        | 289.42 | 298 | -            | -            | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
 | 2x Intel Xeon Gold 6140M   | 315.74 | 273 | 1.09x slower | 1.09x slower | `GHC_THREADS=8`  `CABAL_THREADS=18` |
 | AMD Threadripper 2990wx    | 329.23 | 262 | 1.14x slower | 1.04x slower | `GHC_THREADS=32` `CABAL_THREADS=8`  |
 | Intel Core i7-7700K@4.8GHz | 342.92 | 251 | 1.18x slower | 1.04x slower | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
-| AMD Ryzen 2700X            | 360.02 | 239 | 1.24x slower | 1.05x slower | `GHC_THREADS=16` `CABAL_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 360.02 | 239 | 1.24x slower | 1.05x slower | `GHC_THREADS=16` `CABAL_THREADS=8`  |
 
 #### Building GHC
 
@@ -244,7 +244,7 @@ We start by comparing absolute, multi-core, performance:
 | Intel Core i7-7700K@4.8GHz | 1305.27 | 66 | 1.08x slower | 1.08x slower | `THREADS=8`  |
 | 2x Intel Xeon Gold 6140M   | 1328.3  | 65 | 1.10x slower | 1.02x slower | `THREADS=72` |
 | AMD Threadripper 2990wx    | 1382.93 | 62 | 1.15x slower | 1.04x slower | `THREADS=64` |
-| AMD Ryzen 2700X            | 1572.71 | 55 | 1.30x slower | 1.14x slower | `THREADS=16` |
+| AMD Ryzen 7 2700X          | 1572.71 | 55 | 1.30x slower | 1.14x slower | `THREADS=16` |
 
 #### GHC Testsuite
 
@@ -253,7 +253,7 @@ We start by comparing absolute, multi-core, performance:
 | 2x Intel Xeon Gold 6140M   | 106.44 | 812 | -            | -            | `THREADS=72` |
 | AMD Threadripper 2990wx    | 159.48 | 542 | 1.50x slower | 1.50x slower | `THREADS=64` |
 | Intel Core i7-8700K        | 265.16 | 326 | 2.49x slower | 1.66x slower | `THREADS=12` |
-| AMD Ryzen 2700X            | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
+| AMD Ryzen 7 2700X          | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
 | Intel Core i7-7700K@4.8GHz | 343.06 | 252 | 3.22x slower | 1.17x slower | `THREADS=8`  |
 
 #### Clash Testsuite
@@ -263,10 +263,52 @@ We start by comparing absolute, multi-core, performance:
 | 2x Intel Xeon Gold 6140M   | 45.63  | 1893 | -            | -            | `THREADS=72` |
 | AMD Threadripper 2900wx    | 64.84  | 1333 | 1.42x slower | 1.42x slower | `THREADS=32` |
 | Intel Core i7-8700K        | 134.27 | 643  | 2.94x slower | 2.07x slower | `THREADS=8`  |
-| AMD Ryzen 2700X            | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
+| AMD Ryzen 7 2700X          | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
 | Intel Core i7-7700K@4.8GHz | 177.77 | 486  | 3.90x slower | 1.13x slower | `THREADS=8`  |
 
-## Average multi-core performance
+## Average single-project multi-core performance
+
+#### Building Clash
+
+| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-7700K@4.8GHz | 499.87 | 173 | -            | -            | `GHC_THREADS=8`  |
+| Intel Core i7-8700K        | 502.44 | 172 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 642.1  | 135 | 1.28x slower | 1.28x slower | `GHC_THREADS=16` |
+| AMD Threadripper 2990wx    | 719.51 | 120 | 1.44x slower | 1.12x slower | `GHC_THREADS=16` |
+| 2x Intel Xeon Gold 6140M   | 723.8  | 119 | 1.45x slower | 1.01x slower | `GHC_THREADS=8`  |
+
+#### Building Stack
+
+| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 706.84 | 122 | -            | -            | `GHC_THREADS=8`  |
+| Intel Core i7-7700K@4.8GHz | 711.95 | 121 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 908.99 | 95  | 1.29x slower | 1.28x slower | `GHC_THREADS=8`  |
+| 2x Intel Xeon Gold 6140M   | 1023   | 84  | 1.45x slower | 1.13x slower | `GHC_THREADS=8`  |
+| AMD Threadripper 2990wx    | 1036.4 | 83  | 1.47x slower | 1.01x slower | `GHC_THREADS=32` |
+
+## Single core performance
+
+#### Building Clash
+
+| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-7700K@4.8GHz | 674.83 | 128 | -            | -            |
+| Intel Core i7-8700K        | 683.09 | 128 | 1.01x slower | 1.01x slower |
+| AMD Ryzen 7 2700X          | 876.63 | 99  | 1.30x slower | 1.28x slower |
+| AMD Threadripper 2990wx    | 949.85 | 91  | 1.41x slower | 1.08x slower |
+| 2x Intel Xeon Gold 6140M   | 952.82 | 91  | 1.41x slower | 1.00x slower |
+
+#### Building Stack
+
+| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 1008.95 | 86  | -            | -            |
+| Intel Core i7-7700K@4.8GHz | 1030.55 | 84  | 1.02x slower | 1.02x slower |
+| AMD Ryzen 7 2700X          | 1314.9  | 66  | 1.30x slower | 1.28x slower |
+| 2x Intel Xeon Gold 6140M   | 1406.78 | 61  | 1.39x slower | 1.07x slower |
+| AMD Threadripper 2990wx    | 1443.92 | 60  | 1.43x slower | 1.03x slower |
 
 # Effect of faster RAM
 
