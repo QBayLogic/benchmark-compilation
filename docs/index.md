@@ -1,3 +1,5 @@
+__TL;DR The Intel Core i7-8700K is 20%-30% faster than the AMD Ryzen 7 2700X at Haskell compile workloads, and performs 7%-19% better in terms of performance per Euro.__
+
 __This is a blog post about pitting different CPUs against each other where compiling Haskell projects is the benchmarked workload; it is *not* about benchmarking Haskell programs, profiling in order to improve the run-time of your Haskell program, improving GHC to lower compile times, etc.__
 
 This project started when we acquired two new machines for the office, a "desktop" and a "server" machine.
