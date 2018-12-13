@@ -221,10 +221,12 @@ We start by comparing absolute, multi-core, performance:
 | Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
 | Intel Core i7-8700K        | 289.65 | 298 | -            | -            | `GHC_THREADS=12` `CABAL_THREADS=8`  |
-| Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.65x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
+| Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.06x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
 | 2x Intel Xeon Gold 6140M   | 369.72 | 234 | 1.28x slower | 1.21x slower | `GHC_THREADS=8`  `CABAL_THREADS=72` |
 | AMD Ryzen 7 2700X          | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
 | AMD Threadripper 2990wx    | 375.59 | 230 | 1.30x slower | 1.01x slower | `GHC_THREADS=32` `CABAL_THREADS=32` |
+
+<img src="multicore-clash.svg" width="700" alt="multicore-clash-graph" />
 
 #### Building Stack
 
@@ -236,6 +238,8 @@ We start by comparing absolute, multi-core, performance:
 | Intel Core i7-7700K@4.8GHz | 342.92 | 251 | 1.18x slower | 1.04x slower | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
 | AMD Ryzen 7 2700X          | 360.02 | 239 | 1.24x slower | 1.05x slower | `GHC_THREADS=16` `CABAL_THREADS=8`  |
 
+<img src="multicore-stack.svg" width="700" alt="multicore-stack-graph" />
+
 #### Building GHC
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
@@ -245,6 +249,8 @@ We start by comparing absolute, multi-core, performance:
 | 2x Intel Xeon Gold 6140M   | 1328.3  | 65 | 1.10x slower | 1.02x slower | `THREADS=72` |
 | AMD Threadripper 2990wx    | 1382.93 | 62 | 1.15x slower | 1.04x slower | `THREADS=64` |
 | AMD Ryzen 7 2700X          | 1572.71 | 55 | 1.30x slower | 1.14x slower | `THREADS=16` |
+
+<img src="multicore-ghc.svg" width="700" alt="multicore-ghc-graph" />
 
 #### GHC Testsuite
 
@@ -256,6 +262,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Ryzen 7 2700X          | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
 | Intel Core i7-7700K@4.8GHz | 343.06 | 252 | 3.22x slower | 1.17x slower | `THREADS=8`  |
 
+<img src="multicore-ghc-test.svg" width="700" alt="multicore-ghc-test-graph" />
+
 #### Clash Testsuite
 
 | Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
@@ -265,6 +273,8 @@ We start by comparing absolute, multi-core, performance:
 | Intel Core i7-8700K        | 134.27 | 643  | 2.94x slower | 2.07x slower | `THREADS=8`  |
 | AMD Ryzen 7 2700X          | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
 | Intel Core i7-7700K@4.8GHz | 177.77 | 486  | 3.90x slower | 1.13x slower | `THREADS=8`  |
+
+<img src="multicore-clash-test.svg" width="700" alt="multicore-clash-test-graph" />
 
 ## Average single-project multi-core performance
 
@@ -278,6 +288,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Threadripper 2990wx    | 719.51 | 120 | 1.44x slower | 1.12x slower | `GHC_THREADS=16` |
 | 2x Intel Xeon Gold 6140M   | 723.8  | 119 | 1.45x slower | 1.01x slower | `GHC_THREADS=8`  |
 
+<img src="project-clash.svg" width="700" alt="project-clash-graph" />
+
 #### Building Stack
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
@@ -287,6 +299,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Ryzen 7 2700X          | 908.99 | 95  | 1.29x slower | 1.28x slower | `GHC_THREADS=8`  |
 | 2x Intel Xeon Gold 6140M   | 1023   | 84  | 1.45x slower | 1.13x slower | `GHC_THREADS=8`  |
 | AMD Threadripper 2990wx    | 1036.4 | 83  | 1.47x slower | 1.01x slower | `GHC_THREADS=32` |
+
+<img src="project-stack.svg" width="700" alt="project-stack-graph" />
 
 ## Single core performance
 
@@ -300,6 +314,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Threadripper 2990wx    | 949.85 | 91  | 1.41x slower | 1.08x slower |
 | 2x Intel Xeon Gold 6140M   | 952.82 | 91  | 1.41x slower | 1.00x slower |
 
+<img src="single-clash.svg" width="700" alt="single-clash-graph" />
+
 #### Building Stack
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 |
@@ -309,6 +325,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Ryzen 7 2700X          | 1314.9  | 66  | 1.30x slower | 1.28x slower |
 | 2x Intel Xeon Gold 6140M   | 1406.78 | 61  | 1.39x slower | 1.07x slower |
 | AMD Threadripper 2990wx    | 1443.92 | 60  | 1.43x slower | 1.03x slower |
+
+<img src="single-stack.svg" width="700" alt="single-stack-graph" />
 
 # Effect of faster RAM
 
@@ -441,7 +459,7 @@ A requirement that we set for the full system is that it should be able to handl
 
 | Option | Configuration | Price | Price vs N-1 |
 | --- | --- | --- | --- |
-| Intel | CPU: AMD Ryzen 2700X | | |
+| AMD | CPU: AMD Ryzen 2700X | | |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
 | | Videocard: Gigabyte GeForce GT 1030 Silent Low Profile 2G | |
