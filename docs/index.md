@@ -220,7 +220,7 @@ We start by comparing absolute, multi-core, performance:
 
 | Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 289.65 | 298 | even         | even         | `GHC_THREADS=12` `CABAL_THREADS=8`  |
+| Intel Core i7-8700K        | 289.65 | 298 | -            | -            | `GHC_THREADS=12` `CABAL_THREADS=8`  |
 | Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.65x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
 | 2x Intel Xeon Gold 6140M   | 369.72 | 234 | 1.28x slower | 1.21x slower | `GHC_THREADS=8`  `CABAL_THREADS=72` |
 | AMD Ryzen 2700X            | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
@@ -230,7 +230,7 @@ We start by comparing absolute, multi-core, performance:
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 289.42 | 298 | even         | even         | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
+| Intel Core i7-8700K        | 289.42 | 298 | -            | -           | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
 | 2x Intel Xeon Gold 6140M   | 315.74 | 273 | 1.09x slower | 1.09x slower | `GHC_THREADS=8`  `CABAL_THREADS=18` |
 | AMD Threadripper 2990wx    | 329.23 | 262 | 1.14x slower | 1.04x slower | `GHC_THREADS=32` `CABAL_THREADS=8`  |
 | Intel Core i7-7700K@4.8GHz | 342.92 | 251 | 1.18x slower | 1.04x slower | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
@@ -240,7 +240,7 @@ We start by comparing absolute, multi-core, performance:
 
 | Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 1205.29 | 72 | even         | even         | `THREADS=8`  |
+| Intel Core i7-8700K        | 1205.29 | 72 | -            | -            | `THREADS=8`  |
 | Intel Core i7-7700K@4.8GHz | 1305.27 | 66 | 1.08x slower | 1.08x slower | `THREADS=8`  |
 | 2x Intel Xeon Gold 6140M   | 1328.3  | 65 | 1.10x slower | 1.02x slower | `THREADS=72` |
 | AMD Threadripper 2990wx    | 1382.93 | 62 | 1.15x slower | 1.04x slower | `THREADS=64` |
@@ -250,7 +250,7 @@ We start by comparing absolute, multi-core, performance:
 
 | Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- | --- |
-| 2x Intel Xeon Gold 6140M   | 106.44 | 812 | even         | even         | `THREADS=72` |
+| 2x Intel Xeon Gold 6140M   | 106.44 | 812 | -            | -            | `THREADS=72` |
 | AMD Threadripper 2990wx    | 159.48 | 542 | 1.50x slower | 1.50x slower | `THREADS=64` |
 | Intel Core i7-8700K        | 265.16 | 326 | 2.49x slower | 1.66x slower | `THREADS=12` |
 | AMD Ryzen 2700X            | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
@@ -260,7 +260,7 @@ We start by comparing absolute, multi-core, performance:
 
 | Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x Intel Xeon Gold 6140M   | 45.63  | 1893 | even         | even         | `THREADS=72` |
+| 2x Intel Xeon Gold 6140M   | 45.63  | 1893 | -            | -            | `THREADS=72` |
 | AMD Threadripper 2900wx    | 64.84  | 1333 | 1.42x slower | 1.42x slower | `THREADS=32` |
 | Intel Core i7-8700K        | 134.27 | 643  | 2.94x slower | 2.07x slower | `THREADS=8`  |
 | AMD Ryzen 2700X            | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
@@ -277,37 +277,37 @@ Across the board, the Intel Core i7-7700K does *not* benefit from the faster RAM
 
 #### Building Clash
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 306.53 | 282 | even | `GHC_THREADS=4` `CABAL_THREADS=4` |
-| 2x 16GB DDR4-2400 15-15-15-39 | 306.88 | 282 | even | `GHC_THREADS=4` `CABAL_THREADS=4` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 306.53 | 282 | - | `GHC_THREADS=4` `CABAL_THREADS=4` |
+| 2x 16GB DDR4-2400 15-15-15-39 | 306.88 | 282 | - | `GHC_THREADS=4` `CABAL_THREADS=4` |
 
 #### Building Stack
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 342.92 | 252 | even         | `GHC_THREADS=4` `CABAL_THREADS=8` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 342.92 | 252 | -            | `GHC_THREADS=4` `CABAL_THREADS=8` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 346.59 | 249 | 1.01x slower | `GHC_THREADS=4` `CABAL_THREADS=8` |
 
 #### Building GHC
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 1305.27 | 66 | even         | `THREADS=8` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 1305.27 | 66 | -            | `THREADS=8` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 1331.31 | 65 | 1.02x slower | `THREADS=8` |
 
 #### GHC Testsuite
 
-| Memory | Time(s) | Runs / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Runs / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 343.06 | 252 | even         | `THREADS=8` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 343.06 | 252 | -            | `THREADS=8` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 349.64 | 247 | 1.02x slower | `THREADS=8` |
 
 #### Clash Testsuite
 
-| Memory | Time(s) | Runs / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Runs / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 177.77 | 486 | even         | `THREADS=8` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 177.77 | 486 | -            | `THREADS=8` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 184.04 | 469 | 1.04x slower | `THREADS=8` |
 
 ### AMD Ryzen 7 2700X
@@ -316,37 +316,37 @@ It's quite a different story for our AMD Ryzen 7 2700X machine:
 
 #### Building Clash
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 372.79 | 232 | even         | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 372.79 | 232 | -            | `GHC_THREADS=16` `CABAL_THREADS=16` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 384.68 | 225 | 1.03x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
 
 #### Building Stack
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 360.02 | 240 | even         | `GHC_THREADS=8` `CABAL_THREADS=8` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 360.02 | 240 | -            | `GHC_THREADS=8` `CABAL_THREADS=8` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 382.71 | 226 | 1.06x slower | `GHC_THREADS=16` `CABAL_THREADS=8` |
 
 #### Building GHC
 
-| Memory | Time(s) | Compiles / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Compiles / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 1572.71 | 55 | even         | `THREADS=16` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 1572.71 | 55 | -            | `THREADS=16` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 1693.69 | 51 | 1.08x slower | `THREADS=16` |
 
 #### GHC Testsuite
 
-| Memory | Time(s) | Runs / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Runs / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 293.69 | 294 | even         | `THREADS=16` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 293.69 | 294 | -            | `THREADS=16` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 326.18 | 265 | 1.11x slower | `THREADS=16` |
 
 #### Clash Testsuite
 
-| Memory | Time(s) | Runs / Day | vs N-1 | Configuration |
+| Memory | Time(s) | Runs / Day | vs other | Configuration |
 | --- | --- | --- | --- | --- |
-| 2x 16GB DDR4-3000 16-17-17-35 | 157.87 | 547 | even         | `THREADS=16` |
+| 2x 16GB DDR4-3000 16-17-17-35 | 157.87 | 547 | -            | `THREADS=16` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 171.09 | 505 | 1.08x slower | `THREADS=8` |
 
 # Haskell workstation buyer's guide
@@ -356,33 +356,48 @@ So let's say you're in a similar situation as us, you need to get a new Haskell 
 ## Costs (on 12-Dec-2018)
 
 First we check the costs of the Intel option and the AMD option.
-Note that for the components where our options differ I've tried to pick the cheapest option from a respectable vendor.
+Note that for the component/price selection I went for:
+
+1. A respectable vendor
+2. The "cheapest" component that had decent reviews, from brands that haven't failed me (your experience may differ!).
+
+So there might be cheaper options, but at what cost?
+
 Also, the prices listed are basically only valid at the time of collection: December 12th 2018.
-And, being from the Netherlands, we are inelligible for cashback/discounts potentially available to e.g. those that live in the US.
+And, being from the Netherlands, we are ineligible for cashback/discounts available to e.g. those that live in the US.
 
 ### Upgrade only
 
-Let's say you have an existing case and video card, and you previous CPU used DDR3 memory, what are the costs of your upgrade path?.
-We picked DDR4-3000 for both options because we saw that the Ryzen 7 2700X definitely benefits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmark i7-8700K machine had.
+Let's say you have an existing case and video card, and your previous machine used DDR3 memory, what are the costs for your upgrade path?.
+We picked DDR4-3000 for both the AMD and Intel option because we saw that the Ryzen 7 2700X definitely benefits from faster RAM; we use DDR4-3000 for our Core i7-8700K as well because that's what our benchmarked i7-8700K machine had.
+Also, the difference in price compared to e.g. DDR4-2400 is worth it in terms of the performance improvement.
 
-| Vendor | Configuration | Price | Price vs N-1 |
+| Option | Configuration | Price | Price vs other |
 | --- | --- | --- | --- |
-| AMD | CPU: AMD Ryzen 2700X | [€548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | even |
+| AMD | CPU: AMD Ryzen 2700X |  | |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
-| Intel | CPU: Intel Core i7 8700K | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | 27% more expensive |
+| | **Total** | [€548,75](https://azerty.nl/basket/?code=YTozOntpOjI0NDYxODg7aToxO2k6MjYzMDM1MztpOjE7aTo0NTQyODA7aToxO30=) | - |
+| Intel | CPU: Intel Core i7 8700K | | |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15  | |
+| | **Total** | [€694,80](https://azerty.nl/basket/?code=YTozOntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO30=) | 27% more expensive |
 
-Although AMD allows memory overclock (DDR4-3000) at its midrage B450 motherboard chipsets, Intel only support memory overclock at its higher-end Z370/Z390 motherboard chipsets. Combined with the higher price of the i7-8700K itself, the higher price of the motherboard makes the Intel options 27% more expensive.
+Although AMD allows memory overclock (DDR4-3000) at its midrage B450 motherboard chipsets, Intel only support memory overclock at its higher-end Z370/Z390 motherboard chipsets. Combined with the higher price of the i7-8700K itself, the higher price of the motherboard makes the Intel option 27% more expensive than the AMD option.
 
 ### Complete system
 
 A requirement that we set for the full system is that it should be able to handle a 4K@60Hz monitor, whether through HDMI or Display port; and that it is silent.
 
-| Vendor | Configuration | Price | Price vs N-1 |
+* Case: Cooler Master Silencio 452; used in the benchmarked i7-8700K machine; inaudible in a quiet office environment.
+* PSU: Seasonic Focus 450 Gold; unlike some other brands, Seasonic's single 12V-rail PSUs have never failed me.
+* CPU cooler: Cooler Master Hyper 212 Evo (for Intel) machine; used in the benchmarked i7-8700K; inaudible in a quiet office environment.
+* Video card: Gigabyte GeForce GT 1030 Silent Low Profile 2G (for AMD); brand never failed me.
+* SSD: WD Black NVMe SSD 1TB; has good reviews, slightly cheaper than the Samsung 970 EVO 1TB.
+
+| Option | Configuration | Price | Price vs N-1 |
 | --- | --- | --- | --- |
-| Intel | CPU: AMD Ryzen 2700X | [€1.066,74](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7aToyMjk1OTk1O2k6MTt9) | even |
+| Intel | CPU: AMD Ryzen 2700X | | |
 | | Motherboard: Asrock B450M Pro4 | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
 | | Videocard: Gigabyte GeForce GT 1030 Silent Low Profile 2G | |
@@ -390,7 +405,8 @@ A requirement that we set for the full system is that it should be able to handl
 | | Case: Cooler Master Silencio 452 | |
 | | PSU: Seasonic Focus 450 Gold | |
 | | Assembly | |
-| Intel | CPU: Intel Core i7 8700K | [€1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==) | 9% more expensive |
+| | **Total** | [€1.066,74](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aTo3MTg4OTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7aToyNjMwMzUzO2k6MTtpOjI0NDYxODg7aToxO2k6MTY2MTUwNztpOjE7aToyMjk1OTk1O2k6MTt9) | - |
+| Intel | CPU: Intel Core i7 8700K | | |
 | | Motherboard: MSI 370-A PRO | |
 | | Memory: Corsair CMK16GX4M2B3000C15 | |
 | | CPU cooler: Cooler Master Hyper 212 Evo | |
@@ -398,92 +414,105 @@ A requirement that we set for the full system is that it should be able to handl
 | | Case: Cooler Master Silencio 452 | |
 | | PSU: Seasonic Focus 450 Gold | |
 | | Assembly | |
+| | **Total** | [€1.167,80](https://azerty.nl/basket/?code=YTo4OntpOjQ1NDI4MDtpOjE7aToyMjIxODIzO2k6MTtpOjIyMzQ3OTY7aToxO2k6NzE4ODk7aToxO2k6NzEwMzk7aToxO2k6MjI5NTk5NTtpOjE7aToyNDkxMDQ1O2k6MTtpOjE5NTgxOTtpOjE7fQ==) | 9% more expensive |
 
 The relative cost difference for the full system change somewhat to the upgrade-only path due to:
 
-* The total costs being heigher for both, thus lowering the relative differences.
+* The total costs being higher for both, thus lowering the relative differences.
 * The fact that the Intel Core i7-8700K has an onboard GPU which can drive the 4K@60Hz screen, where the AMD Ryzen 7 2700X needs a discrete GPU.
 
-Here we see that the Intel Core i7-8700K is only 9% more expensive than the AMD Ryzen 7 2700X system.
+Here we see that the Intel Core i7-8700K system is only 9% more expensive compared to the AMD Ryzen 7 2700X system.
 
-## Performance per Euro
+## Value for money
+We are using compiler per year per euro as our criteria, as the numbers for compiler per day per euro are too small.
 
 ### Building Clash
+For building Clash, the two options are on par for the upgrade path, while for the full system path, the Intel Core i7-8700K is clearly better.
 
 #### Upgrade
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 289.65 | 157 | `GHC_THREADS=12` `CABAL_THREADS=8`  |
-| AMD Ryzen 2700X     | 372.79 | 154 | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 289.65 | 157 | 1.02x better | `GHC_THREADS=12` `CABAL_THREADS=8`  |
+| AMD Ryzen 2700X     | 372.79 | 154 | -            | `GHC_THREADS=16` `CABAL_THREADS=16` |
 
 #### Full system
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 289.65 | 93 | `GHC_THREADS=12` `CABAL_THREADS=8`  |
-| AMD Ryzen 2700X     | 372.79 | 79 | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 289.65 | 93 | 1.18x better | `GHC_THREADS=12` `CABAL_THREADS=8`  |
+| AMD Ryzen 2700X     | 372.79 | 79 | -            | `GHC_THREADS=16` `CABAL_THREADS=16` |
 
 ### Building Stack
+And we see similar results for building Stack.
 
 #### Upgrade
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 360.02 | 160 | `GHC_THREADS=16` `CABAL_THREADS=8` |
-| Intel Core i7-8700K | 289.42 | 157 | `GHC_THREADS=4` `CABAL_THREADS=8`  |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| AMD Ryzen 2700X     | 360.02 | 160 | 1.02x better | `GHC_THREADS=16` `CABAL_THREADS=8` |
+| Intel Core i7-8700K | 289.42 | 157 | -            | `GHC_THREADS=4` `CABAL_THREADS=8`  |
 
 #### Full system
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 289.42 | 93 | `GHC_THREADS=4` `CABAL_THREADS=8`  |
-| AMD Ryzen 2700X     | 360.02 | 82 | `GHC_THREADS=16` `CABAL_THREADS=8` |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 289.42 | 93 | 1.14x better | `GHC_THREADS=4` `CABAL_THREADS=8`  |
+| AMD Ryzen 2700X     | 360.02 | 82 | -            | `GHC_THREADS=16` `CABAL_THREADS=8` |
 
 ### Building GHC
+And also for building GHC.
 
 #### Upgrade
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 1205.29 | 38 | `THREADS=8` |
-| AMD Ryzen 2700X     | 1572.71 | 37 | `THREADS=16` |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 1205.29 | 38 | 1.03x better | `THREADS=8` |
+| AMD Ryzen 2700X     | 1572.71 | 37 | - | `THREADS=16` |
 
 #### Full system
 
-| Machine | Time(s) | Compiles / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 1205.29 | 22 | `THREADS=8` |
-| AMD Ryzen 2700X     | 1572.71 | 19 | `THREADS=16` |
+| Machine | Time(s) | Compiles / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 1205.29 | 22 | 1.19x better | `THREADS=8` |
+| AMD Ryzen 2700X     | 1572.71 | 19 | - | `THREADS=16` |
 
 ### GHC Testsuite
+For the GHC test suite, for the upgrade path, the AMD Ryzen 7 2700X offers the better value for money, while they're on par for the full system path.
 
 #### Upgrade
 
-| Machine | Time(s) | Runs / Year / € | Configuration |
-| --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 293.69 | 196 | `THREADS=16 ` |
-| Intel Core i7-8700K | 265.16 | 171 | `THREADS=12` |
+| Machine | Time(s) | Runs / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| AMD Ryzen 2700X     | 293.69 | 196 | 1.14x better | `THREADS=16 ` |
+| Intel Core i7-8700K | 265.16 | 171 | - | `THREADS=12` |
 
 #### Full system
 
-| Machine | Time(s) | Runs / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 265.16 | 102 | `THREADS=12` |
-| AMD Ryzen 2700X     | 293.69 | 101 | `THREADS=16 ` |
+| Machine | Time(s) | Runs / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 265.16 | 102 | 1.01x better | `THREADS=12` |
+| AMD Ryzen 2700X     | 293.69 | 101 | - | `THREADS=16 ` |
 
 ### Clash Testsuite
+For the Clash test suite, the Intel Core i7-8700K and the AMD Ryzen 7 2700X trade places between the upgrade path and the fully system path.
+The AMD Ryzen 7 2700X gives better value for money at the upgrade path, while the Intel Core i7-8700K does better for the full system path.
 
 #### Upgrade
 
-| Machine | Time(s) | Runs / Year / € | Configuration |
-| --- | --- | --- | --- |
-| AMD Ryzen 2700X     | 157.87 | 364 | `THREADS=16` |
-| Intel Core i7-8700K | 134.27 | 338 | `THREADS=8` |
+| Machine | Time(s) | Runs / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| AMD Ryzen 2700X     | 157.87 | 364 | 1.08x better | `THREADS=16` |
+| Intel Core i7-8700K | 134.27 | 338 | - | `THREADS=8` |
 
 #### Full system
 
-| Machine | Time(s) | Runs / Year / € | Configuration |
-| --- | --- | --- | --- |
-| Intel Core i7-8700K | 134.27 | 201 | `THREADS=8` |
-| AMD Ryzen 2700X     | 157.87 | 187 | `THREADS=16` |
+| Machine | Time(s) | Runs / Year / € | vs other | Configuration |
+| --- | --- | --- | --- | --- |
+| Intel Core i7-8700K | 134.27 | 201 | 1.07x better | `THREADS=8` |
+| AMD Ryzen 2700X     | 157.87 | 187 | - | `THREADS=16` |
+
+# Conclusions
+
+We think it is safe to conclude that for building Haskell projects, the Intel Core i7-8700K is the better CPU in terms of absolute performance, and performance per Euro, compared to the AMD Ryzen 7 2700X.
+For the compile tasks, the Intel i7-8700K performs between 25%-30% better than the AMD Ryzen 7 2700X in terms of absolute performance, and it performs 7%-19% better in terms of performance per Euro.
