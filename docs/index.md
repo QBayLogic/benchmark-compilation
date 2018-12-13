@@ -11,7 +11,9 @@ Those benchmarks are C compile time benchmarks though, and so all we could hope 
 In [the compilation benchmarks @ Phoronix](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4), AMD's Ryzen 7 2700X seemed pretty much on par with Intel's Core i7-8700k; so we decided to build our desktop around the 2700X hoping that its 8 cores would give it a leg up over the i7-8700k's 6 cores in our highly parallel test suites.
 As we will see in this blog post, however, it turns out that for compiling Haskell projects the Intel Core i7-8700K would have been the better choice.
 
-Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosthing this blog](https://github.com/QBayLogic/benchmark-compilation)
+#### Contribute? Disagree?
+Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosting this blog](https://github.com/QBayLogic/benchmark-compilation).
+Even better than simply running our benchmark scripts would be to collaborate in adding some Haskell compile benchmarks to [https://openbenchmarking.org/](https://openbenchmarking.org/).
 
 # Haskell desktop benchmarks
 
@@ -141,7 +143,7 @@ We configured this machine as follows:
 
 #### Intel Core i7-8700K
 
-One of our clients gratiously allowed us to use one of their desktops to run this benchmark.
+One of our clients graciously allowed us to use one of their desktops to run this benchmark.
 It's roughly equal to the machine we would've picked as the counter part to the above Ryzen 7 2700X machine.
 It has the following specifications:
 
@@ -199,7 +201,7 @@ Which for the purposes of this benchmark was configured as follows:
 
 #### Intel Xeon Gold 6140M
 
-One of our clients gratiously allowed us to use one of their beefy servers to run this benchmark.
+One of our clients graciously allowed us to use one of their beefy servers to run this benchmark.
 
   * CPU: 2x Xeon Gold 6140M (physical cores: 2x 18)
   * Motherboard: Intel S2600STB
@@ -518,7 +520,7 @@ The relative cost difference for the full system change somewhat to the upgrade-
 Here we see that the Intel Core i7-8700K system is only 9% more expensive compared to the AMD Ryzen 7 2700X system.
 
 ## Value for money
-We are using compiles per year per euro as our criteria for judging value for money, i.e. the number of compiles per year you get for every euro spent.
+We are using compiles per year per Euro as our criteria for judging value for money, i.e. the number of compiles per year you get for every Euro spent.
 
 ### Building Clash
 For building Clash, the two options are on par for the upgrade path, while for the full system path, the Intel Core i7-8700K is clearly better.
@@ -610,7 +612,7 @@ The AMD Ryzen 7 2700X gives better value for money at the upgrade path, while th
 
 We think it is safe to conclude that for building Haskell projects, the Intel Core i7-8700K is the better CPU in terms of absolute performance, and performance per Euro, compared to the AMD Ryzen 7 2700X.
 For the compile tasks, the Intel i7-8700K performs between 25%-30% better than the AMD Ryzen 7 2700X in terms of absolute performance, and it performs 7%-19% better in terms of performance per Euro.
-There can be a myriad of reasons why the relative performance of the AMD Ryzen 7 2700X vs the Intel Core i7-8700K is worse for Haskell compile workloads than it is for "the average" workload: caching strategies, cache sizes, pre-fetching implementation, branch-prediction implementations, memory hierarchies, core frequencies, Haskell/GHC evaluation/run-time behavior, etc.
+There can be a myriad of reasons why the relative performance of the AMD Ryzen 7 2700X vs the Intel Core i7-8700K is worse for Haskell compile workloads than it is for "the average" workload: caching strategies, cache sizes, prefetching implementation, branch-prediction implementations, memory hierarchies, core frequencies, Haskell/GHC evaluation/run-time behavior, etc.
 We might investigate whether it is the core frequency difference that is dominant, by artificially lowering the Core i7-8700K frequency; but that doesn't change the out-of-the-box performance difference between the two parts.
 
 In the future we plan to add some of the benchmarks from this blog post to the [https://openbenchmarking.org/](https://openbenchmarking.org/) suite, for multiple reasons:
