@@ -266,6 +266,8 @@ We start by comparing absolute, multi-core, performance:
 | AMD Ryzen 2700X            | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
 | Intel Core i7-7700K@4.8GHz | 177.77 | 486  | 3.90x slower | 1.13x slower | `THREADS=8`  |
 
+## Average multi-core performance
+
 # Effect of faster RAM
 
 When picking parts for a new workstation, we always wondered whether faster RAM would have a significant impact.
@@ -516,3 +518,12 @@ The AMD Ryzen 7 2700X gives better value for money at the upgrade path, while th
 
 We think it is safe to conclude that for building Haskell projects, the Intel Core i7-8700K is the better CPU in terms of absolute performance, and performance per Euro, compared to the AMD Ryzen 7 2700X.
 For the compile tasks, the Intel i7-8700K performs between 25%-30% better than the AMD Ryzen 7 2700X in terms of absolute performance, and it performs 7%-19% better in terms of performance per Euro.
+There can be a myriad of reasons why the relative performance of the AMD Ryzen 7 2700X vs the Intel Core i7-8700K is worse for Haskell compile workloads than it is for "the average" workload: caching strategies, cache sizes, pre-fetching implementation, branch-prediction implementations, memory hierarchies, core frequencies, Haskell/GHC evaluation/run-time behavior, etc.
+We might investigate whether it is the core frequency difference that is dominant, by artificially lowering the Core i7-8700K frequency; but that doesn't change the out-of-the-box performance difference between the two parts.
+
+In the future we plan to add some of the benchmarks from this blog post to the [https://openbenchmarking.org/](https://openbenchmarking.org/) suite, for multiple reasons:
+
+1. As we've discovered, creating and running benchmark scripts can be a pain. For ourselves, and others, making it part of a standard benchmarking suite means collecting stats will be easier and more reliable.
+2. Maybe we can convince review sites to include one of the benchmarks, e.g. building the stack executable, into their collection of tests; meaning we can get an early insight how new CPUs, at different configuration, perform at a task we care about.
+3. On that note, it would be interesting to see how Intel's latest desktop CPUs, the Core i7-9700K and the Core i9-9900K, perform on our workloads. Especially given that i7-9700K has 8 physical cores, vs the i7-8700K's 6 physical cores, but unlike the i7-8700K the i7-9700K doesn't have hyperthreading, *and* an i7-9700K costs the same as an i7-8700K.
+4. Whether AMDs next line of CPUs can close the gap with Intel on our Haskell compilation workloads.
