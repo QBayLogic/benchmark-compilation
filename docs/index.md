@@ -1,17 +1,17 @@
 __This is a blog post about pitting different CPUs against each other where compiling Haskell projects is the benchmarked workload; it is *not* about benchmarking Haskell programs, profiling in order to improve the run-time of your Haskell program, improving GHC to lower compile times, etc.__
 
-This project started when we acquired two new machines for the office, a "workstation" and a "server" machine.
-Since we were busy with projects, and the workstation was mostly an upgrade to an existing machine, we decided to run some benchmarks on them before taking them into production.
+This project started when we acquired two new machines for the office, a "desktop" and a "server" machine.
+Since we were busy with projects, and the desktop was mostly an upgrade to an existing machine, we decided to run some benchmarks on them before taking them into production.
 Not just any random benchmark though, we wanted to see how well they performed at the job at hand: compiling Haskell projects.
-When we picked the parts for our workstation, we had to make our decision based on benchmarks found on sites like [Phoronix](https://phoronix.com) and [https://openbenchmarking.org/](https://openbenchmarking.org/), specifically benchmarks such as [these compilation benchmarks](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4).
+When we picked the parts for our desktop, we had to make our decision based on benchmarks found on sites like [Phoronix](https://phoronix.com) and [https://openbenchmarking.org/](https://openbenchmarking.org/), specifically benchmarks such as [these compilation benchmarks](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4).
 Those benchmarks are C compile time benchmarks though, and so all we could hope for is that the numbers would translate to Haskell/GHC compile times.
 
-In [the compilation benchmarks @ Phoronix](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4), AMD's Ryzen 7 2700X seemed pretty much on par with Intel's Core i7-8700k; so we decided to build our workstation around the 2700X hoping that its 8 cores would give it a leg up over the i7-8700k's 6 cores in our highly parallel test suites.
+In [the compilation benchmarks @ Phoronix](https://www.phoronix.com/scan.php?page=article&item=intel-core-9900k-linux&num=4), AMD's Ryzen 7 2700X seemed pretty much on par with Intel's Core i7-8700k; so we decided to build our desktop around the 2700X hoping that its 8 cores would give it a leg up over the i7-8700k's 6 cores in our highly parallel test suites.
 As we will see in this blog post, however, it turns out that for compiling Haskell projects the Intel Core i7-8700K would have been the better choice.
 
 Our [benchmark script](https://github.com/QBayLogic/benchmark-compilation/blob/146f8a2d55266a8663de64fa06811ad4e772acb4/benchmark2.sh), and [collected results](https://github.com/QBayLogic/benchmark-compilation/tree/master/results), can all be found on [the github project hosthing this blog](https://github.com/QBayLogic/benchmark-compilation)
 
-# Haskell workstation benchmarks
+# Haskell desktop benchmarks
 
 In your day-to-day development cycle you probably execute the following compile tasks:
 
@@ -106,13 +106,13 @@ Although the script iterates over multiple `THREADS`, for this blog post, we'll 
 # Systems
 
 We had several systems at our disposal for this benchmark.
-We'll classify them under "workstation" and "server" given their intended use.
+We'll classify them under "desktop" and "server" given their intended use.
 
-### Workstations
+### Desktops
 
 #### AMD Ryzen 7 2700X
 
-This is the workstation that we acquired as an upgrade, it has the following specs:
+This is the desktop that we acquired as an upgrade, it has the following specs:
 
   * CPU: Ryzen 2700X (physical cores: 8)
   * Motherboard: ASRock X470 Master SLI
@@ -139,7 +139,7 @@ We configured this machine as follows:
 
 #### Intel Core i7-8700K
 
-One of our clients gratiously allowed us to use one of their workstations to run this benchmark.
+One of our clients gratiously allowed us to use one of their desktops to run this benchmark.
 It's roughly equal to the machine we would've picked as the counter part to the above Ryzen 7 2700X machine.
 It has the following specifications:
 
@@ -212,97 +212,9 @@ Which for the purposes of this benchmark was configured as follows:
 
 # Shootout
 
-## Peak multi-core performance
-
-We start by comparing absolute, multi-core, performance:
-
-#### Building Clash
-
-| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 289.65 | 298 | -            | -            | `GHC_THREADS=12` `CABAL_THREADS=8`  |
-| Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.06x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
-| 2x Intel Xeon Gold 6140M   | 369.72 | 234 | 1.28x slower | 1.21x slower | `GHC_THREADS=8`  `CABAL_THREADS=72` |
-| AMD Ryzen 7 2700X          | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
-| AMD Threadripper 2990wx    | 375.59 | 230 | 1.30x slower | 1.01x slower | `GHC_THREADS=32` `CABAL_THREADS=32` |
-
-<img src="multicore-clash.svg" width="700" alt="multicore-clash-graph" />
-
-#### Building Stack
-
-| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 289.42 | 298 | -            | -            | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
-| 2x Intel Xeon Gold 6140M   | 315.74 | 273 | 1.09x slower | 1.09x slower | `GHC_THREADS=8`  `CABAL_THREADS=18` |
-| AMD Threadripper 2990wx    | 329.23 | 262 | 1.14x slower | 1.04x slower | `GHC_THREADS=32` `CABAL_THREADS=8`  |
-| Intel Core i7-7700K@4.8GHz | 342.92 | 251 | 1.18x slower | 1.04x slower | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
-| AMD Ryzen 7 2700X          | 360.02 | 239 | 1.24x slower | 1.05x slower | `GHC_THREADS=16` `CABAL_THREADS=8`  |
-
-<img src="multicore-stack.svg" width="700" alt="multicore-stack-graph" />
-
-#### Building GHC
-
-| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 1205.29 | 72 | -            | -            | `THREADS=8`  |
-| Intel Core i7-7700K@4.8GHz | 1305.27 | 66 | 1.08x slower | 1.08x slower | `THREADS=8`  |
-| 2x Intel Xeon Gold 6140M   | 1328.3  | 65 | 1.10x slower | 1.02x slower | `THREADS=72` |
-| AMD Threadripper 2990wx    | 1382.93 | 62 | 1.15x slower | 1.04x slower | `THREADS=64` |
-| AMD Ryzen 7 2700X          | 1572.71 | 55 | 1.30x slower | 1.14x slower | `THREADS=16` |
-
-<img src="multicore-ghc.svg" width="700" alt="multicore-ghc-graph" />
-
-#### GHC Testsuite
-
-| Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| 2x Intel Xeon Gold 6140M   | 106.44 | 812 | -            | -            | `THREADS=72` |
-| AMD Threadripper 2990wx    | 159.48 | 542 | 1.50x slower | 1.50x slower | `THREADS=64` |
-| Intel Core i7-8700K        | 265.16 | 326 | 2.49x slower | 1.66x slower | `THREADS=12` |
-| AMD Ryzen 7 2700X          | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
-| Intel Core i7-7700K@4.8GHz | 343.06 | 252 | 3.22x slower | 1.17x slower | `THREADS=8`  |
-
-<img src="multicore-ghc-test.svg" width="700" alt="multicore-ghc-test-graph" />
-
-#### Clash Testsuite
-
-| Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- |
-| 2x Intel Xeon Gold 6140M   | 45.63  | 1893 | -            | -            | `THREADS=72` |
-| AMD Threadripper 2900wx    | 64.84  | 1333 | 1.42x slower | 1.42x slower | `THREADS=32` |
-| Intel Core i7-8700K        | 134.27 | 643  | 2.94x slower | 2.07x slower | `THREADS=8`  |
-| AMD Ryzen 7 2700X          | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
-| Intel Core i7-7700K@4.8GHz | 177.77 | 486  | 3.90x slower | 1.13x slower | `THREADS=8`  |
-
-<img src="multicore-clash-test.svg" width="700" alt="multicore-clash-test-graph" />
-
-## Average single-project multi-core performance
-
-#### Building Clash
-
-| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| Intel Core i7-7700K@4.8GHz | 499.87 | 173 | -            | -            | `GHC_THREADS=8`  |
-| Intel Core i7-8700K        | 502.44 | 172 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
-| AMD Ryzen 7 2700X          | 642.1  | 135 | 1.28x slower | 1.28x slower | `GHC_THREADS=16` |
-| AMD Threadripper 2990wx    | 719.51 | 120 | 1.44x slower | 1.12x slower | `GHC_THREADS=16` |
-| 2x Intel Xeon Gold 6140M   | 723.8  | 119 | 1.45x slower | 1.01x slower | `GHC_THREADS=8`  |
-
-<img src="project-clash.svg" width="700" alt="project-clash-graph" />
-
-#### Building Stack
-
-| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
-| --- | --- | --- | --- | --- | --- |
-| Intel Core i7-8700K        | 706.84 | 122 | -            | -            | `GHC_THREADS=8`  |
-| Intel Core i7-7700K@4.8GHz | 711.95 | 121 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
-| AMD Ryzen 7 2700X          | 908.99 | 95  | 1.29x slower | 1.28x slower | `GHC_THREADS=8`  |
-| 2x Intel Xeon Gold 6140M   | 1023   | 84  | 1.45x slower | 1.13x slower | `GHC_THREADS=8`  |
-| AMD Threadripper 2990wx    | 1036.4 | 83  | 1.47x slower | 1.01x slower | `GHC_THREADS=32` |
-
-<img src="project-stack.svg" width="700" alt="project-stack-graph" />
-
 ## Single core performance
+
+We start by comparing single-core performance.
 
 #### Building Clash
 
@@ -328,10 +240,128 @@ We start by comparing absolute, multi-core, performance:
 
 <img src="single-stack.svg" width="700" alt="single-stack-graph" />
 
+Where we see that the Intel desktop CPUs are 30% faster than the AMD desktop CPUs; and 40$ faster than the server machines.
+
+## Average single-project multi-core performance
+
+Next we compare multi-core performance for the "avarage" Haskell project.
+
+#### Building Clash
+
+| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-7700K@4.8GHz | 499.87 | 173 | -            | -            | `GHC_THREADS=8`  |
+| Intel Core i7-8700K        | 502.44 | 172 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 642.1  | 135 | 1.28x slower | 1.28x slower | `GHC_THREADS=16` |
+| AMD Threadripper 2990wx    | 719.51 | 120 | 1.44x slower | 1.12x slower | `GHC_THREADS=16` |
+| 2x Intel Xeon Gold 6140M   | 723.8  | 119 | 1.45x slower | 1.01x slower | `GHC_THREADS=8`  |
+
+<img src="project-clash.svg" width="700" alt="project-clash-graph" />
+
+#### Building Stack
+
+| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 706.84 | 122 | -            | -            | `GHC_THREADS=8`  |
+| Intel Core i7-7700K@4.8GHz | 711.95 | 121 | 1.01x slower | 1.01x slower | `GHC_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 908.99 | 95  | 1.29x slower | 1.28x slower | `GHC_THREADS=8`  |
+| 2x Intel Xeon Gold 6140M   | 1023   | 84  | 1.45x slower | 1.13x slower | `GHC_THREADS=8`  |
+| AMD Threadripper 2990wx    | 1036.4 | 83  | 1.47x slower | 1.01x slower | `GHC_THREADS=32` |
+
+<img src="project-stack.svg" width="700" alt="project-stack-graph" />
+
+Again we see that the Intel desktop CPUs are 30% faster than the AMD desktop CPUs.
+We get about a **1.4x** speedup compared to single-core compiles, meaning that either there isn't a lot of available parallelism within projects, or we are not able to exploit it.
+Additionally, it seems, with the exception of the Intel Core i7-7700K, that we do not achieve the best single-project multi-core performance by setting the number of GHC threads equal to the number of virtual CPU cores.
+We could only speculate as to the reasons for this.
+
+## Peak multi-core performance
+
+Finally we compare peak multi-core performance, i.e. we try to exercise all CPU cores as much as possible.
+
+#### Building Clash
+
+| Machine | Time (s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 289.65 | 298 | -            | -            | `GHC_THREADS=12` `CABAL_THREADS=8`  |
+| Intel Core i7-7700K@4.8GHz | 306.53 | 282 | 1.06x slower | 1.06x slower | `GHC_THREADS=4`  `CABAL_THREADS=4`  |
+| 2x Intel Xeon Gold 6140M   | 369.72 | 234 | 1.28x slower | 1.21x slower | `GHC_THREADS=8`  `CABAL_THREADS=72` |
+| AMD Ryzen 7 2700X          | 372.79 | 232 | 1.29x slower | 1.01x slower | `GHC_THREADS=16` `CABAL_THREADS=16` |
+| AMD Threadripper 2990wx    | 375.59 | 230 | 1.30x slower | 1.01x slower | `GHC_THREADS=32` `CABAL_THREADS=32` |
+
+<img src="multicore-clash.svg" width="700" alt="multicore-clash-graph" />
+
+For building Clash, both Intel desktop CPUs are 30% faster than the rest.
+On average we get about a **2.4x** speedup compared to single-core compiles, meaning that we there's more inter-package parallelism available than there is inter-module parallelism available, or that we're better at exploiting it.
+
+#### Building Stack
+
+| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 289.42 | 298 | -            | -            | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
+| 2x Intel Xeon Gold 6140M   | 315.74 | 273 | 1.09x slower | 1.09x slower | `GHC_THREADS=8`  `CABAL_THREADS=18` |
+| AMD Threadripper 2990wx    | 329.23 | 262 | 1.14x slower | 1.04x slower | `GHC_THREADS=32` `CABAL_THREADS=8`  |
+| Intel Core i7-7700K@4.8GHz | 342.92 | 251 | 1.18x slower | 1.04x slower | `GHC_THREADS=4`  `CABAL_THREADS=8`  |
+| AMD Ryzen 7 2700X          | 360.02 | 239 | 1.24x slower | 1.05x slower | `GHC_THREADS=16` `CABAL_THREADS=8`  |
+
+<img src="multicore-stack.svg" width="700" alt="multicore-stack-graph" />
+
+For building the Stack executable we get about a **4x** speedup compared to the single-core compiles.
+The difference in improvement compared to building the Clash compiler could either be caused by:
+
+  * The lack of haddock generation in the Stack build, where haddock generation is highly sequential.
+  * Having even more inter-package parallelism at our disposal.
+
+So while the Intel Core i7-8700K is 24% faster than the AMD Ryzen 7 2700X, Ryzen was able to close the gap with the Intel Core i7-7700K.
+
+#### Building GHC
+
+| Machine | Time(s) | Compiles / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| Intel Core i7-8700K        | 1205.29 | 72 | -            | -            | `THREADS=8`  |
+| Intel Core i7-7700K@4.8GHz | 1305.27 | 66 | 1.08x slower | 1.08x slower | `THREADS=8`  |
+| 2x Intel Xeon Gold 6140M   | 1328.3  | 65 | 1.10x slower | 1.02x slower | `THREADS=72` |
+| AMD Threadripper 2990wx    | 1382.93 | 62 | 1.15x slower | 1.04x slower | `THREADS=64` |
+| AMD Ryzen 7 2700X          | 1572.71 | 55 | 1.30x slower | 1.14x slower | `THREADS=16` |
+
+<img src="multicore-ghc.svg" width="700" alt="multicore-ghc-graph" />
+
+Also for building the GHC compiler, the Intel desktop CPUs perform better than the competition.
+
+#### GHC Testsuite
+
+| Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- | --- |
+| 2x Intel Xeon Gold 6140M   | 106.44 | 812 | -            | -            | `THREADS=72` |
+| AMD Threadripper 2990wx    | 159.48 | 542 | 1.50x slower | 1.50x slower | `THREADS=64` |
+| Intel Core i7-8700K        | 265.16 | 326 | 2.49x slower | 1.66x slower | `THREADS=12` |
+| AMD Ryzen 7 2700X          | 293.69 | 294 | 2.76x slower | 1.11x slower | `THREADS=16` |
+| Intel Core i7-7700K@4.8GHz | 343.06 | 252 | 3.22x slower | 1.17x slower | `THREADS=8`  |
+
+<img src="multicore-ghc-test.svg" width="700" alt="multicore-ghc-test-graph" />
+
+It's when we start running the highly parallel test suites that we finally get to see the benefit of the high core count of our servers, where the beefy Intel server takes the lead.
+While both Intel desktop CPUs took top spots in nearly all of the other benchmarks, the Intel i7-7700K's 4 physical cores lose out against the AMD Ryzen 7 2700X's 8 physical cores.
+However, while have two fewer cores, the Intel Core i7-8700K is still 11% faster than the AMD Ryzen 7 2700X.
+
+#### Clash Testsuite
+
+| Machine | Time(s) | Runs / Day | vs #1 | vs N-1 | Configuration |
+| --- | --- | --- | --- | --- |
+| 2x Intel Xeon Gold 6140M   | 45.63  | 1893 | -            | -            | `THREADS=72` |
+| AMD Threadripper 2900wx    | 64.84  | 1333 | 1.42x slower | 1.42x slower | `THREADS=32` |
+| Intel Core i7-8700K        | 134.27 | 643  | 2.94x slower | 2.07x slower | `THREADS=8`  |
+| AMD Ryzen 7 2700X          | 157.87 | 547  | 3.46x slower | 1.18x slower | `THREADS=16` |
+| Intel Core i7-7700K@4.8GHz | 177.77 | 486  | 3.90x slower | 1.13x slower | `THREADS=8`  |
+
+<img src="multicore-clash-test.svg" width="700" alt="multicore-clash-test-graph" />
+
+We get similar results for the highly parallel Clash test suite, with the Intel Core i7-7700K coming in last, but the Intel Core i7-8700K still being 18% faster than the AMD Ryzen 7 2700X.
+
 # Effect of faster RAM
 
-When picking parts for a new workstation, we always wondered whether faster RAM would have a significant impact.
-So we swapped the DDR4-2400 RAM from our AMD Ryzen 7 2700X workstation with the DDR4-3000 RAM from our Intel Core i7-7700k workstation, and observed the following differences.
+When picking parts for a new desktop, we always wondered whether faster RAM would have a significant impact.
+So we swapped the DDR4-2400 RAM from our AMD Ryzen 7 2700X desktop with the DDR4-3000 RAM from our Intel Core i7-7700k desktop, and observed the following differences.
 
 ### Intel Core i7-7700K@4.8GHz
 
@@ -411,9 +441,9 @@ It's quite a different story for our AMD Ryzen 7 2700X machine:
 | 2x 16GB DDR4-3000 16-17-17-35 | 157.87 | 547 | -            | `THREADS=16` |
 | 2x 16GB DDR4-2400 15-15-15-39 | 171.09 | 505 | 1.08x slower | `THREADS=8` |
 
-# Haskell workstation buyer's guide
+# Haskell desktop buyer's guide
 
-So let's say you're in a similar situation as us, you need to get a new Haskell workstation, what do you get?
+So let's say you're in a similar situation as us, you need to get a new Haskell desktop, what do you get?
 
 ## Costs (on 12-Dec-2018)
 
