@@ -1,0 +1,8 @@
+*~
+.\#*
+\#*\#
+*.swp
+*.zip
+
+dist
+dist-newstyle
