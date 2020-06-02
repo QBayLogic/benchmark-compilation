@@ -1,0 +1,51 @@
+[ { "name":           "clash"
+  , "cores":          1
+  , "max_jobs":       1
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          2
+  , "max_jobs":       1
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          3
+  , "max_jobs":       1
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          4
+  , "max_jobs":       1
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          1
+  , "max_jobs":       2
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+]
