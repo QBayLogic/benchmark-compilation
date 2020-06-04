@@ -31,9 +31,11 @@ function main() {
                    ($default_profile_spec) +
                    (\$ARGS.positional | add)
                    " --jsonargs \
-                     ${cores:+     "{ \"cores\":        \"$cores\" }"} \
-                     ${max_jobs:+  "{ \"max_jobs\":     \"$max_jobs\" }"} \
-                     ${iterations:+"{ \"iterations:+\": \"$iterations\" }"})
+                     ${cores:+     "{ \"cores\":      $cores }"} \
+                     ${max_jobs:+  "{ \"max_jobs\":   $max_jobs }"} \
+                     ${iterations:+"{ \"iterations\": $iterations }"})
+
+        oprint "profile spec: $(jq -C . <<<$profspec)"
 
         prof=$(compute_profile_from_spec "$profspec")
 
