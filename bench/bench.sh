@@ -10,13 +10,12 @@ default_profile_spec=$(jq '.[0]' "$specs_json")
 
 function main() {
         local verbose debug trace= profspec prof nix_shell_cmd
-        local name= cores= max_jobs= iterations=
+        local name= cores= iterations=
 
         while test $# -ge 1
         do case "$1" in
            --cores | -c )      if test "$2" = 'all'
                                then cores=0; else cores=$2; fi; shift;;
-           --max-jobs | -j )   max_jobs=$2; shift;;
            --iterations | -n ) iterations=$2; shift;;
 
            --cls )             echo -en "\ec";;
@@ -32,7 +31,6 @@ function main() {
                    (\$ARGS.positional | add)
                    " --jsonargs \
                      ${cores:+     "{ \"cores\":      $cores }"} \
-                     ${max_jobs:+  "{ \"max_jobs\":   $max_jobs }"} \
                      ${iterations:+"{ \"iterations\": $iterations }"})
 
         oprint "profile spec: $(jq -C . <<<$profspec)"
@@ -96,7 +94,6 @@ function prebuild_profile() {
                 --no-build-output
                 --no-out-link
                 --cores    4
-                --max-jobs 1
                 "${drvs[@]}"
         )
         dprint nix-build "${args[@]}"
@@ -141,7 +138,6 @@ function build_derivation() {
         args=(
                 --no-build-output
                 --cores    "$(jqevq "$build" .cores)"
-                --max-jobs "$(jqevq "$build" .max_jobs)"
                            "$(jqevq "$build" .derivation)"
         )
         dprint    --realise --check "${args[@]}"
