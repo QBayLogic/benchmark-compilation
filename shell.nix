@@ -1,0 +1,2 @@
+{...}@args:
+(import ./. args).shell
