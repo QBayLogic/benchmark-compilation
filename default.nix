@@ -22,6 +22,7 @@ let
   pkgs             = (import nixpkgsSrc {}).pkgs;
 in
 { compiler         ? default-compiler
+, buildFlags       ? []
 }:
 with pkgs.lib;
 let
@@ -60,9 +61,14 @@ let
       clashPkg =
         with pkgs.haskell.lib;
         pkgSet: name:
-          dontHaddock
-            (dontCheck
-              (doJailbreak (pkgSet.callCabal2nix name (clashSrc + "/${name}") {})));
+        overrideCabal (pkgSet.callCabal2nix name (clashSrc + "/${name}") {})
+          (drv: {
+            doCheck   = false;
+            doHaddock = false;
+            jailbreak = true;
+          } // optionalAttrs (buildFlags != []) {
+            inherit buildFlags;
+          });
     in
     pkgSet:
       flip genAttrs (clashPkg pkgSet)
@@ -85,8 +91,11 @@ let
 ##  nix-build -A foo
 ##
 in {
-  inherit ghc ghcOrig srcFromGithubPin;
+  inherit srcFromGithubPin;
   inherit (ghc) clash-ghc clash-lib clash-prelude;
+
+  "${compiler}" = pkgs.haskell.compiler.${compiler};
+  ghc           = pkgs.haskell.compiler.${compiler};
 
   shell = ghc.shellFor {
     packages    = p: [p.clash-ghc];
