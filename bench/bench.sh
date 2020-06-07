@@ -18,7 +18,12 @@ Usage:  $(basename "$0") OPTIONS.. [COMMAND=measure]
 Options:
 
     --cores N             Pass -j N to GHC: compile N modules in parallel
+    --rtsopts RTSOPTS     Pass -RTS RTSOPTS +RTS to the compiler
+                            NOTE:  default Nixpkgs-supplied RTS opts are:  -A64M
+    --high-core-rtsopts   Use RTSOPTS best for high core count:  $high_core_rtsopts
     --iterations N        Perform N iterations, instead of profile defaults
+    --attr NAME           Build NAME attribute from 'default.nix', instead of
+                            profile defaults.  Can be specified multiple times
 
     --cls
     --debug, --trace
@@ -39,19 +44,23 @@ EOF
 }
 
 default_op='benchmark'
+default_profiles=(0)
 specs_filename=./'profile-specs.json'
 specs_json=$(realpath "$basedir"/../$specs_filename)
-default_profile_spec=$(jq '.[0]' "$specs_json")
 
 function main() {
-        local verbose debug trace= profspec prof nix_shell_cmd
-        local name= cores= iterations=
+        local verbose debug trace= profiles=() profspec prof nix_shell_cmd
+        local name= cores= rtsopts= iterations= attrs=() args
 
         while test $# -ge 1
         do case "$1" in
            --cores | -c )      if test "$2" = 'all'
                                then cores=0; else cores=$2; fi; shift;;
+           --rtsopts | -r )    rtsopts=$2; shift;;
+           --high-core-rtsopts | -h )
+                               rtsopts=$high_core_rtsopts;;
            --iterations | -n ) iterations=$2; shift;;
+           --attr | -a )       attrs=("${attrs[@]}" $2); shift;;
 
            --cls )             echo -en "\ec";;
            --verbose )         verbose=t;;
@@ -60,49 +69,79 @@ function main() {
            --help | -h )       usage; exit;;
            * )                 break;; esac; shift; done
 
+        if test ${#profiles[*]} -eq 0
+        then profiles=(${default_profiles[*]}); fi
+
+        prof=$(args_to_profile "${profiles[0]}" "$cores" "$rtsopts" "$iterations" \
+                               "${attrs[@]}")
+        oprint "profile:\n$(jq -C . <<<$prof)"
+
         op=${1:-$default_op}; shift || true
 
-        profspec=$(jqev "
-                   ($default_profile_spec) +
-                   (\$ARGS.positional | add)
-                   " --jsonargs \
-                     ${cores:+     "{ \"cores\":      $cores }"} \
-                     ${iterations:+"{ \"iterations\": $iterations }"})
-
-        oprint "profile spec: $(jq -C . <<<$profspec)"
-
-        prof=$(compute_profile_from_spec "$profspec")
-
         case "$op" in
-                benchmark ) nix_shell_cmd="prepare_profile '$prof'; measure_profile '$prof'";;
-                prepare )   nix_shell_cmd="prepare_profile '$prof'";;
-                measure )   nix_shell_cmd="measure_profile '$prof'";;
-                all )       nix_shell_cmd="
-                   for i in $(seq 0 $(($(jq length $specs_json) - 1)) | xargs echo)
-                   do spec=\$(jq \".[\$i]
-                                 \" --argjson i \$i $specs_json)
-                      prof=\$(compute_profile_from_spec \"\$spec\")
-                      prepare_profile \"\$prof\"
-                      measure_profile \"\$prof\"
-                   done
-                   ";;
-                * ) fail "unknown op: $op";;
+        benchmark ) nix_shell_cmd="prepare_profile '$prof';
+                                   measure_profile '$prof'";;
+        prepare )   nix_shell_cmd="prepare_profile '$prof'";;
+        measure )   nix_shell_cmd="measure_profile '$prof'";;
+        all )       local p_ixs
+                    p_ixs=($(seq 0 $(($(jq length $specs_json) - 1)) | xargs echo))
+                    nix_shell_cmd="
+            for i in ${p_ixs[*]}
+            do prof=\$(args_to_profile \"${profiles[\$i]}\" \"$cores\" \"$rtsopts\" \"$iterations\" ${attrs[*]})
+               prepare_profile \"\$prof\"
+               measure_profile \"\$prof\"
+            done";;
+        * ) fail "unknown op: $op";;
         esac
 
         nix-shell --run "${trace:+set -x;} $nix_shell_cmd"
 }
 
+function args_to_profile() {
+        local nr=$1 cores=$2 rtsopts=$3 iterations=$4 attrs
+        shift 4
+        attrs=("$@")
+
+        local def_profspec args profspec
+        def_profspec=$(jq '.[$profile_nr]' "$specs_json" \
+                          --argjson 'profile_nr' "$nr")
+
+        args=(${attrs[0]:+  "{ \"attributes\": $(args_to_json "${attrs[@]}") }"}
+              ${cores:+     "{ \"cores\":                      $cores }"}
+              ${rtsopts:+   "{ \"rtsopts\":                  \"$rtsopts\" }"}
+              ${iterations:+"{ \"iterations\":                 $iterations }"}
+        )
+        profspec=$(jqev "
+                   ($def_profspec) +
+                   (\$ARGS.positional | add)
+                   " --jsonargs "${args[@]}")
+
+        oprint "profile spec: $(jq -C . <<<$profspec)"
+
+        compute_profile_from_spec "$profspec"
+}
+
 function profile_spec_derivations() {
-        jqevq "$1" '.attributes | join(" ")' |
+        local spec=$1 rtsopts xargs nix_args args; shift
+
+        rtsopts=($(jq '.rtsopts // ""' <<<$spec --raw-output))
+        if test ${#rtsopts[*]} -gt 0
+        then nix_args=(--arg buildFlags
+                       '["--ghc-options=\"+RTS '"${rtsopts[*]}"' -RTS\""]')
+        else nix_args=(); fi
+
+        jqevq "$spec" '.attributes | join(" ")' |
         words_to_lines |
-        while read drv
-              test -n "$drv"
-        do nix-instantiate -A "$drv" 2>/dev/null | jq --raw-input
+        while read attr
+              test -n "$attr"
+        do args=(--attr "$attr" "${nix_args[@]}")
+           nix-instantiate "${args[@]}" |
+           jq --raw-input
         done | jq --slurp
 }
 
 function compute_profile_from_spec() {
-        local spec=$1 derivations; shift
+        local spec=$1 nix_args derivations; shift
 
         derivations=$(profile_spec_derivations "$spec")
 
@@ -123,7 +162,7 @@ function prepare_profile() {
 function prebuild_profile() {
         local prof=$1 args drvs
 
-        oprint "prebuilding profile: $(jq .name <<<$prof)"
+        oprint "prebuilding profile.."
 
         drvs=($(jqevqlist "$prof" .derivations))
         args=(

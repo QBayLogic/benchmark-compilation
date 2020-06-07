@@ -70,6 +70,14 @@ words_to_lines() {
         sed 's_ _\n_g'
 }
 
-shell_list_to_json() {
-        words_to_lines | jq --raw-input | jq --slurp --compact-output
+args_to_json() {
+        words_to_lines <<<"$@" | jq --raw-input | jq --slurp --compact-output
+}
+
+map() {
+        f=$1; shift
+
+        for x in "$@"
+        do $f $x || return 1
+        done
 }

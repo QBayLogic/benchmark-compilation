@@ -1,4 +1,30 @@
 [ { "name":           "clash"
+  , "cores":          4
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          16
+  , "iterations":     3
+  , "rtsopts":        "-qn8 -A32M"
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "ghc"
+  , "cores":          4
+  , "iterations":     1
+  , "attributes":
+    [ "ghc"
+    ]
+  }
+, { "name":           "clash"
   , "cores":          1
   , "iterations":     3
   , "attributes":
@@ -26,7 +52,7 @@
     ]
   }
 , { "name":           "clash"
-  , "cores":          4
+  , "cores":          5
   , "iterations":     3
   , "attributes":
     [ "clash-prelude"
@@ -35,7 +61,25 @@
     ]
   }
 , { "name":           "clash"
-  , "cores":          1
+  , "cores":          6
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          7
+  , "iterations":     3
+  , "attributes":
+    [ "clash-prelude"
+    , "clash-lib"
+    , "clash-ghc"
+    ]
+  }
+, { "name":           "clash"
+  , "cores":          8
   , "iterations":     3
   , "attributes":
     [ "clash-prelude"
