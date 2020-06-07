@@ -5,7 +5,42 @@ set -eu -o pipefail -o allexport
 basedir=$(dirname "$(realpath "$0")")
 . "$basedir"/lib.sh
 
-specs_json=$(realpath "$basedir"/../profile-specs.json)
+## These are RTS options that avoid penalising high-core CPUs.
+##
+## Note, that the truly optimal values for -qn and -A probably depend on the
+## actual core count and the size of L3$, respectively.
+high_core_rtsopts="-qn8 -A32M"
+
+usage() {
+        cat >&2 <<EOF
+Usage:  $(basename "$0") OPTIONS.. [COMMAND=measure]
+
+Options:
+
+    --cores N             Pass -j N to GHC: compile N modules in parallel
+    --iterations N        Perform N iterations, instead of profile defaults
+
+    --cls
+    --debug, --trace
+    --help
+
+Commands:
+
+    prepare       Prebuild the default profile, so all costs irrelevant
+                    to the benchmark are paid for upfront.
+                    The default profile is the first one in $specs_filename
+    measure       Perform the actual build benchmark using the default profile,
+                    and printing out its runtime.
+                    WARNING:  the 'prepare' phase must be performed before this
+    benchmark     Equivalent to 'prepare' and 'measure'
+    all           Benchmark on all profiles in $specs_filename
+
+EOF
+}
+
+default_op='benchmark'
+specs_filename=./'profile-specs.json'
+specs_json=$(realpath "$basedir"/../$specs_filename)
 default_profile_spec=$(jq '.[0]' "$specs_json")
 
 function main() {
@@ -22,9 +57,10 @@ function main() {
            --verbose )         verbose=t;;
            --debug )           verbose=t; debug=t;;
            --trace )           verbose=t; debug=t; trace=t; set -x;;
+           --help | -h )       usage; exit;;
            * )                 break;; esac; shift; done
 
-        op=$1; shift
+        op=${1:-$default_op}; shift || true
 
         profspec=$(jqev "
                    ($default_profile_spec) +
@@ -39,8 +75,8 @@ function main() {
 
         case "$op" in
                 benchmark ) nix_shell_cmd="prepare_profile '$prof'; measure_profile '$prof'";;
-                prepare   ) nix_shell_cmd="prepare_profile '$prof'";;
-                measure   ) nix_shell_cmd="measure_profile '$prof'";;
+                prepare )   nix_shell_cmd="prepare_profile '$prof'";;
+                measure )   nix_shell_cmd="measure_profile '$prof'";;
                 all )       nix_shell_cmd="
                    for i in $(seq 0 $(($(jq length $specs_json) - 1)) | xargs echo)
                    do spec=\$(jq \".[\$i]
