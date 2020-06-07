@@ -44,6 +44,10 @@ jqevqlist() {
         jqevq "$val" "$q | join (\" \")" "$@"
 }
 
+jqtest() {
+        jq --exit-status "$@" > /dev/null
+}
+
 json_file_append() {
         local f=$1 extra=$2 tmp; shift 2
         tmp=$(mktemp --tmpdir)
@@ -74,10 +78,22 @@ args_to_json() {
         words_to_lines <<<"$@" | jq --raw-input | jq --slurp --compact-output
 }
 
+merge_json_attrs() {
+        jqev "(\$ARGS.positional | add)" --jsonargs "$@" --compact-output
+}
+
 map() {
         f=$1; shift
 
         for x in "$@"
         do $f $x || return 1
+        done
+}
+
+map2() {
+        f=$1; a=$2; shift 2
+
+        for x in "$@"
+        do "$f" "$a" "$x" || return 1
         done
 }

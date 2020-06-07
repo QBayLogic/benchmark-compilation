@@ -8,7 +8,7 @@ basedir=$(dirname "$(realpath "$0")")
 ## These are RTS options that avoid penalising high-core CPUs.
 ##
 ## Note, that the truly optimal values for -qn and -A probably depend on the
-## actual core count and the size of L3$, respectively.
+## available memory bandwidth/latency and the size of L3$, respectively.
 high_core_rtsopts="-qn8 -A32M"
 
 usage() {
@@ -22,6 +22,8 @@ Options:
                             NOTE:  default Nixpkgs-supplied RTS opts are:  -A64M
     --high-core-rtsopts   Use RTSOPTS best for high core count:  $high_core_rtsopts
     --iterations N        Perform N iterations, instead of profile defaults
+    --profile N           Use N'th profile from $specs_json as base.  Default is 0.
+                            Can be specified multiple times
     --attr NAME           Build NAME attribute from 'default.nix', instead of
                             profile defaults.  Can be specified multiple times
 
@@ -47,13 +49,15 @@ default_op='benchmark'
 default_profiles=(0)
 specs_filename=./'profile-specs.json'
 specs_json=$(realpath "$basedir"/../$specs_filename)
+verbose= debug= trace=
 
 function main() {
-        local verbose debug trace= profiles=() profspec prof nix_shell_cmd
-        local name= cores= rtsopts= iterations= attrs=() args
+        local profiles=()
+        local name= cores= rtsopts= iterations= attrs=() args argsjson
 
         while test $# -ge 1
         do case "$1" in
+           --profile | -p )    profiles=("${profiles[@]}" $2); shift;;
            --cores | -c )      if test "$2" = 'all'
                                then cores=0; else cores=$2; fi; shift;;
            --rtsopts | -r )    rtsopts=$2; shift;;
@@ -63,60 +67,54 @@ function main() {
            --attr | -a )       attrs=("${attrs[@]}" $2); shift;;
 
            --cls )             echo -en "\ec";;
+           --dry-run )         dry_run=t;;
            --verbose )         verbose=t;;
            --debug )           verbose=t; debug=t;;
            --trace )           verbose=t; debug=t; trace=t; set -x;;
            --help | -h )       usage; exit;;
            * )                 break;; esac; shift; done
 
-        if test ${#profiles[*]} -eq 0
-        then profiles=(${default_profiles[*]}); fi
-
-        prof=$(args_to_profile "${profiles[0]}" "$cores" "$rtsopts" "$iterations" \
-                               "${attrs[@]}")
-        oprint "profile:\n$(jq -C . <<<$prof)"
-
-        op=${1:-$default_op}; shift || true
-
-        case "$op" in
-        benchmark ) nix_shell_cmd="prepare_profile '$prof';
-                                   measure_profile '$prof'";;
-        prepare )   nix_shell_cmd="prepare_profile '$prof'";;
-        measure )   nix_shell_cmd="measure_profile '$prof'";;
-        all )       local p_ixs
-                    p_ixs=($(seq 0 $(($(jq length $specs_json) - 1)) | xargs echo))
-                    nix_shell_cmd="
-            for i in ${p_ixs[*]}
-            do prof=\$(args_to_profile \"${profiles[\$i]}\" \"$cores\" \"$rtsopts\" \"$iterations\" ${attrs[*]})
-               prepare_profile \"\$prof\"
-               measure_profile \"\$prof\"
-            done";;
-        * ) fail "unknown op: $op";;
-        esac
-
-        nix-shell --run "${trace:+set -x;} $nix_shell_cmd"
-}
-
-function args_to_profile() {
-        local nr=$1 cores=$2 rtsopts=$3 iterations=$4 attrs
-        shift 4
-        attrs=("$@")
-
-        local def_profspec args profspec
-        def_profspec=$(jq '.[$profile_nr]' "$specs_json" \
-                          --argjson 'profile_nr' "$nr")
-
         args=(${attrs[0]:+  "{ \"attributes\": $(args_to_json "${attrs[@]}") }"}
               ${cores:+     "{ \"cores\":                      $cores }"}
               ${rtsopts:+   "{ \"rtsopts\":                  \"$rtsopts\" }"}
               ${iterations:+"{ \"iterations\":                 $iterations }"}
+              ${dry_run:+   "{ \"dry_run\":                    true }"}
         )
-        profspec=$(jqev "
-                   ($def_profspec) +
-                   (\$ARGS.positional | add)
-                   " --jsonargs "${args[@]}")
+        argsjson=$(merge_json_attrs "${args[@]}")
+        oprint "args: $(jq -C . <<<$argsjson)"
 
-        oprint "profile spec: $(jq -C . <<<$profspec)"
+        op=${1:-$default_op}; shift || true
+
+        if test ${#profiles[*]} -eq 0
+        then profiles=(${default_profiles[*]})
+        else oprint "will use following profiles:"
+             map2 show_profile "$argsjson" ${profiles[*]} 2>/dev/null; fi
+
+        case "$op" in
+        benchmark ) cmd="map2 benchmark_profile '$argsjson' ${profiles[*]}";;
+        prepare )   cmd="map2   prepare_profile '$argsjson' ${profiles[*]}";;
+        measure )   cmd="map2   measure_profile '$argsjson' ${profiles[*]}";;
+        all )       local all_profiles
+                    all_profiles=($(seq 0 $(($(jq length $specs_json) - 1)) |
+                                    xargs echo))
+                    cmd="map2 benchmark_profile '$argsjson' ${all_profiles[*]}";;
+        * ) fail "unknown op: $op";;
+        esac
+
+        nix-shell --run "${trace:+set -x;} $cmd"
+}
+
+function args_to_profile() {
+        local nr=$1 args=$2
+
+        local def_profspec args profspec
+        def_profspec=$(jq '.[$profile_nr]' "$specs_json" \
+                          --argjson 'profile_nr' "$nr")
+        vprint "base profile spec: $(jq -C . <<<$def_profspec)"
+
+        profspec=$(merge_json_attrs "$def_profspec" "$args")
+
+        vprint "profile spec: $(jq -C . <<<$profspec)"
 
         compute_profile_from_spec "$profspec"
 }
@@ -152,7 +150,44 @@ function compute_profile_from_spec() {
           --argjson 'derivations'  "$derivations"
 }
 
+###
+###
+###
+function show_profile() {
+        local args=$1 prof_nr=$2
+
+        args_to_profile "$prof_nr" "$args" | jq . -C
+}
+
+function benchmark_profile() {
+        local args=$1 prof_nr=$2 prof
+
+        prof=$(args_to_profile "$prof_nr" "$args")
+
+        do_prepare_profile "$prof"
+        do_measure_profile "$prof"
+}
+
 function prepare_profile() {
+        local args=$1 prof_nr=$2 prof
+
+        prof=$(args_to_profile "$prof_nr" "$args")
+
+        do_measure_profile "$prof"
+}
+
+function measure_profile() {
+        local args=$1 prof_nr=$2 prof
+
+        prof=$(args_to_profile "$prof_nr" "$args")
+
+        do_measure_profile "$prof"
+}
+
+###
+###
+###
+function do_prepare_profile() {
         local prof=$1
 
         prebuild_profile "$prof"
@@ -162,7 +197,7 @@ function prepare_profile() {
 function prebuild_profile() {
         local prof=$1 args drvs
 
-        oprint "prebuilding profile.."
+        oprint "prebuilding profile: $(jq -C . <<<$prof)"
 
         drvs=($(jqevqlist "$prof" .derivations))
         args=(
@@ -171,9 +206,14 @@ function prebuild_profile() {
                 --cores    4
                 "${drvs[@]}"
         )
-        dprint nix-build "${args[@]}"
-        if   ! nix-build "${args[@]}"
-        then errormsg "prebuild build failed for profile:\n$prof\n---------- 8< ----------"
+
+        local cmd=(nix-build "${args[@]}")
+
+        if   jqtest .dry_run <<<$prof
+        then echo   "${cmd[@]}" >&2
+        elif dprint "${cmd[@]}"
+                  ! "${cmd[@]}"
+        then errormsg "prebuild build failed for profile: $prof\n---------- 8< ----------"
              nix log "${drvs[@]}"
              exit 1; fi
 }
@@ -196,10 +236,10 @@ function warmup_profile() {
         done
 }
 
-function measure_profile() {
+function do_measure_profile() {
         local prof=$1 build
 
-        oprint "measure profile:\n$(jq . <<<$prof -C)\n"
+        oprint "measure profile: $(jq . <<<$prof -C)\n"
         for i in $(seq 1 $(jq .iterations <<<$prof) | xargs echo)
         do time for drv in $(jqevqlist "$prof" .derivations)
                    do oprint "iteration $i, drv $drv"
@@ -215,8 +255,14 @@ function build_derivation() {
                 --cores    "$(jqevq "$build" .cores)"
                            "$(jqevq "$build" .derivation)"
         )
-        dprint    --realise --check "${args[@]}"
-        nix-store --realise --check "${args[@]}" 2>/dev/null
+
+        local cmd=(nix-store --realise --check "${args[@]}")
+
+        if jqtest .dry_run <<<$prof
+        then echo   "${cmd[@]}" >&2
+        else dprint "${cmd[@]}"
+                    "${cmd[@]}" 2>/dev/null
+        fi
 }
 
 ## Note:  keep this at the very end, so bash is forced to parse everything,
